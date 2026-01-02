@@ -47,3 +47,49 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+const nom_user = document.querySelector('#nom_user');
+const prenom_user = document.querySelector('#prenom_user');
+const email_user = document.querySelector('#email_user');
+const message_user = document.querySelector('#message_user');
+const form = document.querySelector('#contact-form');
+
+// ============================================
+// GESTION DU FORMULAIRE DE CONTACT
+// ============================================
+
+function sendEmail(e) {
+    e.preventDefault();
+
+    // Validation
+    if (!nom_user || !prenom_user || !email_user || !message_user) {
+        alert("Erreur : formulaire non trouvé");
+        return;
+    }
+
+    if (
+        nom_user.value.trim() === "" ||
+        prenom_user.value.trim() === "" ||
+        email_user.value.trim() === "" ||
+        message_user.value.trim() === ""
+    ) {
+        alert("Veuillez remplir tous les champs du formulaire.");
+        return;
+    }
+
+    const subject = `Message de ${prenom_user.value} ${nom_user.value} - Portfolio`;
+    const body = `
+                  Nom : ${nom_user.value}
+                  Prénom : ${prenom_user.value}
+                  Email : ${email_user.value}
+
+                  Message : 
+                  ${message_user.value}
+    `;
+
+    window.location.href =
+        `mailto:${emailGeneral}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    form.reset();
+    alert("Votre message a été préparé. Votre client de messagerie va s'ouvrir.");
+}

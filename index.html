@@ -88,7 +88,7 @@
                         <li>
                             <span class="icon"><i class="fas fa-phone"></i></span>
                             <span class="label"><strong>Numéro de téléphone:</strong></span>
-                            <span class="value">+33 07 66 43 52 07</span>
+                            <span class="value">+33 7 66 43 52 07</span>
                         </li>
                         <li>
                             <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
@@ -148,7 +148,6 @@
                         <i class="fas fa-paint-brush"></i>
                     </div>
                     <h3>Frontend</h3>
-                    <span class="card-progress" data-level="75"></span>
                 </div>
                 <div class="skills-list">
                     <div class="skill-item advanced">
@@ -233,7 +232,6 @@
                         <i class="fas fa-server"></i>
                     </div>
                     <h3>Backend</h3>
-                    <span class="card-progress" data-level="75"></span>
                 </div>
             <div class="skills-list">
                 <div class="skill-item intermediate">
@@ -318,7 +316,6 @@
                     <i class="fas fa-keyboard"></i>
                 </div>
                 <h3>Langages & POO</h3>
-                <span class="card-progress" data-level="75"></span>
             </div>
             <div class="skills-list">
                 <div class="skill-item intermediate">
@@ -391,7 +388,6 @@
                     <i class="fas fa-database"></i>
                 </div>
                 <h3>Bases de Données</h3>
-                <span class="card-progress" data-level="75"></span>
             </div>
             <div class="skills-list">
                 <div class="skill-item intermediate">
@@ -452,7 +448,6 @@
                     <i class="fas fa-tools"></i>
                 </div>
                 <h3>Outils & DevOps</h3>
-                <span class="card-progress" data-level="70"></span>
             </div>
             <div class="skills-list">
                 <div class="skill-item beginner">
@@ -722,21 +717,108 @@
         </div>
     </section>
 
-    <section class="contact" id="contact">
-        <h2>Contactez-moi</h2>
-        <form action="https://formspree.io/f/your-form-id" method="POST">
-            <label for="name">Nom:</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="_replyto" required>
-
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-
-            <button type="submit">Envoyer</button>
+   <section class="contact" id="contact">
+    <h2>Contactez-moi</h2>
+    <p class="contact-subtitle">N'hésitez pas à me contacter pour toute opportunité ou question</p>
+    
+    <div class="contact-content">
+        <form id="contact-form" class="contact-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="nom_user" class="form-label">
+                        Nom <span class="required">*</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" id="nom_user" class="form-input" placeholder="Votre nom" required>
+                    </div>
+                    <div class="form-hint">Votre nom de famille</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="prenom_user" class="form-label">
+                        Prénom <span class="required">*</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" id="prenom_user" class="form-input" placeholder="Votre prénom" required>
+                    </div>
+                    <div class="form-hint">Votre prénom</div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email_user" class="form-label">
+                    E-mail <span class="required">*</span>
+                </label>
+                <div class="input-wrapper">
+                    <i class="fas fa-envelope input-icon"></i>
+                    <input type="email" id="email_user" class="form-input" placeholder="votre@email.com" required>
+                </div>
+                <div class="form-hint">Nous ne partagerons jamais votre email</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="message_user" class="form-label">
+                    Message <span class="required">*</span>
+                </label>
+                <div class="input-wrapper">
+                    <i class="fas fa-comment-dots input-icon"></i>
+                    <textarea id="message_user" class="form-textarea" placeholder="Votre message..." rows="5" required></textarea>
+                </div>
+                <div class="form-hint">Minimum 10 caractères</div>
+            </div>
+            
+            <div class="form-group-checkbox">
+                <input type="checkbox" id="consent" class="form-checkbox" required>
+                <label for="consent" class="checkbox-label">
+                    J'accepte les conditions <span class="required">*</span>
+                </label>
+            </div>
+            
+            <button type="submit" class="btn-submit">
+                <i class="fas fa-paper-plane"></i>
+                <span>Envoyer le message</span>
+            </button>
+            
+            <div id="form-status" class="form-status"></div>
         </form>
-    </section>
+        
+        <div class="contact-info">
+            <div class="info-card">
+                <i class="fas fa-envelope info-icon"></i>
+                <div>
+                    <h3>Email</h3>
+                    <p><a href="#" class="info-link" onclick="window.location.href='mailto:smohamedabdo895@gmail.com'">smohamedabdo895@gmail.com</a></p>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <i class="fas fa-map-marker-alt info-icon"></i>
+                <div>
+                    <h3>Localisation</h3>
+                    <p>Djibouti, Djibouti</p>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <i class="fas fa-clock info-icon"></i>
+                <div>
+                    <h3>Disponibilité</h3>
+                    <p>Réponse sous 24h</p>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <i class="fas fa-info-circle info-icon"></i>
+                <div>
+                    <h3>Mode d'envoi</h3>
+                    <p>Formulaire → Client mail</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- FOOTER SECTION -->
 <footer class="footer-section">
@@ -780,8 +862,8 @@
       <nav class="footer-nav">
         <h3>Navigation</h3>
         <ul class="footer-nav-links">
-          <li><a href="#home"><i class="fas fa-chevron-right"></i> Accueil</a></li>
-          <li><a href="#about"><i class="fas fa-chevron-right"></i> À propos</a></li>
+          <li><a href="#acceuil"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+          <li><a href="#apropos"><i class="fas fa-chevron-right"></i> À propos</a></li>
           <li><a href="#competences"><i class="fas fa-chevron-right"></i> Compétences</a></li>
           <li><a href="#formations"><i class="fas fa-chevron-right"></i> Formation</a></li>
           <li><a href="#projets"><i class="fas fa-chevron-right"></i>Projets</a></li>
@@ -823,6 +905,7 @@
   </div>
 </footer>
 
+    <script src="script.js"></script>
 
 </body>
 </html>
