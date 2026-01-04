@@ -5,31 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - SAID MOHAMED ABDO</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=abeezee:400i" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=abeezee:400" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <header>
-        <h4>SMA</h4>
+<header>
+    <h4>SMA</h4>
 
-        <nav>
-            <ul>
-                <a href="#acceuil"><i class="fas fa-house-chimney"></i> Accueil</a>
-                <a href="#a-propos"><i class="fas fa-address-card"></i> À propos</a>
-                <a href="#competences"><i class="fas fa-code"></i> Compétences</a>
-                <a href="#formation"><i class="fas fa-university"></i> Formation</a>
-                <a href="#projets"><i class="fas fa-rocket"></i> Projets</a>
-                <a href="#contact"><i class="fas fa-comments"></i> Contact</a>
-            </ul>
-        </nav>
+    <!-- Bouton hamburger -->
+    <button class="hamburger" aria-label="Menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
 
-        <div class="profil">
+    <!-- Navigation principale (visible sur desktop/tablette) -->
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="#acceuil"><i class="fas fa-house-chimney"></i> Accueil</a></li>
+            <li><a href="#a-propos"><i class="fas fa-address-card"></i> À propos</a></li>
+            <li><a href="#competences"><i class="fas fa-code"></i> Compétences</a></li>
+            <li><a href="#formation"><i class="fas fa-university"></i> Formation</a></li>
+            <li><a href="#projets"><i class="fas fa-rocket"></i> Projets</a></li>
+            <li><a href="#contact"><i class="fas fa-comments"></i> Contact</a></li>
+        </ul>
+        
+        <!-- Boutons du profil intégrés dans la nav pour mobile -->
+        <div class="profil-mobile">
             <a href="CV DE SAID MOHAMED ABDO (2).pdf" download="CV DE SAID MOHAMED ABDO (2).pdf">Télécharger le CV</a>
             <a href="#contact">Venez me contacter</a>
         </div>
-    </header>
+    </nav>
+
+    <!-- Boutons du profil (visibles sur desktop/tablette) -->
+    <div class="profil">
+        <a href="CV DE SAID MOHAMED ABDO (2).pdf" download="CV DE SAID MOHAMED ABDO (2).pdf">Télécharger le CV</a>
+        <a href="#contact">Venez me contacter</a>
+    </div>
+</header>
 
     <section id="acceuil" class="acceuil">
         <div class="bloc-container">
@@ -38,8 +53,8 @@
                 <h3>Développeur Full Stack Web & Mobile</h3>
                 <p>Bienvenue sur mon portfolio ! Je suis un développeur web et mobile passionné, spécialisé dans la création de sites web modernes et d'applications mobiles performantes. Explorez mes projets et n'hésitez pas à me contacter pour toute collaboration.</p>
                 <div class="cta-button">
-                    <a href="#projets" class="btn">Voir mes projets</a>
-                    <a href="#contact" class="btn btn-primary">Me contacter</a>
+                    <a href="#projets" class="btn"><i class="fas fa-rocket"></i>Voir mes projets</a>
+                    <a href="#contact" class="btn btn-primary"><i class="fas fa-comments"></i>Me contacter</a>
                 </div>
                 <div class="reseaux">
                     <a href="https://www.linkedin.com/in/said-mohamed-abdo-123456789/" target="_blank" class="social-link linkedin">

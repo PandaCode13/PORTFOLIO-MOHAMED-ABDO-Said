@@ -53,11 +53,13 @@
 h1, h2, h3, h4, h5, h6, a {
   font-family: 'ABeeZee', sans-serif;
   font-style: italic;
+  font-weight: 400;
 }
 
 p, i, li {
   font-family: 'ABeeZee', sans-serif;
   font-style: normal;
+  font-weight: 400;
 }
 
 html {
@@ -105,6 +107,44 @@ header {
   padding: 1.2rem clamp(1.5rem, 4vw, 4rem);
 }
 
+/* Bouton hamburger (caché par défaut) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 3px;
+  background-color: var(--blue-main);
+  border-radius: 3px;
+  transition: all var(--transition-medium);
+  transform-origin: left center;
+}
+
+/* État actif du hamburger */
+.hamburger.active .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(2px, -1px);
+  background-color: var(--blue-light);
+}
+
+.hamburger.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(2px, 1px);
+  background-color: var(--blue-light);
+}
+
 header h4 {
   color: var(--blue-main);
   font-size: 1.6rem;
@@ -113,7 +153,11 @@ header h4 {
   text-shadow: 0 0 10px rgba(77, 91, 255, 0.3);
 }
 
-nav ul {
+.nav-menu {
+  display: flex;
+}
+
+.nav-menu ul {
   display: flex;
   gap: clamp(1rem, 2vw, 1.5rem);
   list-style: none;
@@ -121,7 +165,7 @@ nav ul {
   justify-content: center;
 }
 
-nav a {
+.nav-menu a {
   color: var(--white-soft);
   text-decoration: none;
   font-weight: 500;
@@ -134,15 +178,20 @@ nav a {
   gap: 0.5rem;
 }
 
-nav a:hover {
+.nav-menu a:hover {
   color: var(--blue-main);
   background: rgba(77, 91, 255, 0.1);
   transform: translateY(-2px);
   box-shadow: var(--shadow-glow);
 }
 
-nav a i {
+.nav-menu a i {
   font-size: 1.1rem;
+}
+
+/* Profil mobile caché par défaut */
+.profil-mobile {
+  display: none;
 }
 
 .profil {
@@ -2533,4 +2582,2247 @@ nav a i {
 .form-group.success .form-input,
 .form-group.success .form-textarea {
     border-color: #2ed573;
+}
+
+/* ==========================
+    DESIGN RESPONSIVE HEADER
+=============================*/
+
+/* TELEPHONE - Mobile (max-width: 768px) */
+@media only screen and (max-width: 768px) {
+  header {
+    padding: 1rem;
+    height: 70px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+  
+  header h4 {
+    font-size: 1.4rem;
+    z-index: 1002;
+  }
+  
+  /* Afficher le bouton hamburger */
+  .hamburger {
+    display: flex;
+    position: relative;
+    z-index: 1002;
+  }
+  
+  /* Navigation desktop cachée */
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(10, 12, 20, 0.98);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-100%);
+    transition: transform var(--transition-medium);
+    z-index: 1001;
+    padding: 80px 20px 40px;
+    overflow-y: auto;
+  }
+  
+  .nav-menu.active {
+    transform: translateX(0);
+  }
+  
+  .nav-menu ul {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .nav-menu li {
+    width: 100%;
+  }
+  
+  .nav-menu a {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    justify-content: flex-start;
+    background: rgba(77, 91, 255, 0.05);
+    border: 1px solid var(--border-light);
+    margin-bottom: 0.5rem;
+  }
+  
+  .nav-menu a:hover {
+    background: rgba(77, 91, 255, 0.15);
+    transform: translateX(10px);
+  }
+  
+  .nav-menu a i {
+    font-size: 1.2rem;
+    width: 24px;
+  }
+  
+  /* Profil desktop caché */
+  .profil {
+    display: none;
+  }
+  
+  /* Profil mobile visible */
+  .profil-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-light);
+  }
+  
+  .profil-mobile a {
+    padding: 1rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: var(--border-radius-md);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all var(--transition-medium);
+  }
+  
+  .profil-mobile a:first-child {
+    background: linear-gradient(135deg, var(--blue-main), var(--blue-light));
+    color: white;
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .profil-mobile a:last-child {
+    background: transparent;
+    border: 2px solid var(--blue-main);
+    color: var(--blue-main);
+  }
+  
+  .profil-mobile a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(77, 91, 255, 0.4);
+  }
+  
+  /* Empêche le scroll quand le menu est ouvert */
+  body.menu-open {
+    overflow: hidden;
+  }
+}
+
+/* TABLETTE (min-width: 767px) and (max-width: 992px) */
+@media only screen and (min-width: 767px) and (max-width: 992px) {
+  header {
+    padding: 1.2rem 2rem;
+    flex-wrap: nowrap;
+  }
+  
+  .hamburger {
+    display: none;
+  }
+  
+  .nav-menu {
+    display: flex;
+    transform: none;
+    position: static;
+    background: transparent;
+    backdrop-filter: none;
+    height: auto;
+    padding: 0;
+  }
+  
+  .nav-menu ul {
+    flex-direction: row;
+    gap: 0.8rem;
+    width: auto;
+  }
+  
+  .nav-menu a {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+    background: transparent;
+    border: none;
+  }
+  
+  .nav-menu a:hover {
+    transform: translateY(-2px);
+    background: rgba(77, 91, 255, 0.1);
+  }
+  
+  .profil-mobile {
+    display: none;
+  }
+  
+  .profil {
+    display: flex;
+    gap: 0.8rem;
+  }
+  
+  .profil a {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* LAPTOP - Correction: (min-width: 993px) and (max-width: 1023px) */
+@media only screen and (min-width: 993px) and (max-width: 1023px) {
+  header {
+    padding: 1.2rem 2.5rem;
+  }
+  
+  .hamburger {
+    display: none;
+  }
+  
+  .nav-menu ul {
+    gap: 0.8rem;
+  }
+  
+  .nav-menu a {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+  }
+  
+  .profil a {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* DESKTOP (min-width: 1024px) */
+@media only screen and (min-width: 1024px) {
+  .hamburger {
+    display: none;
+  }
+  
+  .nav-menu a {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+  }
+  
+  .profil a {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* ==========================
+    DESIGN RESPONSIVE ACCEUIL
+=============================*/
+
+/* TELEPHONE - Mobile (max-width: 768px) */
+@media only screen and (max-width: 768px) {
+  #acceuil {
+    margin-top: 70px; /* Marge de 50px pour compenser le header fixe */
+    padding: 0 20px; /* Padding réduit sur mobile */
+    margin-bottom: 20px;
+    padding-bottom: 30px;
+    height: auto; /* Hauteur auto sur mobile */
+    min-height: calc(100vh - 50px); /* Minimum 100vh moins la marge */
+  }
+  
+  .acceuil .bloc-container {
+    flex-direction: column; /* Empiler les éléments verticalement */
+    gap: 30px; /* Espacement réduit */
+    padding: 20px 0; /* Padding vertical */
+  }
+  
+  .acceuil .bloc-text {
+    flex: 1 1 auto; /* Taille auto sur mobile */
+    width: 100%; /* Prendre toute la largeur */
+  }
+  
+  .acceuil .bloc-text h1 {
+    font-size: 2.5rem; /* Taille réduite sur mobile */
+  }
+  
+  .acceuil .bloc-text h1 span {
+    font-size: 2.5rem; /* Taille réduite sur mobile */
+  }
+  
+  .acceuil .bloc-text h3 {
+    font-size: 1.2rem; /* Taille réduite */
+  }
+  
+  .acceuil .bloc-text p {
+    font-size: 1rem; /* Taille de texte standard */
+    max-width: 100%; /* Prendre toute la largeur */
+  }
+  
+  .acceuil .bloc-text .cta-button {
+    flex-direction: column; /* Boutons empilés verticalement */
+    gap: 15px; /* Espacement réduit */
+  }
+  
+  .acceuil .bloc-text .btn {
+    width: 100%; /* Boutons pleine largeur */
+    text-align: center; /* Centrer le texte */
+  }
+  
+  .acceuil .bloc-image {
+    flex: 1 1 auto;
+    width: 80%; /* Image plus petite sur mobile */
+    max-width: 250px; /* Limite maximale */
+  }
+  
+  .acceuil .bloc-sud {
+    display: flex;
+    gap: 20px; /* Espacement réduit */
+    margin-top: 30px; /* Marge réduite */
+  }
+  
+  .acceuil .bloc-sud div {
+    padding: 15px 25px; /* Padding réduit */
+  }
+  
+  .acceuil .bloc-sud h3 {
+    font-size: 1.8rem; /* Taille réduite */
+  }
+  
+  /* Réseaux sociaux - alignement horizontal */
+  .acceuil .bloc-container .bloc-text .reseaux {
+    justify-content: center; /* Centrer les icônes */
+    gap: 10px; /* Espacement réduit */
+  }
+  
+  .acceuil .bloc-container .bloc-text .reseaux .social-link {
+    padding: 10px 12px; /* Padding réduit */
+    font-size: 0.9rem; /* Texte plus petit */
+  }
+}
+
+/* TABLETTE (min-width: 767px) and (max-width: 992px) */
+@media only screen and (min-width: 767px) and (max-width: 992px) {
+  #acceuil {
+    padding: 0 30px; /* Padding réduit sur tablette */
+  }
+  
+  .acceuil .bloc-container {
+    gap: 40px; /* Espacement réduit */
+  }
+  
+  .acceuil .bloc-text h1 {
+    font-size: 3rem; /* Taille réduite */
+  }
+  
+  .acceuil .bloc-text h1 span {
+    font-size: 3rem; /* Taille réduite */
+  }
+  
+  .acceuil .bloc-text h3 {
+    font-size: 1.3rem; /* Taille réduite */
+  }
+  
+  .acceuil .bloc-text p {
+    font-size: 1.1rem; /* Taille légèrement réduite */
+  }
+  
+  .acceuil .bloc-image {
+    flex: 1 1 300px; /* Taille réduite */
+  }
+}
+
+/* LAPTOP (min-width: 993px) and (max-width: 1023px) */
+@media only screen and (min-width: 993px) and (max-width: 1023px) {
+  #acceuil {
+    padding: 0 40px; /* Padding légèrement réduit */
+  }
+  
+  .acceuil .bloc-text h1 {
+    font-size: 3.5rem; /* Taille légèrement réduite */
+  }
+  
+  .acceuil .bloc-text h1 span {
+    font-size: 3.5rem; /* Taille légèrement réduite */
+  }
+}
+
+/* ==========================
+    DESIGN RESPONSIVE ABOUT
+=============================*/
+
+/* TELEPHONE - Mobile (max-width: 768px) */
+@media only screen and (max-width: 768px) {
+  .a-propos {
+    margin-top: 50px; /* Marge pour le header fixe */
+    padding: var(--space-lg) var(--space-md); /* Padding réduit */
+    min-height: auto; /* Hauteur auto pour s'adapter au contenu */
+  }
+  
+  .a-propos-header {
+    margin-bottom: var(--space-lg); /* Marge réduite */
+    text-align: left; /* Alignement à gauche sur mobile */
+    padding: 0 var(--space-sm); /* Padding latéral */
+  }
+  
+  .title {
+    font-size: 2rem; /* Taille réduite pour mobile */
+    text-align: left; /* Alignement à gauche */
+    margin-bottom: var(--space-sm);
+  }
+  
+  .subtitle {
+    font-size: 1rem; /* Taille réduite */
+    text-align: left; /* Alignement à gauche */
+    line-height: 1.5;
+  }
+  
+  .container {
+    flex-direction: column; /* Empilement vertical */
+    gap: var(--space-md); /* Espacement réduit */
+    padding: 0 var(--space-sm); /* Padding latéral */
+  }
+  
+  .bloc {
+    flex-direction: column; /* Empilement vertical */
+    gap: var(--space-md); /* Espacement réduit */
+    width: 100%;
+  }
+  
+  .objectifs {
+    flex-direction: column; /* Empilement vertical */
+    gap: var(--space-md); /* Espacement réduit */
+    width: 100%;
+  }
+  
+  .card {
+    padding: var(--space-md); /* Padding réduit */
+    width: 100%; /* Pleine largeur */
+  }
+  
+  /* Informations personnelles - optimisation mobile */
+  .info-personnel li {
+    flex-direction: column; /* Empilement vertical des éléments */
+    align-items: flex-start; /* Alignement à gauche */
+    gap: var(--space-xs); /* Espacement réduit */
+    padding: var(--space-sm) 0; /* Padding vertical */
+  }
+  
+  .info-personnel .label {
+    min-width: auto; /* Largeur auto */
+    margin-bottom: 2px; /* Petit espace */
+  }
+  
+  .info-personnel .value {
+    word-break: break-word; /* Casser les mots longs */
+    overflow-wrap: break-word; /* Support pour tous les navigateurs */
+  }
+  
+  /* Texte des cartes */
+  .education p,
+  .objectif-professionnel p,
+  .objectif-personnel p {
+    font-size: 0.95rem; /* Taille légèrement réduite */
+    text-align: left; /* Alignement à gauche */
+    line-height: 1.6;
+  }
+  
+  /* Effet de survol désactivé sur mobile (touch) */
+  @media (hover: none) and (pointer: coarse) {
+    .card:hover {
+      transform: none; /* Pas de transformation sur mobile */
+    }
+    
+    .card:hover::after {
+      transform: none; /* Pas d'animation sur mobile */
+    }
+  }
+}
+
+/* TABLETTE (min-width: 767px) and (max-width: 992px) */
+@media only screen and (min-width: 767px) and (max-width: 992px) {
+  .a-propos {
+    padding: var(--space-lg) var(--space-md); /* Padding réduit */
+  }
+  
+  .title {
+    font-size: 2.5rem; /* Taille réduite */
+  }
+  
+  .subtitle {
+    font-size: 1.1rem; /* Taille légèrement réduite */
+    max-width: 90%; /* Largeur réduite */
+  }
+  
+  .container {
+    max-width: 95%; /* Utiliser plus d'espace */
+  }
+  
+  .bloc {
+    gap: var(--space-md); /* Espacement réduit */
+  }
+  
+  .objectifs {
+    gap: var(--space-md); /* Espacement réduit */
+  }
+  
+  .card {
+    padding: var(--space-md); /* Padding réduit */
+  }
+  
+  .info-personnel .label {
+    min-width: 120px; /* Largeur réduite */
+  }
+}
+
+/* LAPTOP (min-width: 993px) and (max-width: 1023px) */
+@media only screen and (min-width: 993px) and (max-width: 1023px) {
+  .a-propos {
+    padding: var(--space-xl) var(--space-md); /* Padding ajusté */
+  }
+  
+  .title {
+    font-size: 3rem; /* Taille légèrement réduite */
+  }
+  
+  .container {
+    max-width: 95%; /* Utiliser plus d'espace */
+  }
+}
+
+/* DESKTOP (min-width: 1024px) */
+@media only screen and (min-width: 1024px) {
+  /* Les styles par défaut s'appliquent déjà */
+  /* Ajustements spécifiques si nécessaire */
+  .a-propos {
+    padding: var(--space-xl) clamp(var(--space-md), 5vw, var(--space-xl));
+  }
+}
+
+/* ===== SUPPORT POUR TOUCH SCREENS ===== */
+@media (hover: none) and (pointer: coarse) {
+  .card {
+    min-height: 44px; /* Taille minimale pour les doigts */
+  }
+  
+  .info-personnel li {
+    min-height: 44px; /* Taille minimale pour les doigts */
+  }
+  
+  .nav-menu a,
+  .profil a,
+  .profil-mobile a {
+    min-height: 44px; /* Taille minimale pour les doigts */
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* ===== ORIENTATION PAYSAGE SUR MOBILE ===== */
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+  .a-propos {
+    min-height: auto; /* Hauteur auto en paysage */
+    padding: var(--space-md) var(--space-sm);
+  }
+  
+  .bloc {
+    flex-direction: row; /* Mettre en ligne en paysage */
+    flex-wrap: wrap; /* Permettre le retour à la ligne */
+  }
+  
+  .card {
+    flex: 1 1 calc(50% - var(--space-sm)); /* Deux cartes par ligne */
+    min-height: auto; /* Hauteur auto */
+  }
+}
+
+/* ==========================
+    DESIGN RESPONSIVE SKILLS
+=============================*/
+
+/* TELEPHONE - Mobile (max-width: 768px) */
+@media only screen and (max-width: 768px) {
+  .competences {
+    margin-top: 50px; /* Marge pour le header fixe */
+    padding: var(--space-lg) var(--space-sm); /* Padding réduit */
+    min-height: auto; /* Hauteur auto pour s'adapter au contenu */
+  }
+  
+  .competences-header {
+    margin-bottom: var(--space-lg); /* Marge réduite */
+    padding: 0 var(--space-sm); /* Padding latéral */
+    text-align: left; /* Alignement à gauche sur mobile */
+  }
+  
+  .header-content {
+    margin-bottom: var(--space-md); /* Marge réduite */
+  }
+  
+  .section-title {
+    font-size: 2rem; /* Taille réduite pour mobile */
+    text-align: left; /* Alignement à gauche */
+    margin-bottom: var(--space-sm);
+  }
+  
+  .section-title::after {
+    width: 100px; /* Largeur réduite */
+    left: 0; /* Aligné à gauche */
+    transform: none; /* Pas de transformation */
+  }
+  
+  .section-subtitle {
+    font-size: 1rem; /* Taille réduite */
+    text-align: left; /* Alignement à gauche */
+  }
+  
+  /* Badges de catégories - empilés verticalement */
+  .tech-badges {
+    flex-direction: column; /* Empilement vertical */
+    align-items: flex-start; /* Alignement à gauche */
+    gap: var(--space-sm); /* Espacement réduit */
+    margin-top: var(--space-md);
+  }
+  
+  .tech-badge {
+    width: 100%; /* Pleine largeur */
+    text-align: center; /* Centrer le texte */
+    padding: 10px 15px; /* Padding ajusté */
+  }
+  
+  /* Grid des compétences - 1 colonne sur mobile */
+  .competences-grid {
+    grid-template-columns: 1fr; /* 1 seule colonne */
+    gap: var(--space-md); /* Espacement réduit */
+    padding: 0 var(--space-sm); /* Padding latéral */
+  }
+  
+  /* Cartes de compétences */
+  .competence-card {
+    padding: var(--space-md); /* Padding réduit */
+    width: 100%; /* Pleine largeur */
+  }
+  
+  .card-header {
+    padding-bottom: var(--space-sm); /* Padding réduit */
+    margin-bottom: var(--space-sm); /* Marge réduite */
+  }
+  
+  .card-icon {
+    width: 40px; /* Taille réduite */
+    height: 40px; /* Taille réduite */
+    font-size: 1.2rem; /* Taille réduite */
+  }
+  
+  .card-header h3 {
+    font-size: 1.3rem; /* Taille réduite */
+  }
+  
+  /* Liste des compétences */
+  .skill-item {
+    padding: 10px; /* Padding réduit */
+    margin-bottom: 8px; /* Espacement entre items */
+  }
+  
+  .skill-icon {
+    width: 32px; /* Taille réduite */
+    height: 32px; /* Taille réduite */
+    font-size: 1rem; /* Taille réduite */
+  }
+  
+  .skill-icon.json {
+    width: 40px; /* Taille ajustée */
+    height: 40px; /* Taille ajustée */
+    font-size: 1.4rem; /* Taille ajustée */
+  }
+  
+  .skill-name {
+    font-size: 0.9rem; /* Taille réduite */
+  }
+  
+  .level-text {
+    font-size: 0.7rem; /* Taille réduite */
+    min-width: 70px; /* Largeur réduite */
+  }
+  
+  /* Résumé des compétences - empilé verticalement */
+  .skills-summary {
+    flex-direction: column; /* Empilement vertical */
+    gap: var(--space-md); /* Espacement réduit */
+    margin-top: var(--space-lg);
+    padding: 0 var(--space-sm); /* Padding latéral */
+  }
+  
+  .summary-card {
+    width: 100%; /* Pleine largeur */
+    padding: var(--space-md); /* Padding réduit */
+    min-width: auto; /* Largeur auto */
+  }
+  
+  .summary-icon {
+    width: 50px; /* Taille réduite */
+    height: 50px; /* Taille réduite */
+    font-size: 1.5rem; /* Taille réduite */
+  }
+  
+  .summary-number {
+    font-size: 2rem; /* Taille réduite */
+  }
+  
+  .summary-label {
+    font-size: 0.8rem; /* Taille réduite */
+  }
+  
+  /* Désactiver les animations complexes sur mobile */
+  .competence-card:hover {
+    transform: translateY(-5px) scale(1.01); /* Animation réduite */
+  }
+  
+  .competence-card::after {
+    display: none; /* Masquer l'effet de brillance sur mobile */
+  }
+  
+  /* Effet de survol désactivé sur mobile (touch) */
+  @media (hover: none) and (pointer: coarse) {
+    .competence-card:hover {
+      transform: none; /* Pas de transformation sur mobile */
+    }
+    
+    .skill-item:hover {
+      transform: none; /* Pas de transformation sur mobile */
+    }
+  }
+}
+
+/* TABLETTE (min-width: 767px) and (max-width: 992px) */
+@media only screen and (min-width: 767px) and (max-width: 992px) {
+  .competences {
+    padding: var(--space-lg) var(--space-md); /* Padding réduit */
+  }
+  
+  .section-title {
+    font-size: 2.5rem; /* Taille réduite */
+  }
+  
+  .section-subtitle {
+    font-size: 1.1rem; /* Taille légèrement réduite */
+  }
+  
+  /* Grid des compétences - 2 colonnes sur tablette */
+  .competences-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+    gap: var(--space-md); /* Espacement réduit */
+  }
+  
+  .skills-summary {
+    gap: var(--space-md); /* Espacement réduit */
+  }
+  
+  .summary-card {
+    min-width: 160px; /* Largeur réduite */
+  }
+}
+
+/* LAPTOP (min-width: 993px) and (max-width: 1023px) */
+@media only screen and (min-width: 993px) and (max-width: 1023px) {
+  .competences {
+    padding: var(--space-xl) var(--space-md); /* Padding ajusté */
+  }
+  
+  .section-title {
+    font-size: 3rem; /* Taille légèrement réduite */
+  }
+  
+  /* Grid des compétences - 3 colonnes sur laptop */
+  .competences-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
+    gap: var(--space-md); /* Espacement réduit */
+  }
+}
+
+/* DESKTOP (min-width: 1024px) */
+@media only screen and (min-width: 1024px) {
+  /* Les styles par défaut s'appliquent déjà */
+  /* Ajustements spécifiques si nécessaire */
+  .competences {
+    padding: var(--space-xl) clamp(var(--space-md), 5vw, var(--space-xl));
+  }
+}
+
+/* ===== ORIENTATION PAYSAGE SUR MOBILE ===== */
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+  .competences {
+    min-height: auto; /* Hauteur auto en paysage */
+    padding: var(--space-md) var(--space-sm);
+  }
+  
+  .competences-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes en paysage */
+  }
+  
+  .skills-summary {
+    flex-direction: row; /* Mettre en ligne en paysage */
+    flex-wrap: wrap; /* Permettre le retour à la ligne */
+  }
+  
+  .summary-card {
+    flex: 1 1 calc(50% - var(--space-sm)); /* Deux cartes par ligne */
+  }
+}
+
+/* ===== SUPPORT POUR TOUCH SCREENS ===== */
+@media (hover: none) and (pointer: coarse) {
+  .competence-card {
+    min-height: 44px; /* Taille minimale pour les doigts */
+  }
+  
+  .skill-item {
+    min-height: 44px; /* Taille minimale pour les doigts */
+  }
+  
+  .tech-badge {
+    min-height: 44px; /* Taille minimale pour les doigts */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .summary-card {
+    min-height: 44px; /* Taille minimale pour les doigts */
+  }
+}
+
+/* ===== OPTIMISATION PERFORMANCE MOBILE ===== */
+@media only screen and (max-width: 768px) {
+  .competences::before {
+    background: none; /* Masquer le fond animé sur mobile pour performance */
+  }
+  
+  .competence-card {
+    backdrop-filter: blur(5px); /* Réduire le flou pour performance */
+  }
+}
+
+/* ===== RÉDUCTION DES MOUVEMENTS ===== */
+@media (prefers-reduced-motion: reduce) {
+  .competences::before {
+    animation: none;
+  }
+  
+  .competence-card {
+    animation: none;
+  }
+  
+  .competence-card:hover {
+    transform: none;
+  }
+  
+  .title-icon {
+    animation: none;
+  }
+  
+  .tech-badge::before {
+    transition: none;
+  }
+  
+  .skill-item:hover {
+    transform: none;
+  }
+  
+  .level-bar::after {
+    animation: none;
+  }
+}
+
+/* ==========================
+    DESIGN RESPONSIVE FORMATION
+=============================*/
+
+/* TELEPHONE - Mobile (max-width: 768px) */
+@media only screen and (max-width: 768px) {
+  .formation {
+    margin-top: 50px; /* Marge pour le header fixe */
+    padding: var(--space-lg) var(--space-sm); /* Padding réduit */
+    width: 100%; /* Pleine largeur sur mobile */
+    gap: var(--space-lg); /* Espacement réduit */
+  }
+  
+  .formation > h2 {
+    font-size: 2rem; /* Taille réduite pour mobile */
+    margin-bottom: var(--space-lg); /* Marge réduite */
+    text-align: left; /* Alignement à gauche */
+    padding-left: var(--space-sm); /* Padding pour alignement */
+  }
+  
+  /* Carte de formation */
+  .formation-card {
+    width: 100%; /* Pleine largeur */
+    margin-bottom: var(--space-lg); /* Espacement entre cartes */
+    border-radius: var(--border-radius-md); /* Bordures réduites */
+  }
+  
+  .formation-card:last-child {
+    margin-bottom: 0; /* Pas de marge pour la dernière */
+  }
+  
+  /* En-tête de la carte */
+  .formation-header {
+    flex-direction: column; /* Empilement vertical */
+    gap: var(--space-md); /* Espacement réduit */
+    padding: var(--space-md); /* Padding réduit */
+    text-align: center; /* Centrer le contenu */
+  }
+  
+  .formation-logo {
+    width: 70px; /* Taille réduite */
+    height: 70px; /* Taille réduite */
+    margin: 0 auto; /* Centrer le logo */
+  }
+  
+  .formation-info {
+    width: 100%; /* Pleine largeur */
+  }
+  
+  .formation-badge {
+    display: block; /* Prendre toute la largeur */
+    width: fit-content; /* Largeur selon contenu */
+    margin: 0 auto var(--space-xs); /* Centrer et espacement */
+  }
+  
+  .formation-title {
+    font-size: 1.4rem; /* Taille réduite */
+    text-align: center; /* Centrer le titre */
+    margin: var(--space-xs) 0; /* Marge réduite */
+  }
+  
+  .formation-meta {
+    flex-direction: column; /* Empilement vertical */
+    gap: var(--space-xs); /* Espacement réduit */
+    font-size: 0.9rem; /* Taille réduite */
+  }
+  
+  /* Contenu de la carte */
+  .formation-content {
+    padding: var(--space-md); /* Padding réduit */
+  }
+  
+  .formation-result {
+    flex-direction: column; /* Empilement vertical */
+    align-items: flex-start; /* Alignement à gauche */
+    gap: var(--space-xs); /* Espacement réduit */
+    padding: var(--space-sm); /* Padding réduit */
+    margin-bottom: var(--space-md); /* Marge réduite */
+  }
+  
+  .formation-result i {
+    font-size: 1.2rem; /* Taille réduite */
+  }
+  
+  .formation-details h3 {
+    font-size: 1.1rem; /* Taille réduite */
+    margin: var(--space-sm) 0 var(--space-xs); /* Marge réduite */
+  }
+  
+  .formation-details p {
+    font-size: 0.95rem; /* Taille réduite */
+    margin-bottom: var(--space-sm); /* Marge réduite */
+    line-height: 1.5;
+  }
+  
+  .formation-details ul {
+    margin-bottom: var(--space-md); /* Marge réduite */
+  }
+  
+  .formation-details li {
+    font-size: 0.9rem; /* Taille réduite */
+    padding: 6px 0 6px 20px; /* Padding ajusté */
+    line-height: 1.4;
+  }
+  
+  .mention {
+    font-size: 0.85rem; /* Taille réduite */
+    padding: 2px 8px; /* Padding réduit */
+  }
+  
+  /* Désactiver les animations complexes sur mobile */
+  .formation-card:hover {
+    transform: translateY(-3px); /* Animation réduite */
+    box-shadow: var(--shadow-card); /* Ombre simplifiée */
+  }
+  
+  /* Effet de survol désactivé sur mobile (touch) */
+  @media (hover: none) and (pointer: coarse) {
+    .formation-card:hover {
+      transform: none; /* Pas de transformation sur mobile */
+    }
+  }
+}
+
+/* TABLETTE (min-width: 767px) and (max-width: 992px) */
+@media only screen and (min-width: 767px) and (max-width: 992px) {
+  .formation {
+    padding: var(--space-lg) var(--space-md); /* Padding réduit */
+    width: 100%; /* Pleine largeur */
+  }
+  
+  .formation > h2 {
+    font-size: 2.5rem; /* Taille réduite */
+  }
+  
+  .formation-card {
+    width: 100%; /* Pleine largeur */
+    margin-bottom: var(--space-lg); /* Espacement entre cartes */
+  }
+  
+  .formation-header {
+    gap: var(--space-md); /* Espacement réduit */
+    padding: var(--space-md); /* Padding réduit */
+  }
+  
+  .formation-logo {
+    width: 75px; /* Taille ajustée */
+    height: 75px; /* Taille ajustée */
+  }
+  
+  .formation-title {
+    font-size: 1.6rem; /* Taille réduite */
+  }
+  
+  .formation-meta {
+    font-size: 0.95rem; /* Taille légèrement réduite */
+  }
+  
+  .formation-content {
+    padding: var(--space-md); /* Padding réduit */
+  }
+}
+
+/* LAPTOP (min-width: 993px) and (max-width: 1023px) */
+@media only screen and (min-width: 993px) and (max-width: 1023px) {
+  .formation {
+    padding: var(--space-xl) var(--space-lg); /* Padding ajusté */
+    width: 90%; /* Largeur réduite */
+    margin: 0 auto; /* Centrer */
+  }
+  
+  .formation > h2 {
+    font-size: 2.8rem; /* Taille légèrement réduite */
+  }
+  
+  .formation-card {
+    width: 100%; /* Pleine largeur */
+  }
+}
+
+/* DESKTOP (min-width: 1024px) */
+@media only screen and (min-width: 1024px) {
+  .formation {
+    width: 90%; /* Largeur réduite */
+    max-width: 1400px; /* Limite maximale */
+    margin: 0 auto; /* Centrer */
+    padding: var(--space-xl) clamp(var(--space-md), 5%, var(--space-xl));
+  }
+}
+
+/* ===== ORIENTATION PAYSAGE SUR MOBILE ===== */
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+  .formation {
+    min-height: auto; /* Hauteur auto en paysage */
+    padding: var(--space-md) var(--space-sm);
+    gap: var(--space-md); /* Espacement réduit */
+  }
+  
+  .formation-header {
+    flex-direction: row; /* Mettre en ligne en paysage */
+    text-align: left; /* Alignement à gauche */
+  }
+  
+  .formation-logo {
+    margin: 0; /* Pas de centrage */
+    flex-shrink: 0; /* Empêcher le rétrécissement */
+  }
+  
+  .formation-info {
+    text-align: left; /* Alignement à gauche */
+  }
+  
+  .formation-badge {
+    margin: 0 0 var(--space-xs) 0; /* Alignement à gauche */
+  }
+  
+  .formation-title {
+    text-align: left; /* Alignement à gauche */
+  }
+  
+  .formation-meta {
+    flex-direction: row; /* Mettre en ligne */
+    flex-wrap: wrap; /* Permettre le retour à la ligne */
+  }
+  
+  .formation-result {
+    flex-direction: row; /* Mettre en ligne */
+    align-items: center; /* Centrer verticalement */
+  }
+}
+
+/* ===== SUPPORT POUR TOUCH SCREENS ===== */
+@media (hover: none) and (pointer: coarse) {
+  .formation-card {
+    min-height: 44px; /* Taille minimale pour les doigts */
+  }
+  
+  .formation-badge {
+    min-height: 32px; /* Taille minimale pour les doigts */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .formation-meta span {
+    min-height: 32px; /* Taille minimale pour les doigts */
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* ===== ACCESSIBILITÉ - CONTRASTE ÉLEVÉ ===== */
+@media (prefers-contrast: high) {
+  .formation-card {
+    border: 2px solid currentColor;
+  }
+  
+  .formation > h2 {
+    -webkit-text-fill-color: #000; /* Couleur solide pour contraste */
+    background: none;
+  }
+  
+  .mention {
+    border: 1px solid currentColor;
+    background: transparent;
+  }
+}
+
+/* ===== RÉDUCTION DES MOUVEMENTS ===== */
+@media (prefers-reduced-motion: reduce) {
+  .formation-card {
+    animation: none;
+  }
+  
+  .formation-card:hover {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ===== SUPPORT DES IMAGES RESPONSIVES ===== */
+.formation-logo img {
+  max-width: 100%; /* Ne pas dépasser du conteneur */
+  height: auto; /* Garder les proportions */
+}
+
+/* ===== AMÉLIORATION DE LA LISIBILITÉ ===== */
+@media only screen and (max-width: 768px) {
+  .formation-details li {
+    max-width: 95%; /* Limiter la largeur pour la lisibilité */
+  }
+  
+  .formation-content > * + * {
+    margin-top: var(--space-sm); /* Espacement cohérent */
+  }
+}
+
+/* ===== CORRECTION POUR LES ÉCRANS TRÈS PETITS ===== */
+@media only screen and (max-width: 360px) {
+  .formation {
+    padding: var(--space-md) 10px; /* Padding très réduit */
+  }
+  
+  .formation > h2 {
+    font-size: 1.8rem; /* Taille encore plus réduite */
+  }
+  
+  .formation-title {
+    font-size: 1.2rem; /* Taille réduite */
+  }
+  
+  .formation-details li {
+    font-size: 0.85rem; /* Taille réduite */
+  }
+}
+
+/* ==========================
+    DESIGN RESPONSIVE projects
+=============================*/
+
+/* TELEPHONE - Mobile (max-width: 768px) */
+@media only screen and (max-width: 768px) {
+  .projets {
+    margin-top: 50px; /* Marge pour le header fixe */
+    padding: var(--space-lg) var(--space-sm); /* Padding réduit */
+  }
+  
+  .projets > h2 {
+    font-size: 2rem; /* Taille réduite pour mobile */
+    margin-bottom: var(--space-lg); /* Marge réduite */
+    text-align: left; /* Alignement à gauche */
+    padding-left: var(--space-sm); /* Padding pour alignement */
+  }
+  
+  /* Conteneur des projets */
+  .projets-container {
+    grid-template-columns: 1fr; /* 1 seule colonne sur mobile */
+    gap: var(--space-md); /* Espacement réduit */
+    padding: 0 var(--space-sm); /* Padding latéral réduit */
+  }
+  
+  /* Carte de projet */
+  .projet-card {
+    width: 100%; /* Pleine largeur */
+    margin-bottom: var(--space-md); /* Espacement entre cartes */
+    border-radius: var(--border-radius-md); /* Bordures réduites */
+  }
+  
+  /* Image du projet */
+  .projet-card img {
+    height: 180px; /* Hauteur réduite */
+    object-fit: cover; /* Couvrir l'espace */
+  }
+  
+  /* Titre du projet */
+  .projet-card > h3 {
+    font-size: 1.3rem; /* Taille réduite */
+    margin: var(--space-sm); /* Marge réduite */
+    padding-bottom: var(--space-xs); /* Padding réduit */
+  }
+  
+  /* Description du projet */
+  .projet-card > p {
+    font-size: 0.95rem; /* Taille réduite */
+    margin: 0 var(--space-sm) var(--space-sm); /* Marge réduite */
+    line-height: 1.5; /* Hauteur de ligne réduite */
+  }
+  
+  /* Désactiver l'effet de zoom sur image pour mobile */
+  .projet-card:hover img {
+    transform: none; /* Pas de zoom sur mobile */
+  }
+  
+  /* Animation réduite pour mobile */
+  .projet-card:hover {
+    transform: translateY(-5px); /* Animation réduite */
+    box-shadow: var(--shadow-card); /* Ombre simplifiée */
+  }
+  
+  /* Effet de survol désactivé sur mobile (touch) */
+  @media (hover: none) and (pointer: coarse) {
+    .projet-card:hover {
+      transform: none; /* Pas de transformation sur mobile */
+      box-shadow: none; /* Pas d'ombre au survol */
+    }
+    
+    .projet-card::after {
+      display: none; /* Masquer l'overlay sur mobile */
+    }
+  }
+  
+  /* Ajustement des animations d'entrée */
+  .projet-card {
+    animation: slideInUp 0.5s ease-out forwards; /* Animation simplifiée */
+  }
+  
+  .projet-card:nth-child(1) { animation-delay: 0.1s; }
+  .projet-card:nth-child(2) { animation-delay: 0.2s; }
+  .projet-card:nth-child(3) { animation-delay: 0.3s; }
+  .projet-card:nth-child(4) { animation-delay: 0.4s; }
+}
+
+/* TABLETTE (min-width: 767px) and (max-width: 992px) */
+@media only screen and (min-width: 767px) and (max-width: 992px) {
+  .projets {
+    padding: var(--space-lg) var(--space-md); /* Padding réduit */
+  }
+  
+  .projets > h2 {
+    font-size: 2.5rem; /* Taille réduite */
+  }
+  
+  .projets-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur tablette */
+    gap: var(--space-md); /* Espacement réduit */
+  }
+  
+  .projet-card img {
+    height: 200px; /* Hauteur ajustée */
+  }
+  
+  .projet-card > h3 {
+    font-size: 1.4rem; /* Taille ajustée */
+  }
+  
+  .projet-card > p {
+    font-size: 1rem; /* Taille ajustée */
+  }
+}
+
+/* LAPTOP (min-width: 993px) and (max-width: 1023px) */
+@media only screen and (min-width: 993px) and (max-width: 1023px) {
+  .projets {
+    padding: var(--space-xl) var(--space-lg); /* Padding ajusté */
+  }
+  
+  .projets > h2 {
+    font-size: 2.8rem; /* Taille légèrement réduite */
+  }
+  
+  .projets-container {
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes sur laptop */
+    gap: var(--space-lg); /* Espacement normal */
+    max-width: 1200px; /* Limite de largeur */
+  }
+}
+
+/* DESKTOP (min-width: 1024px) */
+@media only screen and (min-width: 1024px) {
+  .projets {
+    padding: var(--space-xl) clamp(var(--space-md), 5%, var(--space-xl));
+  }
+  
+  .projets-container {
+    max-width: 1400px; /* Limite maximale */
+    margin: 0 auto; /* Centrer */
+  }
+}
+
+/* ===== ORIENTATION PAYSAGE SUR MOBILE ===== */
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+  .projets {
+    padding: var(--space-md) var(--space-sm);
+  }
+  
+  .projets-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes en paysage */
+    gap: var(--space-sm); /* Espacement réduit */
+  }
+  
+  .projet-card img {
+    height: 150px; /* Hauteur réduite en paysage */
+  }
+  
+  .projet-card > h3 {
+    font-size: 1.2rem; /* Taille réduite */
+    margin: var(--space-xs); /* Marge très réduite */
+  }
+  
+  .projet-card > p {
+    font-size: 0.9rem; /* Taille réduite */
+    margin: 0 var(--space-xs) var(--space-xs); /* Marge réduite */
+    line-height: 1.4; /* Hauteur de ligne réduite */
+  }
+}
+
+/* ===== SUPPORT POUR TOUCH SCREENS ===== */
+@media (hover: none) and (pointer: coarse) {
+  .projet-card {
+    min-height: 44px; /* Taille minimale pour les doigts */
+  }
+  
+  .projet-card > h3 {
+    min-height: 44px; /* Taille minimale pour les doigts */
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* ===== SUPPORT DES IMAGES RESPONSIVES ===== */
+.projet-card img {
+  width: 100%; /* Pleine largeur */
+  max-width: 100%; /* Ne pas dépasser */
+  height: auto; /* Proportions originales */
+  min-height: 150px; /* Hauteur minimale */
+}
+
+/* ===== AMÉLIORATION DE LA LISIBILITÉ ===== */
+@media only screen and (max-width: 768px) {
+  .projet-card > p {
+    max-width: 95%; /* Limiter la largeur pour la lisibilité */
+  }
+  
+  /* Améliorer l'espacement interne */
+  .projet-card > * {
+    padding: var(--space-xs); /* Padding cohérent */
+  }
+}
+
+/* ===== CORRECTION POUR LES ÉCRANS TRÈS PETITS ===== */
+@media only screen and (max-width: 360px) {
+  .projets {
+    padding: var(--space-md) 8px; /* Padding très réduit */
+  }
+  
+  .projets > h2 {
+    font-size: 1.8rem; /* Taille encore plus réduite */
+    padding-left: 8px; /* Padding ajusté */
+  }
+  
+  .projets-container {
+    padding: 0 8px; /* Padding latéral réduit */
+    gap: 12px; /* Espacement très réduit */
+  }
+  
+  .projet-card img {
+    height: 150px; /* Hauteur réduite */
+  }
+  
+  .projet-card > h3 {
+    font-size: 1.1rem; /* Taille réduite */
+    margin: 8px; /* Marge réduite */
+  }
+  
+  .projet-card > p {
+    font-size: 0.85rem; /* Taille réduite */
+    margin: 0 8px 8px; /* Marge réduite */
+  }
+}
+
+/* ===== OPTIMISATION PERFORMANCE MOBILE ===== */
+@media only screen and (max-width: 768px) {
+  .projet-card::after {
+    opacity: 0.3; /* Opacité réduite pour performance */
+  }
+  
+  .projets::before {
+    background: none; /* Masquer l'effet de gradient pour performance */
+  }
+}
+
+/* ===== SUPPORT DES IMAGES AVEC ALT ===== */
+.projet-card img {
+  alt: ""; /* Assurer l'accessibilité */
+  loading: "lazy"; /* Chargement différé pour performance */
+}
+
+/* ==========================
+    DESIGN RESPONSIVE CONTACT
+=============================*/
+
+/* TELEPHONE - Mobile (max-width: 768px) */
+@media only screen and (max-width: 768px) {
+  .contact {
+    margin-top: 50px; /* Marge pour le header fixe */
+    padding: var(--space-lg) var(--space-sm); /* Padding réduit */
+  }
+  
+  .contact h2 {
+    font-size: 2rem; /* Taille réduite pour mobile */
+    margin-bottom: var(--space-md); /* Marge réduite */
+    text-align: left; /* Alignement à gauche */
+    padding-left: var(--space-sm); /* Padding pour alignement */
+  }
+  
+  .contact-subtitle {
+    font-size: 1rem; /* Taille réduite */
+    text-align: left; /* Alignement à gauche */
+    padding: 0 var(--space-sm); /* Padding latéral */
+    margin-bottom: var(--space-lg); /* Marge réduite */
+  }
+  
+  .contact-content {
+    margin-top: var(--space-lg); /* Marge réduite */
+    grid-template-columns: 1fr; /* 1 seule colonne sur mobile */
+    gap: var(--space-lg); /* Espacement réduit */
+    padding: 0 var(--space-sm); /* Padding latéral */
+  }
+  
+  /* Formulaire */
+  .contact-form {
+    padding: var(--space-md); /* Padding réduit */
+    border-radius: var(--border-radius-md); /* Bordures réduites */
+  }
+  
+  .form-row {
+    flex-direction: column; /* Empilement vertical */
+    gap: 0; /* Pas d'espacement entre les champs */
+    margin-bottom: 0; /* Pas de marge basse */
+  }
+  
+  .form-group {
+    margin-bottom: var(--space-md); /* Marge réduite entre groupes */
+  }
+  
+  .form-label {
+    font-size: 0.95rem; /* Taille réduite */
+    margin-bottom: 6px; /* Marge réduite */
+  }
+  
+  .input-icon {
+    font-size: 1rem; /* Taille réduite */
+    left: 12px; /* Position ajustée */
+  }
+  
+  .form-input,
+  .form-textarea {
+    padding: 12px 15px 12px 40px; /* Padding ajusté */
+    font-size: 0.95rem; /* Taille réduite */
+  }
+  
+  .form-textarea {
+    min-height: 120px; /* Hauteur réduite */
+    padding-top: 12px; /* Padding ajusté */
+  }
+  
+  .form-hint {
+    font-size: 0.8rem; /* Taille réduite */
+    margin-top: 4px; /* Marge réduite */
+  }
+  
+  /* Checkbox */
+  .form-group-checkbox {
+    margin-top: var(--space-md); /* Marge réduite */
+  }
+  
+  .form-checkbox {
+    width: 20px; /* Taille ajustée */
+    height: 20px; /* Taille ajustée */
+  }
+  
+  .checkbox-label {
+    font-size: 0.9rem; /* Taille réduite */
+    line-height: 1.4;
+  }
+  
+  /* Bouton d'envoi */
+  .btn-submit {
+    padding: 14px 20px; /* Padding réduit */
+    font-size: 1rem; /* Taille réduite */
+    margin-top: var(--space-md); /* Marge réduite */
+  }
+  
+  .btn-submit i {
+    font-size: 1.1rem; /* Taille réduite */
+  }
+  
+  /* Informations de contact */
+  .contact-info {
+    gap: var(--space-md); /* Espacement réduit */
+  }
+  
+  .info-card {
+    padding: var(--space-md); /* Padding réduit */
+    border-radius: var(--border-radius-md); /* Bordures réduites */
+  }
+  
+  .info-icon {
+    width: 45px; /* Taille réduite */
+    height: 45px; /* Taille réduite */
+    font-size: 1.2rem; /* Taille réduite */
+  }
+  
+  .info-card h3 {
+    font-size: 1rem; /* Taille réduite */
+    margin-bottom: 4px; /* Marge réduite */
+  }
+  
+  .info-card p {
+    font-size: 0.9rem; /* Taille réduite */
+  }
+  
+  .info-link {
+    word-break: break-all; /* Casser les URLs longues */
+  }
+  
+  /* Désactiver les animations complexes sur mobile */
+  .info-card:hover {
+    transform: translateX(3px); /* Animation réduite */
+  }
+  
+  .btn-submit:hover {
+    transform: translateY(-2px); /* Animation réduite */
+  }
+  
+  /* Effet de survol désactivé sur mobile (touch) */
+  @media (hover: none) and (pointer: coarse) {
+    .info-card:hover {
+      transform: none; /* Pas de transformation sur mobile */
+    }
+    
+    .btn-submit:hover {
+      transform: none; /* Pas de transformation sur mobile */
+    }
+  }
+}
+
+/* TABLETTE (min-width: 767px) and (max-width: 992px) */
+@media only screen and (min-width: 767px) and (max-width: 992px) {
+  .contact {
+    padding: var(--space-lg) var(--space-md); /* Padding réduit */
+  }
+  
+  .contact h2 {
+    font-size: 2.5rem; /* Taille réduite */
+  }
+  
+  .contact-subtitle {
+    font-size: 1.1rem; /* Taille légèrement réduite */
+    max-width: 90%; /* Largeur réduite */
+  }
+  
+  .contact-content {
+    grid-template-columns: 1fr 1fr; /* 2 colonnes sur tablette */
+    gap: var(--space-lg); /* Espacement réduit */
+  }
+  
+  .form-row {
+    gap: 15px; /* Espacement réduit */
+  }
+  
+  .contact-form {
+    padding: var(--space-lg); /* Padding ajusté */
+  }
+  
+  .info-card {
+    padding: var(--space-md); /* Padding réduit */
+  }
+}
+
+/* LAPTOP (min-width: 993px) and (max-width: 1023px) */
+@media only screen and (min-width: 993px) and (max-width: 1023px) {
+  .contact {
+    padding: var(--space-xl) var(--space-lg); /* Padding ajusté */
+  }
+  
+  .contact h2 {
+    font-size: 2.8rem; /* Taille légèrement réduite */
+  }
+  
+  .contact-content {
+    grid-template-columns: 1fr 1fr; /* 2 colonnes */
+    max-width: 1200px; /* Limite de largeur */
+    margin: var(--space-xl) auto 0; /* Marge ajustée */
+  }
+}
+
+/* DESKTOP (min-width: 1024px) */
+@media only screen and (min-width: 1024px) {
+  .contact {
+    padding: var(--space-xl) clamp(var(--space-md), 5%, var(--space-xl));
+  }
+  
+  .contact-content {
+    max-width: 1400px; /* Limite maximale */
+    margin: var(--space-xl) auto 0; /* Centrer avec marge */
+  }
+}
+
+/* ===== ORIENTATION PAYSAGE SUR MOBILE ===== */
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+  .contact {
+    padding: var(--space-md) var(--space-sm);
+  }
+  
+  .contact-content {
+    grid-template-columns: 1fr 1fr; /* 2 colonnes en paysage */
+    gap: var(--space-md); /* Espacement réduit */
+  }
+  
+  .contact-form {
+    padding: var(--space-sm); /* Padding réduit */
+  }
+  
+  .form-row {
+    flex-direction: row; /* Mettre en ligne en paysage */
+    gap: var(--space-xs); /* Petit espacement */
+  }
+  
+  .form-group {
+    flex: 1; /* Largeur égale */
+  }
+  
+  .info-card {
+    padding: var(--space-sm); /* Padding réduit */
+  }
+}
+
+/* ===== SUPPORT POUR TOUCH SCREENS ===== */
+@media (hover: none) and (pointer: coarse) {
+  .form-input,
+  .form-textarea {
+    min-height: 44px; /* Taille minimale pour les doigts */
+  }
+  
+  .form-checkbox {
+    min-width: 20px; /* Taille minimale */
+    min-height: 20px; /* Taille minimale */
+  }
+  
+  .btn-submit {
+    min-height: 44px; /* Taille minimale pour les doigts */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .info-card {
+    min-height: 44px; /* Taille minimale pour les doigts */
+  }
+}
+
+/* ===== VALIDATION DU FORMULAIRE MOBILE ===== */
+@media only screen and (max-width: 768px) {
+  .form-group.error .form-input,
+  .form-group.error .form-textarea {
+    animation: shake 0.3s ease-in-out; /* Animation réduite */
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
+  }
+  
+  .form-status {
+    padding: 10px; /* Padding réduit */
+    font-size: 0.9rem; /* Taille réduite */
+  }
+}
+
+/* ===== CORRECTION POUR LES ÉCRANS TRÈS PETITS ===== */
+@media only screen and (max-width: 360px) {
+  .contact {
+    padding: var(--space-md) 8px; /* Padding très réduit */
+  }
+  
+  .contact h2 {
+    font-size: 1.8rem; /* Taille encore plus réduite */
+    padding-left: 8px; /* Padding ajusté */
+  }
+  
+  .contact-subtitle {
+    padding: 0 8px; /* Padding ajusté */
+    font-size: 0.95rem; /* Taille réduite */
+  }
+  
+  .contact-content {
+    padding: 0 8px; /* Padding latéral réduit */
+    gap: 16px; /* Espacement très réduit */
+  }
+  
+  .contact-form {
+    padding: 16px; /* Padding réduit */
+  }
+  
+  .form-input,
+  .form-textarea {
+    padding: 10px 12px 10px 35px; /* Padding réduit */
+    font-size: 0.9rem; /* Taille réduite */
+  }
+  
+  .input-icon {
+    left: 10px; /* Position ajustée */
+  }
+  
+  .info-card {
+    padding: 16px; /* Padding réduit */
+  }
+  
+  .info-icon {
+    width: 40px; /* Taille réduite */
+    height: 40px; /* Taille réduite */
+    font-size: 1.1rem; /* Taille réduite */
+  }
+}
+
+/* ===== AMÉLIORATION DE L'EXPÉRIENCE CLAVIER ===== */
+@media only screen and (max-width: 768px) {
+  .form-input:focus-visible,
+  .form-textarea:focus-visible {
+    outline: 3px solid var(--blue-main);
+    outline-offset: 2px;
+  }
+  
+  .btn-submit:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 3px;
+  }
+}
+
+/* ===== SUPPORT DES CHAMPS DE FORMULAIRE ===== */
+@media only screen and (max-width: 768px) {
+  /* Améliorer l'apparence des champs sur iOS */
+  .form-input,
+  .form-textarea {
+    -webkit-appearance: none;
+    border-radius: 8px;
+  }
+  
+  /* Empêcher le zoom sur focus pour améliorer l'expérience mobile */
+  @media (max-width: 768px) {
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      font-size: 16px; /* Empêcher le zoom automatique iOS */
+    }
+  }
+}
+
+/* ===== OPTIMISATION PERFORMANCE MOBILE ===== */
+@media only screen and (max-width: 768px) {
+  .contact::before {
+    background: none; /* Masquer l'effet de gradient pour performance */
+  }
+  
+  .info-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Ombre simplifiée */
+  }
+}
+
+/* ==========================
+    DESIGN RESPONSIVE FOOTER
+=============================*/
+
+/* TELEPHONE - Mobile (max-width: 768px) */
+@media only screen and (max-width: 768px) {
+  .footer-section {
+    margin-top: 50px; /* Marge pour compenser le header fixe */
+    padding: var(--space-lg) var(--space-sm) var(--space-md); /* Padding réduit */
+  }
+  
+  .container {
+    padding: 0 var(--space-sm); /* Padding réduit */
+  }
+  
+  /* Footer main content - empilé verticalement */
+  .footer-content {
+    grid-template-columns: 1fr; /* 1 seule colonne */
+    gap: var(--space-lg); /* Espacement réduit */
+    margin-bottom: var(--space-lg); /* Marge réduite */
+  }
+  
+  /* Présentation */
+  .footer-info {
+    text-align: center; /* Centrer le contenu sur mobile */
+    gap: var(--space-sm); /* Espacement réduit */
+  }
+  
+  .footer-name {
+    font-size: 1.5rem; /* Taille réduite */
+    text-align: center; /* Centrer le texte */
+  }
+  
+  .footer-description {
+    font-size: 1rem; /* Taille réduite */
+    text-align: center; /* Centrer le texte */
+  }
+  
+  .footer-availability {
+    font-size: 0.9rem; /* Taille réduite */
+    padding: var(--space-xs) var(--space-sm); /* Padding réduit */
+    text-align: center; /* Centrer le texte */
+  }
+  
+  /* Coordonnées */
+  .footer-contact-details {
+    gap: var(--space-md); /* Espacement réduit */
+    text-align: center; /* Centrer le contenu */
+  }
+  
+  .footer-contact-details h3 {
+    font-size: 1.2rem; /* Taille réduite */
+    text-align: center; /* Centrer le titre */
+    padding-bottom: var(--space-xs); /* Padding réduit */
+  }
+  
+  .footer-contact-details h3::after {
+    left: 50%; /* Centrer la ligne décorative */
+    transform: translateX(-50%); /* Centrer */
+  }
+  
+  .contact-item {
+    justify-content: center; /* Centrer les éléments */
+    gap: var(--space-sm); /* Espacement réduit */
+    margin-bottom: var(--space-xs); /* Marge réduite */
+  }
+  
+  .contact-item i {
+    font-size: 1rem; /* Taille réduite */
+  }
+  
+  .contact-item span {
+    font-size: 0.9rem; /* Taille réduite */
+    text-align: center; /* Centrer le texte */
+    word-break: break-word; /* Casser les textes longs */
+  }
+  
+  /* Navigation rapide */
+  .footer-nav {
+    text-align: center; /* Centrer le contenu */
+  }
+  
+  .footer-nav h3 {
+    font-size: 1.2rem; /* Taille réduite */
+    text-align: center; /* Centrer le titre */
+    padding-bottom: var(--space-xs); /* Padding réduit */
+  }
+  
+  .footer-nav h3::after {
+    left: 50%; /* Centrer la ligne décorative */
+    transform: translateX(-50%); /* Centrer */
+  }
+  
+  .footer-nav-links {
+    gap: var(--space-xs); /* Espacement réduit */
+  }
+  
+  .footer-nav-links li a {
+    font-size: 0.9rem; /* Taille réduite */
+    justify-content: center; /* Centrer les liens */
+    padding: 6px 0; /* Padding réduit */
+  }
+  
+  .footer-nav-links li a i {
+    font-size: 0.7rem; /* Taille réduite */
+  }
+  
+  /* Liens professionnels */
+  .footer-professional {
+    text-align: center; /* Centrer le contenu */
+    gap: var(--space-md); /* Espacement réduit */
+  }
+  
+  .footer-professional h3 {
+    font-size: 1.2rem; /* Taille réduite */
+    text-align: center; /* Centrer le titre */
+    padding-bottom: var(--space-xs); /* Padding réduit */
+  }
+  
+  .footer-professional h3::after {
+    left: 50%; /* Centrer la ligne décorative */
+    transform: translateX(-50%); /* Centrer */
+  }
+  
+  .footer-buttons {
+    flex-direction: column; /* Empiler les boutons */
+    gap: var(--space-sm); /* Espacement réduit */
+  }
+  
+  .footer-btn {
+    padding: var(--space-sm) var(--space-md); /* Padding réduit */
+    font-size: 0.9rem; /* Taille réduite */
+    width: 100%; /* Pleine largeur */
+    max-width: 250px; /* Limite de largeur */
+    margin: 0 auto; /* Centrer */
+  }
+  
+  .footer-social {
+    justify-content: center; /* Centrer les icônes */
+    gap: var(--space-sm); /* Espacement réduit */
+    margin-top: var(--space-sm); /* Marge réduite */
+  }
+  
+  .social-link {
+    width: 36px; /* Taille réduite */
+    height: 36px; /* Taille réduite */
+    font-size: 1rem; /* Taille réduite */
+  }
+  
+  /* Footer bottom */
+  .footer-bottom {
+    padding-top: var(--space-md); /* Padding réduit */
+    border-top: 1px solid rgba(77, 91, 255, 0.2); /* Bordure plus subtile */
+  }
+  
+  .footer-bottom p {
+    font-size: 0.85rem; /* Taille réduite */
+    margin: 4px 0; /* Marge réduite */
+    line-height: 1.4;
+  }
+  
+  .footer-bottom p:first-child {
+    font-size: 0.9rem; /* Taille réduite */
+  }
+  
+  /* Désactiver les effets de survol sur mobile */
+  @media (hover: none) and (pointer: coarse) {
+    .footer-info:hover,
+    .footer-contact-details:hover,
+    .footer-nav:hover,
+    .footer-professional:hover {
+      transform: none; /* Pas de transformation sur mobile */
+    }
+    
+    .footer-btn:hover {
+      transform: none; /* Pas de transformation sur mobile */
+    }
+    
+    .social-link:hover {
+      transform: none; /* Pas de transformation sur mobile */
+    }
+  }
+}
+
+/* TABLETTE (min-width: 767px) and (max-width: 992px) */
+@media only screen and (min-width: 767px) and (max-width: 992px) {
+  .footer-section {
+    padding: var(--space-lg) 0 var(--space-md); /* Padding réduit */
+  }
+  
+  .container {
+    max-width: 95%; /* Utiliser plus d'espace */
+    padding: 0 var(--space-md);
+  }
+  
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+    gap: var(--space-lg); /* Espacement réduit */
+  }
+  
+  .footer-name {
+    font-size: 1.6rem; /* Taille légèrement réduite */
+  }
+  
+  .footer-description {
+    font-size: 1.05rem; /* Taille ajustée */
+  }
+  
+  .footer-btn {
+    padding: var(--space-sm) var(--space-md); /* Padding ajusté */
+    font-size: 0.95rem; /* Taille ajustée */
+  }
+  
+  .contact-item span {
+    font-size: 0.95rem; /* Taille ajustée */
+  }
+}
+
+/* LAPTOP (min-width: 993px) and (max-width: 1023px) */
+@media only screen and (min-width: 993px) and (max-width: 1023px) {
+  .footer-section {
+    padding: var(--space-xl) 0 var(--space-lg); /* Padding ajusté */
+  }
+  
+  .container {
+    max-width: 95%; /* Utiliser plus d'espace */
+  }
+  
+  .footer-content {
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
+    gap: var(--space-xl); /* Espacement normal */
+  }
+  
+  /* Ajuster la disposition pour 3 colonnes */
+  .footer-info {
+    grid-column: 1 / -1; /* Prendre toute la largeur */
+    text-align: center; /* Centrer */
+  }
+}
+
+/* DESKTOP (min-width: 1024px) */
+@media only screen and (min-width: 1024px) {
+  .footer-section {
+    padding: var(--space-xl) 0 var(--space-lg);
+  }
+  
+  .container {
+    max-width: 1200px; /* Limite maximale */
+    margin: 0 auto; /* Centrer */
+    padding: 0 var(--space-lg);
+  }
+}
+
+/* ===== ORIENTATION PAYSAGE SUR MOBILE ===== */
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+  .footer-section {
+    padding: var(--space-md) var(--space-sm) var(--space-sm); /* Padding réduit */
+  }
+  
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes en paysage */
+    gap: var(--space-md); /* Espacement réduit */
+  }
+  
+  .footer-info {
+    grid-column: 1 / -1; /* Prendre toute la largeur */
+  }
+  
+  .footer-buttons {
+    flex-direction: row; /* Boutons en ligne */
+    flex-wrap: wrap; /* Permettre le retour à la ligne */
+    justify-content: center; /* Centrer */
+  }
+  
+  .footer-btn {
+    flex: 1; /* Largeur égale */
+    min-width: 140px; /* Largeur minimale */
+    max-width: 200px; /* Largeur maximale */
+  }
+}
+
+/* ===== SUPPORT POUR TOUCH SCREENS ===== */
+@media (hover: none) and (pointer: coarse) {
+  .footer-nav-links li a,
+  .footer-btn,
+  .social-link {
+    min-height: 44px; /* Taille minimale pour les doigts */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .contact-item {
+    min-height: 44px; /* Taille minimale pour les doigts */
+  }
+}
+
+/* ===== ACCESSIBILITÉ - CONTRASTE ÉLEVÉ ===== */
+@media (prefers-contrast: high) {
+  .footer-section {
+    border-top: 2px solid currentColor;
+  }
+  
+  .footer-name {
+    -webkit-text-fill-color: #000; /* Couleur solide pour contraste */
+    background: none;
+  }
+  
+  .footer-btn,
+  .social-link {
+    border: 1px solid currentColor;
+  }
+  
+  .footer-bottom {
+    border-top: 2px solid currentColor;
+  }
+}
+
+/* ===== RÉDUCTION DES MOUVEMENTS ===== */
+@media (prefers-reduced-motion: reduce) {
+  .footer-section {
+    animation: none;
+  }
+  
+  .footer-info:hover,
+  .footer-contact-details:hover,
+  .footer-nav:hover,
+  .footer-professional:hover {
+    transform: none;
+    transition: none;
+  }
+  
+  .footer-btn:hover {
+    transform: none;
+    transition: none;
+  }
+  
+  .social-link:hover {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ===== AMÉLIORATION DE LA LISIBILITÉ ===== */
+@media only screen and (max-width: 768px) {
+  .contact-item span {
+    max-width: 90%; /* Limiter la largeur pour la lisibilité */
+    margin: 0 auto; /* Centrer */
+  }
+  
+  .footer-nav-links {
+    max-width: 300px; /* Limiter la largeur */
+    margin: 0 auto; /* Centrer */
+  }
+}
+
+/* ===== CORRECTION POUR LES ÉCRANS TRÈS PETITS ===== */
+@media only screen and (max-width: 360px) {
+  .footer-section {
+    padding: var(--space-md) 8px var(--space-sm); /* Padding très réduit */
+  }
+  
+  .container {
+    padding: 0 8px; /* Padding réduit */
+  }
+  
+  .footer-name {
+    font-size: 1.3rem; /* Taille réduite */
+  }
+  
+  .footer-description {
+    font-size: 0.95rem; /* Taille réduite */
+  }
+  
+  .footer-availability {
+    font-size: 0.85rem; /* Taille réduite */
+    padding: 6px 10px; /* Padding réduit */
+  }
+  
+  .footer-content {
+    gap: 20px; /* Espacement réduit */
+  }
+  
+  .footer-btn {
+    padding: 10px 15px; /* Padding réduit */
+    font-size: 0.85rem; /* Taille réduite */
+    max-width: 220px; /* Largeur réduite */
+  }
+  
+  .social-link {
+    width: 32px; /* Taille réduite */
+    height: 32px; /* Taille réduite */
+    font-size: 0.9rem; /* Taille réduite */
+  }
+  
+  .footer-bottom p {
+    font-size: 0.8rem; /* Taille réduite */
+  }
+}
+
+/* ===== OPTIMISATION PERFORMANCE MOBILE ===== */
+@media only screen and (max-width: 768px) {
+  .footer-section::before {
+    background: none; /* Masquer l'effet de gradient pour performance */
+  }
+  
+  /* Réduire les ombres pour performance */
+  .footer-btn:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* ===== SUPPORT DES LIENS EMAIL ET TÉLÉPHONE ===== */
+@media only screen and (max-width: 768px) {
+  .contact-item span {
+    font-size: 0.9rem; /* Taille réduite pour mobile */
+  }
+  
+  /* Améliorer l'affichage des emails et numéros sur mobile */
+  a[href^="mailto:"],
+  a[href^="tel:"] {
+    color: var(--white-soft);
+    text-decoration: none;
+    word-break: break-all; /* Casser les longues adresses */
+  }
+  
+  a[href^="mailto:"]:hover,
+  a[href^="tel:"]:hover {
+    color: var(--blue-light);
+    text-decoration: underline;
+  }
+}
+
+/* ===== ANIMATION D'ENTRÉE SIMPLIFIÉE POUR MOBILE ===== */
+@media only screen and (max-width: 768px) {
+  @keyframes fadeInUpMobile {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .footer-content > * {
+    animation: fadeInUpMobile 0.3s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .footer-info { animation-delay: 0.1s; }
+  .footer-contact-details { animation-delay: 0.2s; }
+  .footer-nav { animation-delay: 0.3s; }
+  .footer-professional { animation-delay: 0.4s; }
 }
