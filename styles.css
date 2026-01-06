@@ -262,20 +262,51 @@ header h4 {
 }
 
 .acceuil .bloc-text h1 {
-  font-size: 4rem;
+  font-size: 3.3rem;
   font-weight: 900;
-  background: linear-gradient(to right, var(--blue-main), var(--blue-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 0;
+  color: #0acf9d;
+  text-shadow: 1px 1px 0px #2a8c85,
+               2px 2px 0px #2a8c85,
+               3px 3px 0px #2a8c85,
+               4px 4px 0px #2a8c85,
+               5px 5px 0px #2a8c85,
+               6px 6px 0px #2a8c85,
+               7px 7px 0px #2a8c85,
+               8px 8px 0px #2a8c85,
+               9px 9px 0px #2a8c85,
+               10px 10px 0px #2a8c85,
+               11px 11px 0px rgba(42, 140, 133, 0.8),
+               12px 12px 0px rgba(42, 140, 133, 0.7),
+               13px 13px 0px rgba(42, 140, 133, 0.6),
+               14px 14px 0px rgba(42, 140, 133, 0.5),
+               15px 15px 0px rgba(42, 140, 133, 0.4),
+               20px 20px 0px rgba(0, 0, 0, 0.3),
+               0px 0px 30px rgba(78, 205, 196, 0.2);
+  letter-spacing: 3px;
+  transform: perspective(500px) rotateY(-10deg);
+  transition: all 0.2s ease;
 }
 
-.acceuil .bloc-text h1 span {
-  font-size: 4rem;
-  font-weight: 900;
-  background: linear-gradient(to right, var(--blue-main), var(--blue-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.acceuil .bloc-text h1:hover {
+  text-shadow: 1px 1px 0px #2a8c85,
+               2px 2px 0px #2a8c85,
+               3px 3px 0px #2a8c85,
+               4px 4px 0px #2a8c85,
+               5px 5px 0px #2a8c85,
+               6px 6px 0px #2a8c85,
+               7px 7px 0px #2a8c85,
+               8px 8px 0px #2a8c85,
+               9px 9px 0px #2a8c85,
+               10px 10px 0px #2a8c85,
+               11px 11px 0px rgba(42, 140, 133, 0.8),
+               12px 12px 0px rgba(42, 140, 133, 0.7),
+               13px 13px 0px rgba(42, 140, 133, 0.6),
+               14px 14px 0px rgba(42, 140, 133, 0.5),
+               15px 15px 0px rgba(42, 140, 133, 0.4),
+               25px 25px 25px rgba(0, 0, 0, 0.4),
+               0 0 40px rgba(107, 255, 219, 0.4);
+  color: #00ffbf;
+  transform: perspective(500px) rotateY(0deg) translateY(-5px);
 }
 
 .acceuil .bloc-text h3 {
