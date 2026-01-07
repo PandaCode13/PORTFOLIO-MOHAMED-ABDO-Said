@@ -50,13 +50,13 @@
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6, a {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'ABeeZee', sans-serif;
   font-style: italic;
   font-weight: 400;
 }
 
-p, i, li {
+a, p, i, li {
   font-family: 'ABeeZee', sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -262,32 +262,6 @@ header h4 {
 }
 
 .acceuil .bloc-text h1 {
-  font-size: 3.3rem;
-  font-weight: 900;
-  color: #0acf9d;
-  text-shadow: 1px 1px 0px #2a8c85,
-               2px 2px 0px #2a8c85,
-               3px 3px 0px #2a8c85,
-               4px 4px 0px #2a8c85,
-               5px 5px 0px #2a8c85,
-               6px 6px 0px #2a8c85,
-               7px 7px 0px #2a8c85,
-               8px 8px 0px #2a8c85,
-               9px 9px 0px #2a8c85,
-               10px 10px 0px #2a8c85,
-               11px 11px 0px rgba(42, 140, 133, 0.8),
-               12px 12px 0px rgba(42, 140, 133, 0.7),
-               13px 13px 0px rgba(42, 140, 133, 0.6),
-               14px 14px 0px rgba(42, 140, 133, 0.5),
-               15px 15px 0px rgba(42, 140, 133, 0.4),
-               20px 20px 0px rgba(0, 0, 0, 0.3),
-               0px 0px 30px rgba(78, 205, 196, 0.2);
-  letter-spacing: 3px;
-  transform: perspective(500px) rotateY(-10deg);
-  transition: all 0.2s ease;
-}
-
-.acceuil .bloc-text h1:hover {
   text-shadow: 1px 1px 0px #2a8c85,
                2px 2px 0px #2a8c85,
                3px 3px 0px #2a8c85,
@@ -943,6 +917,10 @@ header h4 {
     width: 100%;
 }
 
+.card p {
+  line-height: none;
+}
+
 /* ===== STYLES SPÉCIFIQUES AUX CARTES ===== */
 
 /* Informations personnelles */
@@ -999,7 +977,6 @@ header h4 {
 .objectif-professionnel p,
 .objectif-personnel p {
     color: var(--gray-light);
-    line-height: 1.7;
     font-size: 1.05rem;
     transition: color var(--transition-medium);
 }
@@ -1011,9 +988,6 @@ header h4 {
 }
 
 /* Paragraphes avec sauts de ligne améliorés */
-.education p {
-    text-align: justify;
-}
 
 /* Effets de focus pour l'interactivité */
 .card:active {
