@@ -1,0 +1,899 @@
+/*
+  Palette globale du portfolio de Said.
+  Les couleurs principales demandées sont bleu, rouge et blanc.
+  Pour changer rapidement l'identité visuelle :
+  - --blue contrôle les boutons, titres et éléments forts.
+  - --red contrôle les accents et les détails dynamiques.
+  - --white contrôle les cartes et les zones de respiration.
+*/
+:root {
+  --ink: #172033;
+  --muted: #5b6475;
+  --line: #dce5f5;
+  --paper: #f4f8ff;
+  --white: #ffffff;
+  --blue: #2457d6;
+  --blue-dark: #12347f;
+  --blue-soft: #eaf1ff;
+  --red: #d72638;
+  --red-dark: #981b2a;
+  --cyan: #18c7ff;
+  --shadow: 0 18px 50px rgba(18, 52, 127, 0.14);
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/*
+  Conteneur commun :
+  limite la largeur du contenu et garde une marge latérale sur tous les écrans.
+*/
+.container {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+/*
+  Header fixe :
+  sticky garde la navigation en haut pendant le scroll.
+  Le fond blanc translucide garde le style léger du portfolio.
+*/
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid rgba(220, 229, 245, 0.95);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.site-header:hover {
+  border-color: rgba(36, 87, 214, 0.28);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 12px 34px rgba(18, 52, 127, 0.08);
+}
+
+.nav {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  letter-spacing: 0;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.brand:hover {
+  color: var(--blue);
+  transform: translateY(-1px);
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--blue);
+  box-shadow: 0 0 0 4px rgba(215, 38, 56, 0.12);
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.brand:hover .brand-mark {
+  background: var(--red);
+  box-shadow: 0 0 0 6px rgba(36, 87, 214, 0.13);
+  transform: rotate(-6deg) scale(1.05);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.nav-links a:hover {
+  color: var(--red);
+}
+
+.nav-links a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  transition: color 0.2s ease;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--blue), var(--red));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+
+.nav-links a:hover::after {
+  transform: scaleX(1);
+}
+
+.nav-action,
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.nav-action,
+.btn-primary {
+  color: var(--white);
+  background: var(--blue);
+}
+
+.nav-action:hover,
+.btn-primary:hover {
+  background: var(--red);
+  box-shadow: 0 12px 26px rgba(215, 38, 56, 0.22);
+}
+
+.btn-secondary {
+  color: var(--blue-dark);
+  border-color: var(--blue);
+  background: var(--white);
+}
+
+.nav-action:hover,
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--ink);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.menu-toggle:hover {
+  color: var(--red);
+  border-color: var(--blue);
+  box-shadow: 0 8px 20px rgba(18, 52, 127, 0.12);
+  transform: translateY(-1px);
+}
+
+/*
+  Hero avec photo en arrière-plan :
+  - La photo est appelée ici avec url("said cv.jpg").
+  - Le premier calque est un dégradé blanc/bleu très clair qui protège la lisibilité du texte.
+  - Le deuxième calque est la photo.
+  - L'ordre compte : le dégradé est écrit avant l'image, donc il se place au-dessus.
+  - "right center" met le portrait à droite sur ordinateur.
+  - "min(45vw, 540px)" rend la photo responsive sans devenir trop grande.
+  Pour refaire cet effet : placer l'image dans background avec un linear-gradient devant.
+*/
+.hero {
+  min-height: calc(100vh - 72px);
+  display: grid;
+  align-items: center;
+  padding: 58px 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(244, 248, 255, 0.98) 0%,
+      rgba(244, 248, 255, 0.9) 46%,
+      rgba(244, 248, 255, 0.22) 100%
+    ),
+    url("said cv.jpg") right center / min(45vw, 540px) auto no-repeat;
+}
+
+/*
+  Le texte du hero est limité en largeur pour laisser respirer la photo à droite.
+*/
+.hero-content {
+  max-width: 700px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 18px;
+  color: var(--red);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+}
+
+h1 {
+  max-width: 760px;
+  font-size: clamp(2.35rem, 6vw, 5.1rem);
+  line-height: 1;
+  letter-spacing: 0;
+  margin-bottom: 20px;
+}
+
+.hero-lead {
+  max-width: 630px;
+  color: var(--muted);
+  font-size: clamp(1rem, 2vw, 1.22rem);
+  margin-bottom: 28px;
+}
+
+.hero-actions,
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/*
+  Grille des informations rapides :
+  le fond bleu clair sert de séparateur entre les cases blanches.
+*/
+.quick-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 42px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--line);
+  box-shadow: var(--shadow);
+}
+
+.fact {
+  min-height: 92px;
+  padding: 18px;
+  background: var(--white);
+}
+
+.fact strong {
+  display: block;
+  color: var(--blue-dark);
+  font-size: 1.1rem;
+}
+
+.fact span {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+section {
+  padding: 78px 0;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.72fr) minmax(0, 1.28fr);
+  gap: 42px;
+  align-items: start;
+  margin-bottom: 34px;
+}
+
+.section-label {
+  color: var(--red);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+.section-text {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin-top: 12px;
+}
+
+/*
+  Profil :
+  deux colonnes desktop, une colonne sur mobile.
+*/
+.profile-layout {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 34px;
+  align-items: stretch;
+}
+
+.portrait-panel {
+  min-height: 470px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--white);
+}
+
+/*
+  object-fit: cover remplit le cadre sans déformer la photo.
+*/
+.portrait-panel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-card {
+  align-content: stretch;
+}
+
+/*
+  Grille About :
+  fonctionne comme la grille des compétences, mais à l'intérieur de la partie Profil.
+  Chaque .about-block est une carte autonome avec un numéro visuel.
+*/
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.about-block {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  min-height: 210px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: 0 12px 34px rgba(18, 52, 127, 0.08);
+}
+
+.about-block-large {
+  grid-column: 1 / -1;
+}
+
+.about-block-tags {
+  gap: 12px;
+}
+
+.about-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--blue);
+  font-weight: 900;
+  box-shadow: 0 0 0 5px rgba(215, 38, 56, 0.12);
+}
+
+.profile-card p,
+.about-block p {
+  color: var(--muted);
+}
+
+.profile-card h3,
+.about-block h3 {
+  color: var(--blue-dark);
+  font-size: 1rem;
+  margin-top: 0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+}
+
+.tag {
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  color: var(--blue-dark);
+  background: var(--blue-soft);
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+/*
+  Grilles de cartes :
+  minmax(0, 1fr) évite les débordements quand une phrase est longue.
+*/
+.skills-grid,
+.projects-grid,
+.contact-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.skills-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.projects-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.skill-group,
+.project,
+.education-card,
+.contact-card,
+.experience-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: 0 12px 34px rgba(18, 52, 127, 0.08);
+}
+
+.skill-group,
+.project {
+  min-height: 210px;
+  padding: 24px;
+}
+
+.skill-group h3,
+.project h3,
+.education-card h3,
+.experience-card h3 {
+  font-size: 1.1rem;
+  line-height: 1.28;
+  margin-bottom: 10px;
+}
+
+.skill-group ul,
+.experience-list {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  list-style: none;
+}
+
+.skill-group li::before,
+.experience-list li::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--red);
+  vertical-align: middle;
+}
+
+.project {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition:
+    transform 0.24s ease,
+    box-shadow 0.24s ease,
+    border-color 0.24s ease;
+}
+
+.project:hover {
+  transform: translateY(-8px);
+  border-color: transparent;
+  box-shadow: 0 22px 52px rgba(18, 52, 127, 0.18);
+}
+
+.project:hover .project-num {
+  background: var(--red);
+  transform: rotate(-6deg) scale(1.06);
+  box-shadow: 0 0 0 7px rgba(36, 87, 214, 0.12);
+}
+
+.project:hover h3 {
+  color: var(--blue);
+}
+
+.project:hover .project-link {
+  color: var(--blue);
+  transform: translateX(4px);
+}
+
+.project > * {
+  position: relative;
+  z-index: 2;
+}
+
+.project-num {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--blue);
+  font-weight: 900;
+  box-shadow: 0 0 0 5px rgba(215, 38, 56, 0.12);
+}
+
+.project p {
+  color: var(--muted);
+}
+
+.project-link {
+  width: fit-content;
+  margin-top: 16px;
+  color: var(--red);
+  font-weight: 900;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.project-link:hover {
+  color: var(--blue);
+}
+
+.project-stack {
+  margin-top: 12px;
+  padding-top: 0;
+  color: var(--blue-dark) !important;
+  font-weight: 800;
+}
+
+/*
+  Carte expérience :
+  le haut de carte sépare le nom de l'entreprise et la période.
+*/
+.experience-card {
+  padding: 28px;
+}
+
+.experience-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.experience-top p {
+  color: var(--muted);
+}
+
+.experience-top span {
+  align-self: start;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  color: var(--white);
+  background: var(--red);
+  font-weight: 900;
+}
+
+/*
+  Formations :
+  les diplômes sont présentés comme des cartes premium.
+  .education-card-featured occupe toute la largeur pour mettre en avant la formation actuelle.
+*/
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.education-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 18px;
+  min-height: 220px;
+  padding: 24px;
+  overflow: hidden;
+}
+
+.education-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--blue), var(--red));
+}
+
+.education-card-featured {
+  grid-column: 1 / -1;
+  min-height: 240px;
+  background:
+    linear-gradient(135deg, rgba(36, 87, 214, 0.08), rgba(215, 38, 56, 0.08)),
+    var(--white);
+}
+
+.education-marker {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--blue);
+  font-weight: 900;
+  box-shadow: 0 0 0 5px rgba(215, 38, 56, 0.12);
+}
+
+.education-content {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.education-date {
+  color: var(--red);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+}
+
+.education-place,
+.education-card p {
+  color: var(--muted);
+}
+
+.education-place {
+  font-weight: 800;
+}
+
+.education-badge {
+  width: fit-content;
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  color: var(--blue-dark);
+  background: var(--blue-soft);
+  font-weight: 900;
+  font-size: 0.88rem;
+}
+
+.contact-band {
+  color: var(--white);
+  background: var(--blue-dark);
+}
+
+.contact-band .section-label {
+  color: #ffb5bd;
+}
+
+.contact-band .section-text {
+  color: #dbe7ff;
+}
+
+.contact-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 34px;
+}
+
+.contact-card {
+  padding: 20px;
+  color: var(--ink);
+}
+
+.contact-card strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--blue-dark);
+}
+
+.contact-card p {
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.site-footer {
+  padding: 26px 0;
+  color: var(--muted);
+  background: var(--white);
+  border-top: 1px solid var(--line);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/*
+  Responsive tablette/mobile :
+  - le menu desktop disparaît,
+  - le bouton hamburger apparaît,
+  - les grilles passent en deux colonnes ou une colonne.
+*/
+@media (max-width: 980px) {
+  .nav {
+    min-height: 64px;
+  }
+
+  .menu-toggle {
+    display: inline-grid;
+    place-items: center;
+  }
+
+  .nav-links,
+  .nav-action {
+    display: none;
+  }
+
+  .nav-links.is-open {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    top: 72px;
+    display: grid;
+    gap: 4px;
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--white);
+    box-shadow: var(--shadow);
+  }
+
+  .nav-links.is-open a {
+    display: block;
+    padding: 10px;
+  }
+
+  /*
+    Hero mobile :
+    - la photo passe au-dessus du texte avec top center,
+    - padding-top réserve l'espace pour voir le portrait,
+    - le dégradé vertical fond l'image dans le fond bleu très clair.
+  */
+  .hero {
+    min-height: auto;
+    padding-top: 430px;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(244, 248, 255, 0.04) 0%,
+        rgba(244, 248, 255, 0.18) 320px,
+        var(--paper) 420px
+      ),
+      url("said cv.jpg") top center / min(86vw, 360px) auto no-repeat;
+  }
+
+  .section-head,
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .about-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .skills-grid,
+  .projects-grid,
+  .education-grid,
+  .contact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portrait-panel {
+    min-height: 360px;
+  }
+}
+
+/*
+  Petits écrans :
+  tout passe en une colonne, les boutons prennent toute la largeur.
+*/
+@media (max-width: 620px) {
+  .container {
+    width: min(100% - 24px, 1120px);
+  }
+
+  section {
+    padding: 56px 0;
+  }
+
+  .hero {
+    padding-top: 365px;
+  }
+
+  .quick-facts,
+  .about-grid,
+  .skills-grid,
+  .projects-grid,
+  .education-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .education-card,
+  .education-card-featured {
+    grid-column: auto;
+  }
+
+  .education-card {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-card,
+  .experience-card {
+    padding: 24px;
+  }
+
+  .experience-top {
+    display: grid;
+  }
+
+  .hero-actions .btn,
+  .contact-actions .btn {
+    width: 100%;
+  }
+
+  .footer-inner {
+    display: grid;
+  }
+}

@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio de Said Mohamed Abdo, étudiant en développement full stack et disponible dès avril 2026."
+    />
+    <title>Portfolio - Said Mohamed Abdo</title>
+    <link rel="stylesheet" href="said.css" />
+  </head>
+  <body>
+    <!--
+      En-tête fixe :
+      - .site-header reste visible pendant le scroll grâce à position: sticky dans said.css.
+      - .brand contient les initiales et le nom.
+      - .nav-links pointe vers les sections internes de cette page.
+      - .nav-action ouvre le CV PDF original dans un nouvel onglet.
+      - .menu-toggle sert au menu mobile et fonctionne avec le script en bas du fichier.
+    -->
+    <header class="site-header">
+      <nav class="container nav" aria-label="Navigation principale">
+        <a class="brand" href="#accueil" aria-label="Accueil">
+          <span class="brand-mark">SM</span>
+          <span>Said Mohamed Abdo</span>
+        </a>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+
+        <ul class="nav-links" id="menu">
+          <li><a href="#profil">Profil</a></li>
+          <li><a href="#competences">Compétences</a></li>
+          <li><a href="#projets">Projets</a></li>
+          <li><a href="#experience">Expérience</a></li>
+          <li><a href="#formations">Formations</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <a
+          class="nav-action"
+          href="CV de said mohamed (1).pdf"
+          target="_blank"
+          rel="noopener"
+          >Voir le CV</a
+        >
+      </nav>
+    </header>
+
+    <main>
+      <!--
+        Hero / première section :
+        - La photo est une image de fond dans .hero, pas une balise <img>.
+        - Ce choix permet de placer le portrait derrière/à côté du texte comme un visuel de couverture.
+        - Le dégradé bleu/blanc défini dans said.css passe au-dessus de la photo pour garder le texte lisible.
+        - Sur mobile, le CSS repositionne la photo au-dessus du texte avec background-position: top center.
+      -->
+      <section class="hero" id="accueil">
+        <div class="container hero-content">
+          <p class="eyebrow">Étudiant en développement full stack</p>
+          <h1>Said Mohamed Abdo</h1>
+          <p class="hero-lead">
+            Développeur junior Full Stack en MBA1, spécialisé en développement
+            web et digital. Je conçois des applications web modernes,
+            performantes et adaptées aux besoins des utilisateurs.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Me contacter</a>
+            <a class="btn btn-secondary" href="#projets">Voir les projets</a>
+          </div>
+
+          <!--
+            Résumé en 3 cases :
+            .quick-facts crée une grille responsive. Pour ajouter une case,
+            dupliquer un bloc <div class="fact">.
+          -->
+          <div class="quick-facts" aria-label="Informations clés">
+            <div class="fact">
+              <strong>Disponible</strong>
+              <span>Dès le 07 avril 2026</span>
+            </div>
+            <div class="fact">
+              <strong>Rythme</strong>
+              <span>2 semaines en stage / 1 semaine école</span>
+            </div>
+            <div class="fact">
+              <strong>Localisation</strong>
+              <span>Île-de-France (93)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--
+        Section Profil :
+        - Ici la photo devient une vraie balise <img>, car elle illustre directement le contenu.
+        - .profile-layout crée deux colonnes : portrait + texte.
+        - .about-grid transforme les blocs About en cartes, dans le même esprit que les compétences.
+        - Chaque .about-block est une carte indépendante : plus simple à lire et à modifier.
+        - .about-icon sert de repère visuel bleu/rouge pour identifier rapidement chaque thème.
+      -->
+      <section id="profil">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-label">Profil</p>
+            <div>
+              <h2>Un développeur full stack orienté code propre, projet concret et interface utile.</h2>
+              <p class="section-text">
+                Sérieux, autonome et rigoureux, je m'engage à fournir un travail
+                de qualité avec un code propre, structuré et maintenable.
+              </p>
+            </div>
+          </div>
+
+          <div class="profile-layout">
+            <div class="portrait-panel">
+              <img src="said cv.jpg" alt="Portrait de Said Mohamed Abdo" />
+            </div>
+
+            <article class="profile-card">
+              <div class="about-grid">
+              <!-- Bloc séparé : parcours professionnel général. -->
+              <div class="about-block about-block-large">
+                <span class="about-icon">01</span>
+                <h2>Parcours professionnel</h2>
+                <p>
+                  Diplômé d'un baccalauréat scientifique, j'ai acquis des
+                  compétences en développement web et mobile à travers divers
+                  projets académiques et personnels lors de ma formation en
+                  licence informatique.
+                </p>
+                <p>
+                  Mon expertise inclut HTML, CSS, JavaScript, ainsi que des
+                  frameworks comme React et Node.js. Je suis également compétent
+                  en gestion de bases de données avec MySQL et MongoDB.
+                </p>
+                <p>
+                  Passionné par la technologie, je suis constamment à la
+                  recherche de nouvelles opportunités pour apprendre et évoluer
+                  dans le domaine du développement web.
+                </p>
+              </div>
+
+              <!-- Bloc séparé : objectif professionnel. -->
+              <div class="about-block">
+                <span class="about-icon">02</span>
+                <h3>Objectif professionnel</h3>
+                <p>
+                  Mon objectif professionnel est de devenir un développeur web
+                  full stack compétent, capable de créer des applications
+                  performantes et innovantes, tout en travaillant dans un
+                  environnement collaboratif et stimulant.
+                </p>
+              </div>
+
+              <!-- Bloc séparé : objectif personnel. -->
+              <div class="about-block">
+                <span class="about-icon">03</span>
+                <h3>Objectif personnel</h3>
+                <p>
+                  Je cherche à contribuer à des projets innovants dans le
+                  domaine du développement web, tout en continuant à apprendre
+                  et à me perfectionner dans les technologies émergentes.
+                </p>
+              </div>
+
+              <!-- Bloc séparé : centres d'intérêt sous forme de phrase. -->
+              <div class="about-block">
+                <span class="about-icon">04</span>
+                <h3>Centres d'intérêt</h3>
+                <p>
+                  Je suis passionné par la technologie, le développement web et
+                  les nouvelles tendances du secteur. Malgré cela, j'ai aussi
+                  des passions pour la musique, les jeux vidéos et les animes.
+                </p>
+              </div>
+
+              <!-- Bloc séparé : qualités principales sous forme d'étiquettes. -->
+              <div class="about-block about-block-tags">
+                <span class="about-icon">05</span>
+                <h3>Qualités principales</h3>
+                <ul class="tags" aria-label="Qualités principales">
+                  <li class="tag">Autonome</li>
+                  <li class="tag">Rigoureux</li>
+                  <li class="tag">Communication orale</li>
+                  <li class="tag">Attitude positive</li>
+                </ul>
+              </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!--
+        Section Compétences :
+        - Reprend le design en cartes utilisé pour le portfolio de Fathia.
+        - Chaque .skill-group représente une famille de compétences issue du CV.
+        - Pour ajouter une compétence, modifier la liste de la carte correspondante.
+      -->
+      <section id="competences">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-label">Compétences</p>
+            <div>
+              <h2>Un socle complet pour construire des applications web modernes.</h2>
+              <p class="section-text">
+                Frontend, backend, bases de données, design d'interface,
+                API et pratiques projet sont organisés par famille.
+              </p>
+            </div>
+          </div>
+
+          <div class="skills-grid">
+            <article class="skill-group">
+              <h3>Frontend</h3>
+              <ul>
+                <li>HTML5, CSS3</li>
+                <li>JavaScript</li>
+                <li>React.js</li>
+                <li>Next.js</li>
+                <li>TypeScript</li>
+                <li>Vite</li>
+              </ul>
+            </article>
+
+            <article class="skill-group">
+              <h3>Backend & API</h3>
+              <ul>
+                <li>PHP</li>
+                <li>Node.js</li>
+                <li>API REST</li>
+                <li>Architecture client / serveur</li>
+                <li>Échanges API HTTP</li>
+              </ul>
+            </article>
+
+            <article class="skill-group">
+              <h3>Bases de données</h3>
+              <ul>
+                <li>MySQL via WampServer</li>
+                <li>MongoDB</li>
+                <li>SQL</li>
+                <li>Gestion de catalogue</li>
+              </ul>
+            </article>
+
+            <article class="skill-group">
+              <h3>UI / UX & Design</h3>
+              <ul>
+                <li>Figma</li>
+                <li>Maquettes (débutant)</li>
+                <li>Wireframes (débutant)</li>
+                <li>Interfaces utilisateur</li>
+              </ul>
+            </article>
+
+            <article class="skill-group">
+              <h3>Outils & déploiement</h3>
+              <ul>
+                <li>Docker</li>
+                <li>TailwindCSS</li>
+                <li>Render</li>
+                <li>WampServer</li>
+                <li>Visual Studio Code</li>
+                <li>Eclipse</li>
+                <li>Anaconda</li>
+              </ul>
+            </article>
+
+            <article class="skill-group">
+              <h3>Méthode & infrastructure</h3>
+              <ul>
+                <li>Analyse des besoins clients</li>
+                <li>Cahier des charges</li>
+                <li>Inventaire réseau</li>
+                <li>Sauvegarde de données</li>
+                <li>Sécurisation de fichiers</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!--
+        Section Projets :
+        - Les projets viennent du CV de Said.
+        - Chaque carte contient l'objectif, les missions principales et la stack.
+        - .project-num donne un repère visuel bleu/rouge.
+      -->
+      <section id="projets">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-label">Projets</p>
+            <div>
+              <h2>Des réalisations web orientées produit, gestion et expérience utilisateur.</h2>
+              <p class="section-text">
+                Les projets couvrent la création de CV, la bibliothèque
+                numérique et la gestion scolaire quotidienne.
+              </p>
+            </div>
+          </div>
+
+          <div class="projects-grid">
+            <article class="project">
+              <span class="project-num">01</span>
+              <h3>CV en ligne Express</h3>
+              <p>
+                Plateforme permettant de consulter des modèles, créer son CV
+                avec personnalisation et télécharger le résultat.
+              </p>
+              <p class="project-stack">HTML, CSS, JavaScript, PHP, MySQL</p>
+            </article>
+
+            <article class="project">
+              <span class="project-num">02</span>
+              <h3>Digital Library</h3>
+              <p>
+                Gestion de bibliothèque numérique pour administrer un catalogue
+                et permettre la consultation d'ouvrages PDF sans téléchargement.
+              </p>
+              <a
+                class="project-link"
+                href="https://github.com/PandaCode13/bibliotheque-management.git"
+                target="_blank"
+                rel="noopener"
+                >Voir le dépôt GitHub</a
+              >
+              <p class="project-stack">React, JavaScript, MongoDB, API, Docker, TailwindCSS</p>
+            </article>
+
+            <article class="project">
+              <span class="project-num">03</span>
+              <h3>Gestion de tâches scolaires</h3>
+              <p>
+                Application pour centraliser cours, devoirs, examens, notes,
+                rappels et notifications dans une interface simple.
+              </p>
+              <p class="project-stack">HTML, CSS, JavaScript, Python, MySQL</p>
+            </article>
+
+            <article class="project">
+              <span class="project-num">04</span>
+              <h3>Portfolio de Abdoul-Rahman</h3>
+              <p>
+                Création d'un portfolio web en ligne pour présenter un profil,
+                un parcours, des compétences et des projets de manière claire.
+              </p>
+              <a
+                class="project-link"
+                href="https://abdel-abden.fr/"
+                target="_blank"
+                rel="noopener"
+                >Voir le site en ligne</a
+              >
+              <p class="project-stack">HTML, CSS, JavaScript, responsive design</p>
+            </article>
+
+            <article class="project">
+              <span class="project-num">05</span>
+              <h3>Portfolio de Merveil</h3>
+              <p>
+                Développement et mise en ligne d'un portfolio personnel pour
+                valoriser les informations, réalisations et contacts.
+              </p>
+              <a
+                class="project-link"
+                href="https://portfolio-merveil.onrender.com/"
+                target="_blank"
+                rel="noopener"
+                >Voir le site en ligne</a
+              >
+              <p class="project-stack">HTML, CSS, JavaScript, Render</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!--
+        Section Expérience :
+        - Présente le stage Teknosure et les grandes missions.
+        - .experience-card est une carte large pour garder la lecture fluide.
+      -->
+      <section id="experience">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-label">Expérience</p>
+            <div>
+              <h2>Stage développement full stack chez Teknosure.</h2>
+              <p class="section-text">
+                Une expérience complète entre développement web, portfolios,
+                montée en compétence React, infogérance et relation client.
+              </p>
+            </div>
+          </div>
+
+          <article class="experience-card">
+            <div class="experience-top">
+              <div>
+                <h3>Teknosure - Stage Développement Full Stack</h3>
+                <p>14 octobre 2025 - 3 avril 2026</p>
+              </div>
+              <span>Stage</span>
+            </div>
+            <ul class="experience-list">
+              <li>Développement d'une application web de gestion de bibliothèque numérique avec React, Node.js et MongoDB.</li>
+              <li>Conception d'une interface utilisateur et d'une architecture client / serveur.</li>
+              <li>Création de portfolios web, mise en production avec Render et collaboration avec un client.</li>
+              <li>Apprentissage de React, Vite, TypeScript, Next.js et des échanges client / serveur.</li>
+              <li>Infogérance, inventaire réseau, sauvegarde et sécurisation de données.</li>
+              <li>Analyse des besoins clients, rédaction de réponses techniques et communication avec les utilisateurs.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!--
+        Section Formations :
+        - .education-grid affiche les formations sous forme de cartes plus visuelles.
+        - Chaque .education-card contient un numéro, une période, un diplôme, une école et un badge.
+        - Pour ajouter une formation, dupliquer simplement une carte .education-card.
+      -->
+      <section id="formations">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-label">Formations</p>
+            <div>
+              <h2>Un parcours orienté full stack, informatique et pratique web.</h2>
+              <p class="section-text">
+                MBA1, licence informatique et baccalauréat scientifique forment
+                la base du parcours.
+              </p>
+            </div>
+          </div>
+
+          <div class="education-grid">
+            <article class="education-card education-card-featured">
+              <div class="education-marker">01</div>
+              <div class="education-content">
+                <p class="education-date">2025 - 2027</p>
+                <h3>MBA1 Développement Full Stack</h3>
+                <p class="education-place">My Digital School · Paris 75011</p>
+                <p>
+                  Formation orientée développement web, projets full stack,
+                  pratique frontend/backend et professionnalisation.
+                </p>
+                <span class="education-badge">En cours</span>
+              </div>
+            </article>
+
+            <article class="education-card">
+              <div class="education-marker">02</div>
+              <div class="education-content">
+                <p class="education-date">2022 - 2025</p>
+                <h3>Licence Informatique</h3>
+                <p class="education-place">Université de Djibouti</p>
+                <p>Mention Assez Bien.</p>
+                <span class="education-badge">Bac +3</span>
+              </div>
+            </article>
+
+            <article class="education-card">
+              <div class="education-marker">03</div>
+              <div class="education-content">
+                <p class="education-date">2021 - 2022</p>
+                <h3>Baccalauréat Scientifique</h3>
+                <p class="education-place">Djibouti</p>
+                <p>Mention Assez Bien.</p>
+                <span class="education-badge">Base scientifique</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!--
+        Section Contact :
+        - Les cartes sont des liens complets pour faciliter le clic.
+        - mailto: ouvre un email, tel: lance un appel sur téléphone.
+      -->
+      <section class="contact-band" id="contact">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-label">Contact</p>
+            <div>
+              <h2>Disponible pour des missions en développement web.</h2>
+              <p class="section-text">
+                Sites, applications, API, optimisation et projets full stack.
+              </p>
+              <div class="contact-actions">
+                <a class="btn btn-primary" href="mailto:smohamedabdo895@gmail.com">Envoyer un email</a>
+                <a
+                  class="btn btn-secondary"
+                  href="CV de said mohamed (1).pdf"
+                  target="_blank"
+                  rel="noopener"
+                  >Ouvrir le CV PDF</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-grid">
+            <a class="contact-card" href="mailto:smohamedabdo895@gmail.com">
+              <strong>Email</strong>
+              <p>smohamedabdo895@gmail.com</p>
+            </a>
+            <a class="contact-card" href="tel:+33766435207">
+              <strong>Téléphone</strong>
+              <p>+33 7 66 43 52 07</p>
+            </a>
+            <a class="contact-card" href="https://github.com/PandaCode13" target="_blank" rel="noopener">
+              <strong>GitHub</strong>
+              <p>PandaCode13</p>
+            </a>
+            <div class="contact-card">
+              <strong>Langues</strong>
+              <p>Français C1 · Anglais A2 · Afar C1</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!--
+      Pied de page :
+      information courte pour finir la page sans répéter toute la section contact.
+    -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>&copy; 2026 Said Mohamed Abdo. Tous droits réservés.</p>
+        <p>Portfolio personnel · Développeur Full Stack</p>
+      </div>
+    </footer>
+
+    <!--
+      Script du menu mobile :
+      - .is-open est ajoutée/retirée sur .nav-links.
+      - aria-expanded indique l'état du menu aux lecteurs d'écran.
+      - Le menu se ferme après un clic sur une ancre.
+    -->
+    <script>
+      const toggle = document.querySelector(".menu-toggle");
+      const menu = document.querySelector(".nav-links");
+
+      toggle.addEventListener("click", () => {
+        const isOpen = menu.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", String(isOpen));
+        toggle.textContent = isOpen ? "×" : "☰";
+      });
+
+      menu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          menu.classList.remove("is-open");
+          toggle.setAttribute("aria-expanded", "false");
+          toggle.textContent = "☰";
+        });
+      });
+    </script>
+  </body>
+</html>
