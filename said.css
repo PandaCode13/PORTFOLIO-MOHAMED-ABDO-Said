@@ -1150,3 +1150,373 @@ body.dark-mode .menu-toggle {
   border-color: #2b3650;
   color: #f5f7ff;
 }
+
+/* =========================================
+   TRÈS GRANDS ÉCRANS (1600px et plus)
+========================================= */
+
+@media (min-width: 1600px) {
+  /* Conteneur plus large pour profiter de l'espace */
+  .container {
+    width: min(1360px, calc(100% - 48px));
+  }
+
+  /* Ajustement des sections */
+  section {
+    padding: 100px 0;
+  }
+
+  /* Hero - plus d'espace et meilleure lisibilité */
+  .hero {
+    min-height: calc(100vh - 72px);
+    padding: 80px 0;
+  }
+
+  .hero-content {
+    max-width: 800px;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 5vw, 5.8rem);
+    margin-bottom: 28px;
+  }
+
+  .hero-lead {
+    font-size: 1.35rem;
+    max-width: 720px;
+    margin-bottom: 36px;
+  }
+
+  .quick-facts {
+    margin-top: 58px;
+  }
+
+  .fact {
+    min-height: 110px;
+    padding: 24px;
+  }
+
+  .fact strong {
+    font-size: 1.25rem;
+  }
+
+  .fact span {
+    font-size: 1rem;
+  }
+
+  /* Ajustement des sections head */
+  .section-head {
+    gap: 60px;
+    margin-bottom: 48px;
+  }
+
+  .section-label {
+    font-size: 0.9rem;
+  }
+
+  h2 {
+    font-size: clamp(2.2rem, 3vw, 3.2rem);
+  }
+
+  .section-text {
+    font-size: 1.2rem;
+    margin-top: 16px;
+  }
+
+  /* Grilles - meilleure répartition */
+  .skills-grid,
+  .projects-grid {
+    gap: 28px;
+  }
+
+  .skill-group,
+  .project {
+    min-height: 250px;
+    padding: 32px;
+  }
+
+  .skill-group h3,
+  .project h3 {
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+  }
+
+  .skill-group ul {
+    gap: 12px;
+    font-size: 1rem;
+  }
+
+  /* Profil */
+  .profile-layout {
+    gap: 48px;
+  }
+
+  .about-grid {
+    gap: 28px;
+  }
+
+  .about-block {
+    padding: 32px;
+    min-height: 240px;
+  }
+
+  .about-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 1.1rem;
+  }
+
+  .about-block h3 {
+    font-size: 1.2rem;
+  }
+
+  .about-block p {
+    font-size: 1rem;
+  }
+
+  /* Projets */
+  .project-num {
+    width: 52px;
+    height: 52px;
+    font-size: 1.2rem;
+    margin-bottom: 24px;
+  }
+
+  .project p {
+    font-size: 1rem;
+  }
+
+  .project-stack {
+    margin-top: 16px;
+    font-size: 0.95rem;
+  }
+
+  .project-link {
+    margin-top: 20px;
+  }
+
+  /* Expérience */
+  .experience-card {
+    padding: 36px;
+  }
+
+  .experience-top {
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+  }
+
+  .experience-card h3 {
+    font-size: 1.4rem;
+  }
+
+  .experience-list {
+    gap: 12px;
+    font-size: 1rem;
+  }
+
+  /* Formations */
+  .education-grid {
+    gap: 28px;
+  }
+
+  .education-card {
+    padding: 32px;
+    gap: 24px;
+  }
+
+  .education-marker {
+    width: 64px;
+    height: 64px;
+    font-size: 1.2rem;
+  }
+
+  .education-date {
+    font-size: 0.9rem;
+  }
+
+  .education-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .education-badge {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+
+  /* Contact */
+  .contact-grid {
+    gap: 28px;
+    margin-top: 48px;
+  }
+
+  .contact-card {
+    padding: 28px;
+  }
+
+  .contact-card strong {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .contact-card p {
+    font-size: 1rem;
+  }
+
+  .contact-form {
+    margin-top: 48px;
+    padding: 40px;
+  }
+
+  .contact-form form {
+    gap: 28px;
+  }
+
+  .form-group label {
+    font-size: 1rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    min-height: 52px;
+    padding: 16px;
+    font-size: 1rem;
+  }
+
+  .form-group textarea {
+    min-height: 180px;
+  }
+
+  .contact-form button {
+    min-height: 56px;
+    padding: 0 32px;
+    font-size: 1rem;
+  }
+
+  /* Footer */
+  .site-footer {
+    padding: 36px 0;
+  }
+
+  .footer-inner p {
+    font-size: 1rem;
+  }
+
+  /* Navigation */
+  .nav {
+    min-height: 84px;
+  }
+
+  .brand {
+    gap: 14px;
+    font-size: 1.1rem;
+  }
+
+  .brand-mark {
+    width: 48px;
+    height: 48px;
+    font-size: 1.1rem;
+  }
+
+  .nav-links {
+    gap: 32px;
+    font-size: 1.05rem;
+  }
+
+  .nav-action,
+  .btn {
+    min-height: 50px;
+    padding: 0 28px;
+    font-size: 0.95rem;
+  }
+}
+
+/* =========================================
+   ÉCRANS ULTRA LARGES (1920px et plus)
+========================================= */
+
+@media (min-width: 1920px) {
+  .container {
+    width: min(1440px, calc(100% - 60px));
+  }
+
+  section {
+    padding: 120px 0;
+  }
+
+  .hero {
+    padding: 100px 0;
+  }
+
+  .hero-content {
+    max-width: 880px;
+  }
+
+  .skill-group,
+  .project {
+    padding: 40px;
+  }
+
+  .about-block {
+    padding: 40px;
+  }
+
+  .experience-card {
+    padding: 44px;
+  }
+
+  .education-card {
+    padding: 40px;
+  }
+}
+
+/* =========================================
+   ÉCRANS 4K (2560px et plus)
+========================================= */
+
+@media (min-width: 2560px) {
+  .container {
+    width: min(1600px, calc(100% - 80px));
+  }
+
+  section {
+    padding: 140px 0;
+  }
+
+  .hero {
+    padding: 120px 0;
+  }
+
+  .hero-content {
+    max-width: 1000px;
+  }
+
+  h1 {
+    font-size: clamp(3.5rem, 4vw, 6.5rem);
+  }
+
+  .hero-lead {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: clamp(2.5rem, 3vw, 3.5rem);
+  }
+
+  .skills-grid,
+  .projects-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px;
+  }
+
+  .contact-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .about-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .about-block-large {
+    grid-column: span 2;
+  }
+}
