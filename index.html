@@ -45,7 +45,7 @@
         </ul>
 
         <!-- BOUTON TOGGLE -->
-        <button id="theme-toggle">🌙</button>
+        <button id="theme-toggle">☀️ Mode clair</button>
 
         <a
           class="nav-action"
@@ -88,7 +88,7 @@
           <div class="quick-facts" aria-label="Informations clés">
             <div class="fact">
               <strong>Disponible</strong>
-              <span>Dès le 07 avril 2026</span>
+              <span>Dès Septembre 2026</span>
             </div>
             <div class="fact">
               <strong>Rythme</strong>
@@ -96,7 +96,7 @@
             </div>
             <div class="fact">
               <strong>Localisation</strong>
-              <span>Île-de-France (93)</span>
+              <span>Île-de-France, Saint-Denis (93200)</span>
             </div>
           </div>
         </div>
@@ -592,7 +592,7 @@
 
               <div class="form-group">
                 <label>Motif du mail:</label>
-                <input type="texte" id="motif_user" required></input>
+                <input type="texte" id="motif_user" required="" />
               </div>
 
               <div class="form-group">
@@ -643,7 +643,7 @@
       });
 
       // ============================================
-      // VARIABLES GLOBALES ET INITIALISATION
+      // GESTION DU FORMULAIRE DE CONTACT
       // ============================================
 
       const nom_user = document.querySelector("#nom_user");
@@ -665,33 +665,48 @@
       }
 
       // ============================================
-      // GESTION DU FORMULAIRE DE CONTACT
+      // FONCTION ENVOI EMAIL
       // ============================================
 
       function sendEmail(e) {
         e.preventDefault();
 
-        // Validation
-        if (!nom_user || !prenom_user || !email_user || !message_user || motif_user) {
-          alert("Erreur : formulaire non trouvé");
+        // Vérification des éléments
+        if (
+          !nom_user ||
+          !prenom_user ||
+          !email_user ||
+          !motif_user ||
+          !message_user ||
+          !form
+        ) {
+          alert("Erreur : formulaire introuvable.");
           return;
         }
 
+        // Récupération des valeurs
+        const nom = nom_user.value.trim();
+        const prenom = prenom_user.value.trim();
+        const email = email_user.value.trim();
+        const motif = motif_user.value.trim();
+        const message = message_user.value.trim();
+
+        // Vérification champs vides
         if (
-          nom_user.value.trim() === "" ||
-          prenom_user.value.trim() === "" ||
-          email_user.value.trim() === "" ||
-          message_user.value.trim() === "" ||
-          motif_user.value.trim() === ""
+          nom === "" ||
+          prenom === "" ||
+          email === "" ||
+          motif === "" ||
+          message === ""
         ) {
-          alert("Veuillez remplir tous les champs du formulaire.");
+          alert("Veuillez remplir tous les champs.");
           return;
         }
 
         // Vérification caractères spéciaux
         if (
-          contientCaracteresSpeciaux(nom_user.value) ||
-          contientCaracteresSpeciaux(prenom_user.value)
+          contientCaracteresSpeciaux(nom) ||
+          contientCaracteresSpeciaux(prenom)
         ) {
           alert(
             "Les caractères spéciaux sont interdits dans le nom et le prénom.",
@@ -699,52 +714,68 @@
           return;
         }
 
-        const subject = `Message de ${prenom_user.value} ${nom_user.value} - Portfolio`;
+        // Vérification email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+        if (!emailRegex.test(email)) {
+          alert("Veuillez entrer une adresse email valide.");
+          return;
+        }
+
+        // Sujet du mail
+        const subject = `Message Portfolio - ${prenom} ${nom}`;
+
+        // Corps du mail
         const body = `
-          Nom : ${nom_user.value}
-          Prénom : ${prenom_user.value}
-          Email : ${email_user.value}
-          Motif : ${motif_user.value}
+Nom : ${nom}
+Prénom : ${prenom}
+Email : ${email}
+Motif : ${motif}
 
-          Message :
-            ${message_user.value}
-    `;
+Message :
+${message}
+`;
 
+        // Ouvre le client mail
         window.location.href = `mailto:${emailGeneral}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
+        // Reset formulaire
         form.reset();
 
-        alert(
-          "Votre message a été préparé. Votre client de messagerie va s'ouvrir.",
-        );
+        // Message confirmation
+        alert("Votre client mail va s'ouvrir afin d'envoyer le message.");
       }
 
+      // ============================================
+      // EVENT LISTENER
+      // ============================================
+
+      form.addEventListener("submit", sendEmail);
+
       // =========================
-// TOGGLE THEME
-// =========================
+      // TOGGLE THEME
+      // =========================
 
-const toggleBtn = document.getElementById("theme-toggle");
+      const toggleBtn = document.getElementById("theme-toggle");
 
-// Charger le thème sauvegardé
-if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark-mode");
-    toggleBtn.textContent = "☀️";
-}
+      // Charger le thème sauvegardé
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+        toggleBtn.textContent = "☀️ Mode Clair";
+      }
 
-toggleBtn.addEventListener("click", () => {
+      toggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
 
-    document.body.classList.toggle("dark-mode");
+        // Vérifie si dark mode actif
+        const isDark = document.body.classList.contains("dark-mode");
 
-    // Vérifie si dark mode actif
-    const isDark = document.body.classList.contains("dark-mode");
+        // Changer icône
+        toggleBtn.textContent = isDark ? "☀️ Mode Clair" : "🌙 Mode Sombre";
 
-    // Changer icône
-    toggleBtn.textContent = isDark ? "☀️" : "🌙";
-
-    // Sauvegarde du thème
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-});
+        // Sauvegarde du thème
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+      });
     </script>
   </body>
 </html>
