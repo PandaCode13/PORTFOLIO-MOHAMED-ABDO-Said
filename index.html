@@ -104,11 +104,9 @@
 
       <!--
         Section Profil :
-        - Ici la photo devient une vraie balise <img>, car elle illustre directement le contenu.
-        - .profile-layout crée deux colonnes : portrait + texte.
-        - .about-grid transforme les blocs About en cartes, dans le même esprit que les compétences.
-        - Chaque .about-block est une carte indépendante : plus simple à lire et à modifier.
-        - .about-icon sert de repère visuel bleu/rouge pour identifier rapidement chaque thème.
+        - La section est maintenant sans photo.
+        - .profile-wrapper organise la grande carte de présentation et les cartes secondaires.
+        - .profile-stats met en avant les points forts du profil.
       -->
       <section id="profil">
         <div class="container">
@@ -126,84 +124,88 @@
             </div>
           </div>
 
-          <div class="profile-layout">
-            <div class="portrait-panel">
-              <img src="said cv.jpg" alt="Portrait de Said Mohamed Abdo" />
-            </div>
+          <div class="profile-wrapper">
+            <article class="profile-main-card">
+              <span class="profile-badge">Développeur Full Stack Junior</span>
+              <h3>Parcours professionnel</h3>
+              <p>
+                Diplômé d'un baccalauréat scientifique, j'ai acquis des
+                compétences en développement web et mobile à travers divers
+                projets académiques et personnels lors de ma formation en
+                licence informatique.
+              </p>
+              <p>
+                Mon expertise inclut HTML, CSS, JavaScript, ainsi que des
+                frameworks comme React et Node.js. Je suis également compétent
+                en gestion de bases de données avec MySQL et MongoDB.
+              </p>
+              <p>
+                Passionné par la technologie, je suis constamment à la recherche
+                de nouvelles opportunités pour apprendre et évoluer dans le
+                domaine du développement web.
+              </p>
 
-            <article class="profile-card">
-              <div class="about-grid">
-                <!-- Bloc séparé : parcours professionnel général. -->
-                <div class="about-block about-block-large">
-                  <span class="about-icon">01</span>
-                  <h2>Parcours professionnel</h2>
-                  <p>
-                    Diplômé d'un baccalauréat scientifique, j'ai acquis des
-                    compétences en développement web et mobile à travers divers
-                    projets académiques et personnels lors de ma formation en
-                    licence informatique.
-                  </p>
-                  <p>
-                    Mon expertise inclut HTML, CSS, JavaScript, ainsi que des
-                    frameworks comme React et Node.js. Je suis également
-                    compétent en gestion de bases de données avec MySQL et
-                    MongoDB.
-                  </p>
-                  <p>
-                    Passionné par la technologie, je suis constamment à la
-                    recherche de nouvelles opportunités pour apprendre et
-                    évoluer dans le domaine du développement web.
-                  </p>
+              <div class="profile-stats" aria-label="Points forts du profil">
+                <div class="stat-box">
+                  <strong>Full Stack</strong>
+                  <span>Frontend, backend et bases de données</span>
                 </div>
-
-                <!-- Bloc séparé : objectif professionnel. -->
-                <div class="about-block">
-                  <span class="about-icon">02</span>
-                  <h3>Objectif professionnel</h3>
-                  <p>
-                    Mon objectif professionnel est de devenir un développeur web
-                    full stack compétent, capable de créer des applications
-                    performantes et innovantes, tout en travaillant dans un
-                    environnement collaboratif et stimulant.
-                  </p>
+                <div class="stat-box">
+                  <strong>Projet</strong>
+                  <span>Applications web et interfaces utiles</span>
                 </div>
-
-                <!-- Bloc séparé : objectif personnel. -->
-                <div class="about-block">
-                  <span class="about-icon">03</span>
-                  <h3>Objectif personnel</h3>
-                  <p>
-                    Je cherche à contribuer à des projets innovants dans le
-                    domaine du développement web, tout en continuant à apprendre
-                    et à me perfectionner dans les technologies émergentes.
-                  </p>
-                </div>
-
-                <!-- Bloc séparé : centres d'intérêt sous forme de phrase. -->
-                <div class="about-block">
-                  <span class="about-icon">04</span>
-                  <h3>Centres d'intérêt</h3>
-                  <p>
-                    Je suis passionné par la technologie, le développement web
-                    et les nouvelles tendances du secteur. Malgré cela, j'ai
-                    aussi des passions pour la musique, les jeux vidéos et les
-                    animes.
-                  </p>
-                </div>
-
-                <!-- Bloc séparé : qualités principales sous forme d'étiquettes. -->
-                <div class="about-block about-block-tags">
-                  <span class="about-icon">05</span>
-                  <h3>Qualités principales</h3>
-                  <ul class="tags" aria-label="Qualités principales">
-                    <li class="tag">Autonome</li>
-                    <li class="tag">Rigoureux</li>
-                    <li class="tag">Communication orale</li>
-                    <li class="tag">Attitude positive</li>
-                  </ul>
+                <div class="stat-box">
+                  <strong>Qualité</strong>
+                  <span>Code propre, structuré et maintenable</span>
                 </div>
               </div>
             </article>
+
+            <div class="profile-grid">
+              <article class="profile-card">
+                <span class="card-number">01</span>
+                <h3>Objectif professionnel</h3>
+                <p>
+                  Devenir un développeur web full stack compétent, capable de
+                  créer des applications performantes et innovantes, dans un
+                  environnement collaboratif et stimulant.
+                </p>
+              </article>
+
+              <article class="profile-card">
+                <span class="card-number">02</span>
+                <h3>Objectif personnel</h3>
+                <p>
+                  Contribuer à des projets innovants dans le développement web,
+                  tout en continuant à apprendre et à me perfectionner dans les
+                  technologies émergentes.
+                </p>
+              </article>
+
+              <article class="profile-card">
+                <span class="card-number">03</span>
+                <h3>Centres d'intérêt</h3>
+                <p>
+                  Technologie, développement web, nouvelles tendances du
+                  secteur, musique, jeux vidéo et univers créatifs.
+                </p>
+              </article>
+
+              <article class="profile-card">
+                <span class="card-number">04</span>
+                <h3>Qualités principales</h3>
+                <ul class="tags" aria-label="Qualités principales">
+                  <li class="tag">Autonome</li>
+                  <li class="tag">Rigoureux</li>
+                  <li class="tag">Curiosité</li>
+                  <li class="tag">Communication orale</li>
+                  <li class="tag">Attitude positive</li>
+                  <li class="tag">Capacité d'analyse spécifique</li>
+                  <li class="tag">Logique</li>
+                  <li class="tag">Créativité</li>
+                </ul>
+              </article>
+            </div>
           </div>
         </div>
       </section>
@@ -270,7 +272,7 @@
                 <li>Java</li>
                 <li>YAML</li>
                 <li>JSON</li>
-                <li>Python</li>
+                <li>Python (Intermédiaire)</li>
               </ul>
             </article>
 
@@ -341,6 +343,12 @@
                 Plateforme permettant de consulter des modèles, créer son CV
                 avec personnalisation et télécharger le résultat.
               </p>
+              <a
+                href="https://github.com/PandaCode13/CV-EN-LIGNE-EXPRESS.git"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Voir le dépôt GitHub</a
+              >
               <p class="project-stack">HTML, CSS, JavaScript, PHP, MySQL</p>
             </article>
 
@@ -355,7 +363,7 @@
                 class="project-link"
                 href="https://github.com/PandaCode13/bibliotheque-management.git"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 >Voir le dépôt GitHub</a
               >
               <p class="project-stack">
@@ -370,6 +378,13 @@
                 Application pour centraliser cours, devoirs, examens, notes,
                 rappels et notifications dans une interface simple.
               </p>
+              <a
+                class="project-link"
+                href="https://github.com/PandaCode13/Application-de-Gestionnaire-de-taches-scolaires.git"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Voir le dépôt GitHub</a
+              >
               <p class="project-stack">HTML, CSS, JavaScript, Python, MySQL</p>
             </article>
 
@@ -384,7 +399,7 @@
                 class="project-link"
                 href="https://abdel-abden.fr/"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 >Voir le site en ligne</a
               >
               <p class="project-stack">
@@ -403,7 +418,7 @@
                 class="project-link"
                 href="https://portfolio-merveil.onrender.com/"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 >Voir le site en ligne</a
               >
               <p class="project-stack">HTML, CSS, JavaScript, Render</p>
