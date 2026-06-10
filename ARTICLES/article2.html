@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Introduction aux frameworks JavaScript pour le développement web
+    </title>
+    <style>
+      /* =========================================
+   ARTICLE TECHNIQUE
+========================================= */
+
+      :root {
+        --ink: #172033;
+        --muted: #5b6475;
+        --line: #dce5f5;
+        --paper: #f4f8ff;
+        --white: #ffffff;
+        --blue: #2457d6;
+        --blue-dark: #12347f;
+        --blue-soft: #eaf1ff;
+        --red: #d72638;
+        --shadow: 0 18px 50px rgba(18, 52, 127, 0.14);
+        --radius: 8px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--paper);
+        color: var(--ink);
+        line-height: 1.8;
+      }
+
+      article {
+        width: min(1000px, calc(100% - 40px));
+        margin: 60px auto;
+      }
+
+      /* =========================================
+   HEADER ARTICLE
+========================================= */
+
+      header {
+        padding: 50px;
+        margin-bottom: 30px;
+
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+
+        background:
+          linear-gradient(
+            135deg,
+            rgba(36, 87, 214, 0.08),
+            rgba(215, 38, 56, 0.06)
+          ),
+          var(--white);
+
+        box-shadow: var(--shadow);
+      }
+
+      header span {
+        display: inline-block;
+
+        margin-bottom: 20px;
+
+        padding: 8px 14px;
+
+        border-radius: var(--radius);
+
+        background: var(--red);
+
+        color: white;
+
+        font-size: 0.8rem;
+
+        font-weight: 900;
+
+        text-transform: uppercase;
+      }
+
+      header h1 {
+        margin-bottom: 20px;
+
+        color: var(--blue-dark);
+
+        font-size: clamp(2rem, 5vw, 3.8rem);
+
+        line-height: 1.1;
+      }
+
+      header p {
+        max-width: 750px;
+
+        color: var(--muted);
+
+        font-size: 1.1rem;
+      }
+
+      /* =========================================
+   SECTIONS
+========================================= */
+
+      section {
+        margin-bottom: 28px;
+
+        padding: 35px;
+
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+
+        background: var(--white);
+
+        box-shadow: 0 12px 34px rgba(18, 52, 127, 0.08);
+      }
+
+      section h2 {
+        margin-bottom: 20px;
+
+        color: var(--blue-dark);
+
+        font-size: 1.8rem;
+      }
+
+      section h3 {
+        margin-top: 25px;
+        margin-bottom: 15px;
+
+        color: var(--red);
+
+        font-size: 1.2rem;
+      }
+
+      section p {
+        margin-bottom: 15px;
+
+        color: var(--muted);
+      }
+
+      /* =========================================
+   LISTES
+========================================= */
+
+      ul {
+        margin: 15px 0 20px 25px;
+      }
+
+      li {
+        margin-bottom: 10px;
+
+        color: var(--muted);
+      }
+
+      /* =========================================
+   BLOCS DE CODE
+========================================= */
+
+      pre {
+        overflow-x: auto;
+
+        margin: 20px 0;
+
+        padding: 20px;
+
+        border-radius: var(--radius);
+
+        background: #0f172a;
+
+        color: #f8fafc;
+
+        font-size: 0.95rem;
+
+        line-height: 1.6;
+      }
+
+      code {
+        font-family: Consolas, Monaco, monospace;
+      }
+
+      /* =========================================
+   LIENS
+========================================= */
+
+      a {
+        color: var(--blue);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--red);
+      }
+
+      /* =========================================
+   STRONG
+========================================= */
+
+      strong {
+        color: var(--blue-dark);
+      }
+
+      /* =========================================
+   DARK MODE
+========================================= */
+
+      body.dark-mode {
+        --ink: #f6f8ff;
+        --muted: #b8c3d9;
+        --line: #26324c;
+        --paper: #0b1020;
+        --white: #141c31;
+        --blue: #6da0ff;
+        --blue-dark: #dce8ff;
+        --red: #ff5f73;
+
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(109, 160, 255, 0.15),
+            transparent
+          ),
+          #0b1020;
+      }
+
+      body.dark-mode header,
+      body.dark-mode section {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent),
+          rgba(20, 28, 49, 0.95);
+
+        border-color: rgba(129, 161, 214, 0.2);
+      }
+
+      body.dark-mode h1,
+      body.dark-mode h2,
+      body.dark-mode strong {
+        color: var(--blue-dark);
+      }
+
+      body.dark-mode p,
+      body.dark-mode li {
+        color: var(--muted);
+      }
+
+      body.dark-mode pre {
+        background: #081020;
+      }
+
+      body.dark-mode header span {
+        background: var(--red);
+      }
+
+      /* =========================================
+   RESPONSIVE
+========================================= */
+
+      @media (max-width: 768px) {
+        article {
+          width: calc(100% - 24px);
+          margin: 30px auto;
+        }
+
+        header,
+        section {
+          padding: 24px;
+        }
+
+        header h1 {
+          font-size: 2rem;
+        }
+
+        section h2 {
+          font-size: 1.5rem;
+        }
+
+        pre {
+          padding: 15px;
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <article>
+      <header>
+        <span>Frontend</span>
+
+        <h1>
+          Introduction aux frameworks JavaScript pour le développement web
+        </h1>
+
+        <p>
+          Découvrez les principaux frameworks JavaScript utilisés pour créer des
+          applications web modernes, leurs avantages, leurs limites et leur rôle
+          dans le développement frontend actuel.
+        </p>
+      </header>
+
+      <section>
+        <h2>Introduction</h2>
+
+        <p>
+          Le développement web a considérablement évolué au cours des dernières
+          années. Les sites web modernes ne se limitent plus à afficher du
+          contenu statique ; ils proposent désormais des interfaces
+          interactives, dynamiques et proches de l'expérience utilisateur
+          offerte par les applications mobiles.
+        </p>
+
+        <p>
+          Pour répondre à ces besoins, plusieurs frameworks JavaScript ont vu le
+          jour. Ils permettent aux développeurs de construire des interfaces
+          plus rapidement, d'organiser leur code et de faciliter la maintenance
+          des projets.
+        </p>
+
+        <p>
+          Durant mon parcours en développement full stack, j'ai découvert
+          plusieurs de ces technologies, notamment React, qui est aujourd'hui
+          l'un des outils les plus utilisés dans l'industrie.
+        </p>
+      </section>
+
+      <section>
+        <h2>Qu'est-ce qu'un framework JavaScript ?</h2>
+
+        <p>
+          Un framework JavaScript est un ensemble d'outils, de règles et de
+          composants permettant de simplifier le développement d'applications
+          web.
+        </p>
+
+        <p>
+          Contrairement au JavaScript traditionnel où le développeur doit
+          construire l'ensemble de l'architecture lui-même, un framework fournit
+          une structure prédéfinie facilitant l'organisation du code.
+        </p>
+
+        <p>Les frameworks permettent notamment :</p>
+
+        <ul>
+          <li>De créer des interfaces utilisateur interactives.</li>
+          <li>De gérer l'état des applications.</li>
+          <li>De réutiliser des composants.</li>
+          <li>De faciliter la maintenance du code.</li>
+          <li>D'améliorer les performances des applications.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Pourquoi utiliser un framework ?</h2>
+
+        <p>
+          Lorsqu'une application devient complexe, le JavaScript classique peut
+          rapidement devenir difficile à maintenir.
+        </p>
+
+        <p>Les frameworks apportent plusieurs avantages :</p>
+
+        <ul>
+          <li>Meilleure organisation du projet.</li>
+          <li>Réduction du temps de développement.</li>
+          <li>Réutilisation des composants.</li>
+          <li>Maintenance simplifiée.</li>
+          <li>Large communauté de développeurs.</li>
+        </ul>
+
+        <p>
+          Ils permettent également de travailler plus facilement en équipe grâce
+          à une structure commune.
+        </p>
+      </section>
+
+      <section>
+        <h2>React</h2>
+
+        <p>
+          React est aujourd'hui l'une des bibliothèques JavaScript les plus
+          populaires pour le développement d'interfaces utilisateur.
+        </p>
+
+        <p>
+          Développée par Facebook, elle repose sur le concept de composants
+          réutilisables.
+        </p>
+
+        <h3>Avantages de React</h3>
+
+        <ul>
+          <li>Composants réutilisables.</li>
+          <li>Virtual DOM performant.</li>
+          <li>Grande communauté.</li>
+          <li>Écosystème riche.</li>
+          <li>Très demandé sur le marché du travail.</li>
+        </ul>
+
+        <h3>Inconvénients</h3>
+
+        <ul>
+          <li>Courbe d'apprentissage pour les débutants.</li>
+          <li>Écosystème parfois complexe.</li>
+          <li>Besoin d'outils complémentaires.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Vue.js</h2>
+
+        <p>
+          Vue.js est un framework progressif particulièrement apprécié pour sa
+          simplicité et sa facilité d'apprentissage.
+        </p>
+
+        <h3>Avantages de Vue.js</h3>
+
+        <ul>
+          <li>Syntaxe intuitive.</li>
+          <li>Documentation excellente.</li>
+          <li>Apprentissage rapide.</li>
+          <li>Très bonnes performances.</li>
+        </ul>
+
+        <h3>Inconvénients</h3>
+
+        <ul>
+          <li>Communauté plus petite que React.</li>
+          <li>Moins utilisé dans les grandes entreprises.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Angular</h2>
+
+        <p>
+          Angular est un framework complet développé par Google. Contrairement à
+          React, Angular fournit directement de nombreuses fonctionnalités
+          intégrées.
+        </p>
+
+        <h3>Avantages d'Angular</h3>
+
+        <ul>
+          <li>Architecture robuste.</li>
+          <li>TypeScript intégré.</li>
+          <li>Outils complets.</li>
+          <li>Idéal pour les grands projets.</li>
+        </ul>
+
+        <h3>Inconvénients</h3>
+
+        <ul>
+          <li>Plus complexe à apprendre.</li>
+          <li>Configuration plus lourde.</li>
+          <li>Développement parfois plus long.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Comment choisir son framework ?</h2>
+
+        <p>
+          Le choix d'un framework dépend principalement du projet et des
+          objectifs recherchés.
+        </p>
+
+        <ul>
+          <li>React : idéal pour les applications modernes et évolutives.</li>
+          <li>Vue.js : parfait pour débuter rapidement.</li>
+          <li>Angular : adapté aux applications d'entreprise complexes.</li>
+        </ul>
+
+        <p>
+          Aucun framework n'est universellement meilleur qu'un autre. Chaque
+          solution répond à des besoins spécifiques.
+        </p>
+      </section>
+
+      <section>
+        <h2>Mon expérience avec React</h2>
+
+        <p>
+          Durant mon stage chez Teknosure, j'ai eu l'opportunité d'apprendre
+          React à travers le développement d'une bibliothèque numérique.
+        </p>
+
+        <p>
+          Cette expérience m'a permis de découvrir les composants, les hooks, la
+          gestion de l'état et la communication avec des API REST.
+        </p>
+
+        <p>
+          J'ai également utilisé Vite, TypeScript et MongoDB afin de créer une
+          application moderne et performante.
+        </p>
+      </section>
+
+      <section>
+        <h2>Conclusion</h2>
+
+        <p>
+          Les frameworks JavaScript occupent aujourd'hui une place centrale dans
+          le développement web moderne. Ils permettent de créer des interfaces
+          performantes, maintenables et adaptées aux besoins des utilisateurs.
+        </p>
+
+        <p>
+          React, Vue.js et Angular possèdent chacun leurs points forts et leurs
+          particularités. Le choix dépendra du contexte du projet, des
+          compétences de l'équipe et des objectifs recherchés.
+        </p>
+
+        <p>
+          Pour ma part, l'apprentissage de React a constitué une étape
+          importante dans mon évolution vers le développement full stack et m'a
+          permis de mieux comprendre les bonnes pratiques du frontend moderne.
+        </p>
+      </section>
+    </article>
+  </body>
+</html>

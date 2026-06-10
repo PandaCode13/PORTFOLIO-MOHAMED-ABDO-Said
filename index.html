@@ -41,6 +41,7 @@
           <li><a href="#projets">Projets</a></li>
           <li><a href="#experience">Expérience</a></li>
           <li><a href="#formations">Formations</a></li>
+          <li><a href="#articles">Articles</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
 
@@ -49,7 +50,7 @@
 
         <a
           class="nav-action"
-          href="CV de said mohamed (1).pdf"
+          href="./CV de MOHAMED ABDO Said.pdf"
           target="_blank"
           rel="noopener"
           >Voir le CV</a
@@ -77,6 +78,7 @@
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="#contact">Me contacter</a>
+            <a class="btn btn-secondary" href="#articles">Lire mes articles</a>
             <a class="btn btn-secondary" href="#projets">Voir les projets</a>
           </div>
 
@@ -191,18 +193,30 @@
                 </p>
               </article>
 
-              <article class="profile-card">
+              <article class="profile-card quality-card">
                 <span class="card-number">04</span>
                 <h3>Qualités principales</h3>
-                <ul class="tags" aria-label="Qualités principales">
-                  <li class="tag">Autonome</li>
-                  <li class="tag">Rigoureux</li>
-                  <li class="tag">Curiosité</li>
-                  <li class="tag">Communication orale</li>
-                  <li class="tag">Attitude positive</li>
-                  <li class="tag">Capacité d'analyse spécifique</li>
-                  <li class="tag">Logique</li>
-                  <li class="tag">Créativité</li>
+                <ul class="quality-list" aria-label="Qualités principales">
+                  <li>
+                    <strong>Autonomie</strong>
+                    <span
+                      >Avancer avec méthode et prendre des initiatives.</span
+                    >
+                  </li>
+                  <li>
+                    <strong>Rigueur</strong>
+                    <span>Produire un code propre, clair et maintenable.</span>
+                  </li>
+                  <li>
+                    <strong>Curiosité</strong>
+                    <span
+                      >Apprendre vite et explorer de nouvelles solutions.</span
+                    >
+                  </li>
+                  <li>
+                    <strong>Communication</strong>
+                    <span>Expliquer simplement, écouter et collaborer.</span>
+                  </li>
                 </ul>
               </article>
             </div>
@@ -543,6 +557,109 @@
           </div>
         </div>
       </section>
+
+      <!--
+        Section Articles :
+        - Présente les articles de blog de Said.
+        - Chaque .article-card contient un titre, une date, un extrait et un lien vers l'article complet.
+        - Pour ajouter un article, dupliquer une carte .article-card et mettre à jour les informations. 
+      -->
+
+      <!-- <section id="articles">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-label">Articles</p>
+
+            <div>
+              <h2>
+                Partager mes apprentissages et mon expérience en développement.
+              </h2>
+
+              <p class="section-text">
+                Une sélection d'articles techniques rédigés à partir de mes
+                projets, de mon stage chez Teknosure et de mes découvertes dans
+                le développement web, le full stack, le DevOps et
+                l'infrastructure.
+              </p>
+            </div>
+          </div>
+          <div class="articles-grid">
+            <article class="article-card" category="backend">
+              <span class="tag">Backend</span>
+              <h3>Comment créer une API REST avec Node.js et Express</h3>
+              <p>
+                Un guide étape par étape pour construire une API REST simple
+                avec Node.js, Express et MongoDB, incluant la gestion des
+                routes, des données et des erreurs.
+              </p>
+              <a href="ARTICLES/article1.html"> Lire l'article </a>
+            </article>
+            <article class="article-card" category="frontend">
+              <span class="tag">Frontend</span>
+              <h3>
+                Introduction aux frameworks JavaScript pour le développement web
+              </h3>
+              <p>
+                Découvrez les principaux frameworks JavaScript utilisés pour
+                créer des applications web modernes, leurs avantages et leurs
+                inconvénients.
+              </p>
+              <a href="ARTICLES/article2.html"> Lire l'article </a>
+            </article>
+            <article class="article-card" category="frontend">
+              <span class="tag">Frontend</span>
+              <h3>
+                Introduction aux frameworks Typescript pour le développement web
+              </h3>
+              <p>
+                Découvrez les principaux frameworks Typescript utilisés pour
+                créer des applications web modernes, leurs avantages et leurs
+                inconvénients.
+              </p>
+              <a href="ARTICLES/article3.html"> Lire l'article </a>
+            </article>
+            <article class="article-card" category="fullstack">
+              <span class="tag">Fullstack</span>
+              <h3>A la découverte des sites web full stack</h3>
+              <p>
+                Expliquez mon ressenti et mon expérience lors de la création de
+                mon premier site web full stack : Library Digital.
+              </p>
+              <a href="ARTICLES/article4.html"> Lire l'article </a>
+            </article>
+            <article class="article-card" category="reseaux">
+              <span class="tag">Réseaux</span>
+              <h3>Digitaliser l'inventaire d'une entreprise</h3>
+              <p>
+                Comprendre comment digitaliser l'inventaire d'une entreprise
+                pour améliorer l'efficacité et la transparence avec une
+                explication détaillée.
+              </p>
+              <a href="ARTICLES/article5.html"> Lire l'article </a>
+            </article>
+            <article class="article-card" category="frontend">
+              <span class="tag">Frontend</span>
+              <h3>Introduction au framework React pour le développement web</h3>
+              <p>
+                Découvrez le principal framework React utilisés pour créer des
+                applications web modernes, leurs avantages et leurs
+                inconvénients.
+              </p>
+              <a href="ARTICLES/article6.html"> Lire l'article </a>
+            </article>
+            <article class="article-card" category="devops">
+              <span class="tag">DevOps</span>
+              <h3>L'utilité de Docker dans un projet full stack</h3>
+              <p>
+                Découvrez les avantages de l'utilisation de Docker dans le
+                développement full stack, notamment pour la gestion des
+                dépendances et le déploiement.
+              </p>
+              <a href="ARTICLES/article7.html"> Lire l'article </a>
+            </article>
+          </div>
+        </div>
+      </section> -->
 
       <!--
         Section Contact :

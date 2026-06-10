@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comment créer une API REST avec Node.js et Express</title>
+    <style>
+      /* =========================================
+         ARTICLE TECHNIQUE
+      ========================================= */
+
+      :root {
+        --ink: #172033;
+        --muted: #5b6475;
+        --line: #dce5f5;
+        --paper: #f4f8ff;
+        --white: #ffffff;
+        --blue: #2457d6;
+        --blue-dark: #12347f;
+        --blue-soft: #eaf1ff;
+        --red: #d72638;
+        --shadow: 0 18px 50px rgba(18, 52, 127, 0.14);
+        --radius: 8px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--paper);
+        color: var(--ink);
+        line-height: 1.8;
+      }
+
+      article {
+        width: min(1000px, calc(100% - 40px));
+        margin: 60px auto;
+      }
+
+      /* =========================================
+         HEADER ARTICLE
+      ========================================= */
+
+      header {
+        padding: 50px;
+        margin-bottom: 30px;
+
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+
+        background:
+          linear-gradient(
+            135deg,
+            rgba(36, 87, 214, 0.08),
+            rgba(215, 38, 56, 0.06)
+          ),
+          var(--white);
+
+        box-shadow: var(--shadow);
+      }
+
+      header span {
+        display: inline-block;
+
+        margin-bottom: 20px;
+
+        padding: 8px 14px;
+
+        border-radius: var(--radius);
+
+        background: var(--red);
+
+        color: white;
+
+        font-size: 0.8rem;
+
+        font-weight: 900;
+
+        text-transform: uppercase;
+      }
+
+      header h1 {
+        margin-bottom: 20px;
+
+        color: var(--blue-dark);
+
+        font-size: clamp(2rem, 5vw, 3.8rem);
+
+        line-height: 1.1;
+      }
+
+      header p {
+        max-width: 750px;
+
+        color: var(--muted);
+
+        font-size: 1.1rem;
+      }
+
+      /* =========================================
+         SECTIONS
+      ========================================= */
+
+      section {
+        margin-bottom: 28px;
+
+        padding: 35px;
+
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+
+        background: var(--white);
+
+        box-shadow: 0 12px 34px rgba(18, 52, 127, 0.08);
+      }
+
+      section h2 {
+        margin-bottom: 20px;
+
+        color: var(--blue-dark);
+
+        font-size: 1.8rem;
+      }
+
+      section h3 {
+        margin-top: 25px;
+        margin-bottom: 15px;
+
+        color: var(--red);
+
+        font-size: 1.2rem;
+      }
+
+      section p {
+        margin-bottom: 15px;
+
+        color: var(--muted);
+      }
+
+      /* =========================================
+         LISTES
+      ========================================= */
+
+      ul {
+        margin: 15px 0 20px 25px;
+      }
+
+      li {
+        margin-bottom: 10px;
+
+        color: var(--muted);
+      }
+
+      /* =========================================
+         BLOCS DE CODE
+      ========================================= */
+
+      pre {
+        overflow-x: auto;
+
+        margin: 20px 0;
+
+        padding: 20px;
+
+        border-radius: var(--radius);
+
+        background: #0f172a;
+
+        color: #f8fafc;
+
+        font-size: 0.95rem;
+
+        line-height: 1.6;
+      }
+
+      code {
+        font-family: Consolas, Monaco, monospace;
+      }
+
+      /* =========================================
+         LIENS
+      ========================================= */
+
+      a {
+        color: var(--blue);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--red);
+      }
+
+      /* =========================================
+         STRONG
+      ========================================= */
+
+      strong {
+        color: var(--blue-dark);
+      }
+
+      /* =========================================
+         DARK MODE
+      ========================================= */
+
+      body.dark-mode {
+        --ink: #f6f8ff;
+        --muted: #b8c3d9;
+        --line: #26324c;
+        --paper: #0b1020;
+        --white: #141c31;
+        --blue: #6da0ff;
+        --blue-dark: #dce8ff;
+        --red: #ff5f73;
+
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(109, 160, 255, 0.15),
+            transparent
+          ),
+          #0b1020;
+      }
+
+      body.dark-mode header,
+      body.dark-mode section {
+        background:
+          linear-gradient(
+            180deg,
+            rgba(255,255,255,0.03),
+            transparent
+          ),
+          rgba(20, 28, 49, 0.95);
+
+        border-color: rgba(129, 161, 214, 0.2);
+      }
+
+      body.dark-mode h1,
+      body.dark-mode h2,
+      body.dark-mode strong {
+        color: var(--blue-dark);
+      }
+
+      body.dark-mode p,
+      body.dark-mode li {
+        color: var(--muted);
+      }
+
+      body.dark-mode pre {
+        background: #081020;
+      }
+
+      body.dark-mode header span {
+        background: var(--red);
+      }
+
+      /* =========================================
+         RESPONSIVE
+      ========================================= */
+
+      @media (max-width: 768px) {
+
+        article {
+          width: calc(100% - 24px);
+          margin: 30px auto;
+        }
+
+        header,
+        section {
+          padding: 24px;
+        }
+
+        header h1 {
+          font-size: 2rem;
+        }
+
+        section h2 {
+          font-size: 1.5rem;
+        }
+
+        pre {
+          padding: 15px;
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <article>
+      <header>
+        <span>Backend</span>
+
+        <h1>Comment créer une API REST avec Node.js et Express</h1>
+
+        <p>
+          Un guide étape par étape pour construire une API REST simple avec
+          Node.js, Express et MongoDB, incluant la gestion des routes, des
+          données et des erreurs.
+        </p>
+      </header>
+
+      <section>
+        <h2>Introduction</h2>
+
+        <p>
+          Les API REST sont aujourd'hui au cœur de la majorité des applications
+          web modernes. Elles permettent à différentes applications de
+          communiquer entre elles de manière simple, rapide et standardisée.
+        </p>
+
+        <p>
+          Lors de mes projets en développement web, j'ai découvert l'importance
+          des API pour connecter une interface utilisateur à une base de
+          données. Dans cet article, je présente les principales étapes
+          permettant de créer une API REST avec Node.js, Express et MongoDB.
+        </p>
+      </section>
+
+      <section>
+        <h2>Qu'est-ce qu'une API REST ?</h2>
+
+        <p>
+          Une API (Application Programming Interface) est une interface qui
+          permet à plusieurs applications d'échanger des informations.
+        </p>
+
+        <p>
+          REST (Representational State Transfer) est une architecture qui
+          utilise les méthodes HTTP classiques :
+        </p>
+
+        <ul>
+          <li>GET : récupérer des données</li>
+          <li>POST : créer une nouvelle ressource</li>
+          <li>PUT : modifier une ressource existante</li>
+          <li>DELETE : supprimer une ressource</li>
+        </ul>
+
+        <p>Exemple pour une bibliothèque numérique :</p>
+
+        <ul>
+          <li>GET /books récupère tous les livres</li>
+          <li>GET /books/1 récupère un livre précis</li>
+          <li>POST /books ajoute un nouveau livre</li>
+          <li>DELETE /books/1 supprime un livre</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Préparation du projet</h2>
+
+        <p>La première étape consiste à créer un nouveau projet Node.js.</p>
+
+        <pre>
+mkdir api-rest-demo
+cd api-rest-demo
+
+npm init -y
+            </pre
+        >
+
+        <p>Ensuite, nous installons les dépendances nécessaires :</p>
+
+        <pre>
+npm install express mongoose cors dotenv
+npm install --save-dev nodemon
+            </pre
+        >
+
+        <ul>
+          <li>Express : framework backend</li>
+          <li>Mongoose : connexion à MongoDB</li>
+          <li>CORS : autorisation des requêtes externes</li>
+          <li>Dotenv : gestion des variables d'environnement</li>
+          <li>Nodemon : redémarrage automatique du serveur</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Création du serveur Express</h2>
+
+        <p>Créons un fichier <strong>server.js</strong>.</p>
+
+        <pre>
+const express = require("express");
+
+const app = express();
+
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("API opérationnelle");
+});
+
+app.listen(3000, () => {
+  console.log("Serveur lancé sur le port 3000");
+});
+            </pre
+        >
+
+        <p>Le serveur est maintenant capable de recevoir des requêtes HTTP.</p>
+      </section>
+
+      <section>
+        <h2>Connexion à MongoDB</h2>
+
+        <p>Pour stocker les données, nous utilisons MongoDB.</p>
+
+        <pre>
+const mongoose = require("mongoose");
+
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB connecté"))
+  .catch((err) => console.error(err));
+            </pre
+        >
+
+        <p>Dans le fichier .env :</p>
+
+        <pre>
+MONGO_URI=votre_url_mongodb
+            </pre
+        >
+
+        <p>
+          Cette configuration permet à l'application de communiquer avec la base
+          de données.
+        </p>
+      </section>
+
+      <section>
+        <h2>Création d'un modèle de données</h2>
+
+        <p>
+          Dans MongoDB, les données sont généralement représentées à travers des
+          modèles.
+        </p>
+
+        <pre>
+const mongoose = require("mongoose");
+
+const BookSchema = new mongoose.Schema({
+  title: String,
+  author: String,
+  year: Number,
+});
+
+module.exports = mongoose.model("Book", BookSchema);
+            </pre
+        >
+
+        <p>
+          Ce modèle définit la structure des documents enregistrés dans la base
+          de données.
+        </p>
+      </section>
+
+      <section>
+        <h2>Création des routes</h2>
+
+        <h3>Récupérer tous les livres</h3>
+
+        <pre>
+router.get("/", async (req, res) => {
+  const books = await Book.find();
+  res.json(books);
+});
+            </pre
+        >
+
+        <h3>Ajouter un livre</h3>
+
+        <pre>
+router.post("/", async (req, res) => {
+  const book = await Book.create(req.body);
+
+  res.status(201).json(book);
+});
+            </pre
+        >
+
+        <h3>Supprimer un livre</h3>
+
+        <pre>
+router.delete("/:id", async (req, res) => {
+  await Book.findByIdAndDelete(req.params.id);
+
+  res.json({
+    message: "Livre supprimé",
+  });
+});
+            </pre
+        >
+      </section>
+
+      <section>
+        <h2>Gestion des erreurs</h2>
+
+        <p>Une API professionnelle doit toujours gérer les erreurs.</p>
+
+        <pre>
+try {
+  const books = await Book.find();
+
+  res.json(books);
+} catch (error) {
+  res.status(500).json({
+    message: "Erreur serveur",
+  });
+}
+            </pre
+        >
+
+        <p>
+          Cette approche évite les plantages et permet de retourner des messages
+          compréhensibles aux utilisateurs.
+        </p>
+      </section>
+
+      <section>
+        <h2>Tester l'API</h2>
+
+        <p>Pour tester les endpoints, plusieurs outils existent :</p>
+
+        <ul>
+          <li>Postman</li>
+          <li>Insomnia</li>
+          <li>Thunder Client (VS Code)</li>
+        </ul>
+
+        <p>Exemple de requête JSON :</p>
+
+        <pre>
+{
+  "title": "Node.js Guide",
+  "author": "Said Mohamed Abdo",
+  "year": 2026
+}
+            </pre
+        >
+      </section>
+
+      <section>
+        <h2>Structure recommandée du projet</h2>
+
+        <pre>
+project/
+│
+├── controllers/
+├── models/
+├── routes/
+├── middleware/
+├── config/
+├── .env
+├── server.js
+└── package.json
+            </pre
+        >
+
+        <p>
+          Cette organisation facilite l'évolution de l'application lorsque le
+          nombre de fonctionnalités augmente.
+        </p>
+      </section>
+
+      <section>
+        <h2>Conclusion</h2>
+
+        <p>
+          Créer une API REST avec Node.js et Express est une excellente manière
+          de comprendre le fonctionnement du backend moderne. Grâce à Express,
+          la gestion des routes est simple et rapide, tandis que MongoDB permet
+          de stocker efficacement les données.
+        </p>
+
+        <p>
+          Durant mon parcours en développement full stack, l'apprentissage des
+          API REST m'a permis de mieux comprendre les échanges entre le frontend
+          et le backend, ainsi que l'importance d'une architecture claire et
+          maintenable.
+        </p>
+
+        <p>
+          La maîtrise des API constitue aujourd'hui une compétence essentielle
+          pour tout développeur souhaitant construire des applications web
+          modernes et évolutives.
+        </p>
+      </section>
+    </article>
+  </body>
+</html>
