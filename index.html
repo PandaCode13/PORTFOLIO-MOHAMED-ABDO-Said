@@ -106,7 +106,7 @@
         Section Profil :
         - La section est maintenant sans photo.
         - .profile-wrapper organise la grande carte de présentation et les cartes secondaires.
-        - .profile-stats met en avant les points forts du profil.
+        - .profile-stats affiche les points forts en chiffres (projets, stage, langues).
       -->
       <section id="profil">
         <div class="container">
@@ -114,12 +114,12 @@
             <p class="section-label">Profil</p>
             <div>
               <h2>
-                Un développeur full stack orienté code propre, projet concret et
-                interface utile.
+                Un parcours atypique, de Djibouti à la France, au service du
+                développement full stack.
               </h2>
               <p class="section-text">
-                Sérieux, autonome et rigoureux, je m'engage à fournir un travail
-                de qualité avec un code propre, structuré et maintenable.
+                Parti d'un baccalauréat scientifique à Djibouti, je me forme
+                aujourd'hui en MBA1 Développement Full Stack en Île-de-France.
               </p>
             </div>
           </div>
@@ -129,34 +129,33 @@
               <span class="profile-badge">Développeur Full Stack Junior</span>
               <h3>Parcours professionnel</h3>
               <p>
-                Diplômé d'un baccalauréat scientifique, j'ai acquis des
-                compétences en développement web et mobile à travers divers
-                projets académiques et personnels lors de ma formation en
-                licence informatique.
+                Originaire de Djibouti, j'ai d'abord validé un baccalauréat
+                scientifique avant de me former à l'informatique à
+                l'université de Djibouti. C'est là que j'ai construit les bases
+                du développement web et mobile à travers des projets
+                académiques et personnels concrets.
               </p>
               <p>
-                Mon expertise inclut HTML, CSS, JavaScript, ainsi que des
-                frameworks comme React et Node.js. Je suis également compétent
-                en gestion de bases de données avec MySQL et MongoDB.
-              </p>
-              <p>
-                Passionné par la technologie, je suis constamment à la recherche
-                de nouvelles opportunités pour apprendre et évoluer dans le
-                domaine du développement web.
+                Aujourd'hui installé en France, je poursuis un MBA1
+                Développement Full Stack en alternance. Ce passage d'un
+                cursus académique généraliste à une formation professionnalisante
+                orientée projet marque ma bascule vers un métier concret :
+                concevoir des applications complètes, de l'idée à la mise en
+                production.
               </p>
 
-              <div class="profile-stats" aria-label="Points forts du profil">
+              <div class="profile-stats" aria-label="Points forts en chiffres">
                 <div class="stat-box">
-                  <strong>Full Stack</strong>
-                  <span>Frontend, backend et bases de données</span>
+                  <strong>6 projets</strong>
+                  <span>Applications web et interfaces réalisées</span>
                 </div>
                 <div class="stat-box">
-                  <strong>Projet</strong>
-                  <span>Applications web et interfaces utiles</span>
+                  <strong>6 mois de stage</strong>
+                  <span>Développement full stack chez Teknosure</span>
                 </div>
                 <div class="stat-box">
-                  <strong>Qualité</strong>
-                  <span>Code propre, structuré et maintenable</span>
+                  <strong>3 langues</strong>
+                  <span>Français, anglais et afar</span>
                 </div>
               </div>
             </article>
@@ -166,9 +165,9 @@
                 <span class="card-number">01</span>
                 <h3>Objectif professionnel</h3>
                 <p>
-                  Devenir un développeur web full stack compétent, capable de
-                  créer des applications performantes et innovantes, dans un
-                  environnement collaboratif et stimulant.
+                  Décrocher une alternance en développement full stack pour
+                  septembre 2026, idéalement sur des projets React et Node.js,
+                  et monter en compétence au contact d'une équipe métier.
                 </p>
               </article>
 
@@ -176,9 +175,9 @@
                 <span class="card-number">02</span>
                 <h3>Objectif personnel</h3>
                 <p>
-                  Contribuer à des projets innovants dans le développement web,
-                  tout en continuant à apprendre et à me perfectionner dans les
-                  technologies émergentes.
+                  Devenir un développeur capable de porter un projet de A à Z,
+                  de la conception à la mise en production, et de transmettre un
+                  travail simple, robuste et durable.
                 </p>
               </article>
 
@@ -186,8 +185,9 @@
                 <span class="card-number">03</span>
                 <h3>Centres d'intérêt</h3>
                 <p>
-                  Technologie, développement web, nouvelles tendances du
-                  secteur, musique, jeux vidéo et univers créatifs.
+                  Je m'intéresse de près au game design et à l'UX des jeux
+                  vidéo, au suivi de chaînes YouTube tech sur le développement
+                  web, ainsi qu'au partage au sein de communautés de codeurs.
                 </p>
               </article>
 
@@ -347,120 +347,148 @@
             </div>
           </div>
 
-          <div class="projects-grid">
-            <article class="project">
-              <span class="project-num">01</span>
-              <h3>CV en ligne Express</h3>
-              <p>
-                Plateforme permettant de consulter des modèles, créer son CV
-                avec personnalisation et télécharger le résultat.
-              </p>
-              <a
-                class="project-link"
-                href="https://github.com/PandaCode13/CV-EN-LIGNE-EXPRESS.git"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Voir le dépôt GitHub (en cours de développement)
-              </a>
-              <p class="project-stack">HTML, CSS, JavaScript, PHP, MySQL</p>
-            </article>
+          <div class="projects-terminated">
+            <h3 class="projects-subtitle">
+              <span aria-hidden="true">✓</span>
+              Projets terminés
+            </h3>
+            <div class="projects-grid">
+              <article class="project">
+                <span class="project-num">01</span>
+                <h3>Digital Library</h3>
+                <p>
+                  Gestion de bibliothèque numérique pour administrer un
+                  catalogue et permettre la consultation d'ouvrages PDF sans
+                  téléchargement.
+                </p>
+                <a
+                  class="project-link"
+                  href="https://github.com/PandaCode13/bibliotheque-management.git"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Voir le dépôt GitHub</a
+                >
+                <p class="project-stack">
+                  React, JavaScript, MongoDB, API, Docker, TailwindCSS
+                </p>
+              </article>
 
-            <article class="project">
-              <span class="project-num">02</span>
-              <h3>Digital Library</h3>
-              <p>
-                Gestion de bibliothèque numérique pour administrer un catalogue
-                et permettre la consultation d'ouvrages PDF sans téléchargement.
-              </p>
-              <a
-                class="project-link"
-                href="https://github.com/PandaCode13/bibliotheque-management.git"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Voir le dépôt GitHub</a
-              >
-              <p class="project-stack">
-                React, JavaScript, MongoDB, API, Docker, TailwindCSS
-              </p>
-            </article>
+              <article class="project">
+                <span class="project-num">02</span>
+                <h3>Gestion de tâches scolaires</h3>
+                <p>
+                  Application pour centraliser cours, devoirs, examens, notes,
+                  rappels et notifications dans une interface simple.
+                </p>
+                <a
+                  class="project-link"
+                  href="https://github.com/PandaCode13/Application-de-Gestionnaire-de-taches-scolaires.git"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Voir le dépôt GitHub</a
+                >
+                <p class="project-stack">HTML, CSS, JavaScript, Python, MySQL</p>
+              </article>
 
-            <article class="project">
-              <span class="project-num">03</span>
-              <h3>Gestion de tâches scolaires</h3>
-              <p>
-                Application pour centraliser cours, devoirs, examens, notes,
-                rappels et notifications dans une interface simple.
-              </p>
-              <a
-                class="project-link"
-                href="https://github.com/PandaCode13/Application-de-Gestionnaire-de-taches-scolaires.git"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Voir le dépôt GitHub</a
-              >
-              <p class="project-stack">HTML, CSS, JavaScript, Python, MySQL</p>
-            </article>
+              <article class="project">
+                <span class="project-num">03</span>
+                <h3>Portfolio de Abdoul-Rahman</h3>
+                <p>
+                  Création d'un portfolio web en ligne pour présenter un profil,
+                  un parcours, des compétences et des projets de manière claire.
+                </p>
+                <a
+                  class="project-link"
+                  href="https://abdel-abden.fr/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Voir le site en ligne</a
+                >
+                <p class="project-stack">
+                  HTML, CSS, JavaScript, responsive design
+                </p>
+              </article>
 
-            <article class="project">
-              <span class="project-num">04</span>
-              <h3>Portfolio de Abdoul-Rahman</h3>
-              <p>
-                Création d'un portfolio web en ligne pour présenter un profil,
-                un parcours, des compétences et des projets de manière claire.
-              </p>
-              <a
-                class="project-link"
-                href="https://abdel-abden.fr/"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Voir le site en ligne</a
-              >
-              <p class="project-stack">
-                HTML, CSS, JavaScript, responsive design
-              </p>
-            </article>
+              <article class="project">
+                <span class="project-num">04</span>
+                <h3>Portfolio de Merveil</h3>
+                <p>
+                  Développement et mise en ligne d'un portfolio personnel pour
+                  valoriser les informations, réalisations et contacts.
+                </p>
+                <a
+                  class="project-link"
+                  href="https://portfolio-merveil.onrender.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Voir le site en ligne</a
+                >
+                <p class="project-stack">HTML, CSS, JavaScript, Render</p>
+              </article>
+            </div>
+          </div>
 
-            <article class="project">
-              <span class="project-num">05</span>
-              <h3>Portfolio de Merveil</h3>
-              <p>
-                Développement et mise en ligne d'un portfolio personnel pour
-                valoriser les informations, réalisations et contacts.
-              </p>
-              <a
-                class="project-link"
-                href="https://portfolio-merveil.onrender.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Voir le site en ligne</a
-              >
-              <p class="project-stack">HTML, CSS, JavaScript, Render</p>
-            </article>
-            <article class="project">
-              <span class="project-num">06</span>
-              <h3>CRM Commerce</h3>
-              <p>
-                Marketplace spécialisée dans les CRM métier permettant de
-                découvrir, acheter et personnaliser des solutions prêtes à
-                l'emploi pour différents secteurs d'activité, avec gestion des
-                abonnements, favoris, commentaires et historique utilisateur.
-              </p>
-              <a
-                class="project-link"
-                href="https://github.com/PandaCode13/CRM-Commerce"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Voir le dépôt GitHub (En cours de développement)
-              </a>
-              <a href="https://crm-landing-page-nzy8.onrender.com/" class="project-link" target="_blank" rel="noopener noreferrer">
-                Voir la landing page en ligne
-              </a>
-              <p class="project-stack">
-                React.js, JavaScript, Node.js, PostgreSQL, Redis
-              </p>
-            </article>
+          <div class="projects-ongoing">
+            <h3 class="projects-subtitle">
+              <span aria-hidden="true">⟳</span>
+              Projets en cours
+            </h3>
+            <div class="projects-grid">
+              <article class="project project-ongoing">
+                <span class="project-num">05</span>
+                <h3 class="project-title">
+                  CV en ligne Express
+                  <span class="project-badge" role="status">En cours</span>
+                </h3>
+                <p>
+                  Plateforme permettant de consulter des modèles, créer son CV
+                  avec personnalisation et télécharger le résultat.
+                </p>
+                <a
+                  class="project-link"
+                  href="https://github.com/PandaCode13/CV-EN-LIGNE-EXPRESS.git"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Voir le dépôt GitHub
+                </a>
+                <p class="project-progress">Frontend en cours, Backend en réflexion</p>
+                <p class="project-stack">HTML, CSS, JavaScript, PHP, MySQL</p>
+              </article>
+
+              <article class="project project-ongoing">
+                <span class="project-num">06</span>
+                <h3 class="project-title">
+                  CRM Commerce
+                  <span class="project-badge" role="status">En cours</span>
+                </h3>
+                <p>
+                  Marketplace spécialisée dans les CRM métier permettant de
+                  découvrir, acheter et personnaliser des solutions prêtes à
+                  l'emploi pour différents secteurs d'activité, avec gestion des
+                  abonnements, favoris, commentaires et historique utilisateur.
+                </p>
+                <a
+                  class="project-link"
+                  href="https://github.com/PandaCode13/CRM-Commerce"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Voir le dépôt GitHub
+                </a>
+                <a
+                  href="https://crm-landing-page-nzy8.onrender.com/"
+                  class="project-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Voir la landing page en ligne
+                </a>
+                <p class="project-stack">
+                  React.js, JavaScript, Node.js, PostgreSQL, Redis
+                </p>
+              </article>
+            </div>
           </div>
         </div>
       </section>

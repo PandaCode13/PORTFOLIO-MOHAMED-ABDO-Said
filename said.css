@@ -473,8 +473,9 @@ h2 {
 .stat-box strong {
   display: block;
   color: var(--blue-dark);
-  font-size: 1.05rem;
+  font-size: 1.25rem;
   line-height: 1.2;
+  font-weight: 900;
 }
 
 .stat-box span {
@@ -742,6 +743,91 @@ h2 {
   margin-top: 12px;
   padding-top: 0;
   color: var(--blue-dark) !important;
+  font-weight: 800;
+}
+
+/*
+  Sous-blocs Projets :
+  - .projects-terminated présente les projets terminés.
+  - .projects-ongoing présente les projets en cours (plus discret).
+*/
+.projects-terminated,
+.projects-ongoing {
+  display: grid;
+  gap: 16px;
+}
+
+.projects-ongoing {
+  margin-top: 40px;
+}
+
+.projects-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.15rem;
+}
+
+.projects-subtitle > span {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: var(--white);
+  font-weight: 900;
+}
+
+.projects-terminated .projects-subtitle > span {
+  background: var(--blue);
+}
+
+.projects-ongoing .projects-subtitle > span {
+  background: var(--red);
+}
+
+/* Badge "En cours" - l'information ne dépend pas uniquement de
+   la couleur : le texte est lu par les lecteurs d'écran. */
+.project-badge {
+  width: fit-content;
+  margin-left: 10px;
+  padding: 4px 10px;
+  border-radius: var(--radius);
+  color: var(--white);
+  background: var(--red);
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.project-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Carte "en cours" : superposition discrète (bordure pointillée) */
+.project-ongoing {
+  border-style: dashed;
+  opacity: 0.88;
+}
+
+.project-ongoing:hover {
+  opacity: 1;
+}
+
+/* État d'avancement d'un projet en cours */
+.project-progress {
+  width: fit-content;
+  margin-top: 14px;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  color: var(--blue-dark) !important;
+  background: var(--blue-soft);
+  font-size: 0.84rem;
   font-weight: 800;
 }
 
@@ -1419,6 +1505,25 @@ body.dark-mode .project:hover .project-link,
 body.dark-mode .project-link:hover,
 body.dark-mode .nav-links a:hover {
   color: var(--cyan);
+}
+
+body.dark-mode .projects-subtitle {
+  color: var(--ink);
+}
+
+body.dark-mode .project-badge {
+  color: #081020;
+  background: var(--red);
+}
+
+body.dark-mode .project-progress {
+  color: var(--ink);
+  background: rgba(109, 160, 255, 0.13);
+}
+
+body.dark-mode .projects-ongoing .projects-subtitle > span {
+  background: var(--red);
+  color: #081020;
 }
 
 body.dark-mode .quick-facts {
