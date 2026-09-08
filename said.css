@@ -261,34 +261,50 @@ img {
 
 /*
   Hero avec photo en arrière-plan :
-  - La photo est appelée ici avec url("said cv.jpg").
-  - Le premier calque est un dégradé blanc/bleu très clair qui protège la lisibilité du texte.
-  - Le deuxième calque est la photo.
-  - L'ordre compte : le dégradé est écrit avant l'image, donc il se place au-dessus.
-  - "right center" met le portrait à droite sur ordinateur.
-  - "min(45vw, 540px)" rend la photo responsive sans devenir trop grande.
-  Pour refaire cet effet : placer l'image dans background avec un linear-gradient devant.
+  - Nouveau layout flex avec texte à gauche et photo circulaire à droite.
+  - Supprime l'espace blanc inutile à gauche.
 */
 .hero {
   min-height: calc(100vh - 72px);
-  display: grid;
-  align-items: center;
-  padding: 58px 0;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(244, 248, 255, 0.98) 0%,
-      rgba(244, 248, 255, 0.9) 46%,
-      rgba(244, 248, 255, 0.22) 100%
-    ),
-    url("said cv.jpg") right center / min(45vw, 540px) auto no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 0;
+  background: var(--paper);
 }
 
-/*
-  Le texte du hero est limité en largeur pour laisser respirer la photo à droite.
-*/
-.hero-content {
-  max-width: 700px;
+.hero-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 640px;
+}
+
+.hero-photo-wrapper {
+  flex-shrink: 0;
+  width: min(320px, 30vw);
+  height: min(320px, 30vw);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--blue);
+  box-shadow: 0 0 0 8px rgba(36, 87, 214, 0.1), 0 20px 60px rgba(18, 52, 127, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-photo-wrapper:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 0 12px rgba(36, 87, 214, 0.15), 0 28px 70px rgba(18, 52, 214, 0.25);
+}
+
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .eyebrow {
@@ -389,35 +405,44 @@ h2 {
   margin-top: 12px;
 }
 
-/* Profil sans photo : carte principale + cartes secondaires. */
-.profile-wrapper {
+/* Profil en style bento */
+.bento-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-  gap: 24px;
-  align-items: stretch;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: minmax(150px, auto);
+  gap: 18px;
 }
 
-.profile-main-card,
-.profile-card {
+.bento-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 26px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--white);
   box-shadow: 0 12px 34px rgba(18, 52, 127, 0.08);
+  transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+  overflow: hidden;
 }
 
-.profile-main-card {
-  position: relative;
-  display: grid;
-  align-content: start;
-  gap: 18px;
+.bento-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(36, 87, 214, 0.35);
+  box-shadow: 0 20px 48px rgba(18, 52, 127, 0.16);
+}
+
+.bento-main {
+  grid-column: span 2;
+  grid-row: span 2;
   padding: 34px;
-  overflow: hidden;
   background:
     linear-gradient(135deg, rgba(36, 87, 214, 0.08), rgba(215, 38, 56, 0.06)),
     var(--white);
 }
 
-.profile-main-card::before {
+.bento-main::before {
   content: "";
   position: absolute;
   inset: 0 0 auto;
@@ -425,110 +450,93 @@ h2 {
   background: linear-gradient(90deg, var(--blue), var(--red));
 }
 
-.profile-main-card > * {
+.bento-main > * {
   position: relative;
   z-index: 1;
 }
 
-.profile-badge {
-  width: fit-content;
-  padding: 9px 13px;
-  border-radius: var(--radius);
-  color: var(--white);
-  background: var(--red);
-  font-size: 0.86rem;
-  font-weight: 900;
-}
-
-.profile-main-card h3 {
-  max-width: 760px;
+.bento-main h3 {
   color: var(--blue-dark);
-  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
-  line-height: 1.16;
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  line-height: 1.15;
 }
 
-.profile-main-card p,
-.profile-card p {
+.bento-card p {
   color: var(--muted);
 }
 
-.profile-stats {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 12px;
+.bento-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
 }
 
-.stat-box {
-  display: grid;
-  align-content: start;
-  gap: 6px;
-  min-height: 118px;
-  padding: 18px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.76);
-}
-
-.stat-box strong {
-  display: block;
+.bento-tag {
+  padding: 6px 12px;
+  border-radius: 999px;
   color: var(--blue-dark);
-  font-size: 1.25rem;
-  line-height: 1.2;
+  background: var(--blue-soft);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.bento-stat {
+  justify-content: center;
+  text-align: center;
+  min-height: 130px;
+}
+
+.bento-stat strong {
+  color: var(--blue-dark);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.1;
   font-weight: 900;
 }
 
-.stat-box span {
+.bento-stat span {
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: 0.95rem;
 }
 
-.profile-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.profile-grid .profile-card {
-  position: relative;
-  display: grid;
-  align-content: start;
-  gap: 12px;
-  min-height: 230px;
-  padding: 24px;
-  overflow: hidden;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
-}
-
-.profile-grid .profile-card::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--blue), var(--red));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.2s ease;
-}
-
-.profile-grid .profile-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(36, 87, 214, 0.32);
-  box-shadow: 0 18px 44px rgba(18, 52, 127, 0.14);
-}
-
-.profile-grid .profile-card:hover::after {
-  transform: scaleX(1);
-}
-
-.profile-card h3 {
+.bento-card:not(.bento-main) h3 {
   color: var(--blue-dark);
   font-size: 1.08rem;
   line-height: 1.3;
-  margin-top: 0;
+}
+
+.bento-qualities {
+  grid-column: span 2;
+}
+
+.bento-qualities .quality-list {
+  margin-top: 6px;
+}
+
+.bento-interests {
+  grid-column: span 1;
+}
+
+@media (max-width: 980px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bento-main,
+  .bento-qualities,
+  .bento-interests {
+    grid-column: auto;
+  }
+
+  .bento-main {
+    grid-row: auto;
+  }
 }
 
 .card-number {
@@ -541,6 +549,16 @@ h2 {
   background: var(--blue);
   font-weight: 900;
   box-shadow: 0 0 0 5px rgba(215, 38, 56, 0.12);
+}
+
+.profile-badge {
+  width: fit-content;
+  padding: 9px 13px;
+  border-radius: var(--radius);
+  color: var(--white);
+  background: var(--red);
+  font-size: 0.86rem;
+  font-weight: 900;
 }
 
 .tags {
@@ -627,7 +645,6 @@ h2 {
 
 .skill-group,
 .project,
-.education-card,
 .contact-card,
 .experience-card {
   border: 1px solid var(--line);
@@ -644,7 +661,6 @@ h2 {
 
 .skill-group h3,
 .project h3,
-.education-card h3,
 .experience-card h3 {
   font-size: 1.1rem;
   line-height: 1.28;
@@ -659,7 +675,22 @@ h2 {
   list-style: none;
 }
 
-.skill-group li::before,
+.skill-group li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skill-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.skill-group li:not(:has(.skill-icon))::before,
 .experience-list li::before {
   content: "";
   display: inline-block;
@@ -669,6 +700,7 @@ h2 {
   border-radius: 50%;
   background: var(--red);
   vertical-align: middle;
+  flex-shrink: 0;
 }
 
 .project {
@@ -862,61 +894,87 @@ h2 {
 }
 
 /*
-  Formations :
-  les diplômes sont présentés comme des cartes premium.
-  .education-card-featured occupe toute la largeur pour mettre en avant la formation actuelle.
+  Formations en frise chronologique :
+  ligne verticale centrale, cartes alternées gauche/droite.
 */
-.education-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.education-card {
+.timeline {
   position: relative;
-  display: grid;
-  grid-template-columns: 64px minmax(0, 1fr);
-  gap: 18px;
-  min-height: 220px;
-  padding: 24px;
-  overflow: hidden;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.education-card::after {
-  content: "";
+.timeline-line {
   position: absolute;
-  inset: auto 0 0 0;
-  height: 5px;
-  background: linear-gradient(90deg, var(--blue), var(--red));
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, var(--blue), var(--red));
+  border-radius: 999px;
 }
 
-.education-card-featured {
-  grid-column: 1 / -1;
-  min-height: 240px;
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 24px 40px;
+}
+
+.timeline-left {
+  left: 0;
+  text-align: right;
+}
+
+.timeline-right {
+  left: 50%;
+  text-align: left;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 42px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 4px solid var(--blue);
+  box-shadow: 0 0 0 5px rgba(215, 38, 56, 0.14);
+  z-index: 1;
+}
+
+.timeline-left .timeline-dot {
+  right: -10px;
+}
+
+.timeline-right .timeline-dot {
+  left: -10px;
+}
+
+.timeline-card {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: 0 12px 34px rgba(18, 52, 127, 0.08);
+  transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+}
+
+.timeline-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(36, 87, 214, 0.35);
+  box-shadow: 0 20px 44px rgba(18, 52, 127, 0.16);
+}
+
+.timeline-card-featured {
   background:
     linear-gradient(135deg, rgba(36, 87, 214, 0.08), rgba(215, 38, 56, 0.08)),
     var(--white);
 }
 
-.education-marker {
-  width: 54px;
-  height: 54px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  color: var(--white);
-  background: var(--blue);
-  font-weight: 900;
-  box-shadow: 0 0 0 5px rgba(215, 38, 56, 0.12);
-}
-
-.education-content {
-  display: grid;
-  align-content: start;
-  gap: 8px;
-}
-
-.education-date {
+.timeline-date {
   color: var(--red);
   font-weight: 900;
   text-transform: uppercase;
@@ -924,16 +982,22 @@ h2 {
   letter-spacing: 0.08em;
 }
 
-.education-place,
-.education-card p {
-  color: var(--muted);
+.timeline-card h3 {
+  color: var(--blue-dark);
+  font-size: 1.15rem;
+  line-height: 1.3;
 }
 
-.education-place {
+.timeline-place {
+  color: var(--muted);
   font-weight: 800;
 }
 
-.education-badge {
+.timeline-card p:not(.timeline-date):not(.timeline-place) {
+  color: var(--muted);
+}
+
+.timeline-badge {
   width: fit-content;
   margin-top: 8px;
   padding: 8px 12px;
@@ -944,9 +1008,43 @@ h2 {
   font-size: 0.88rem;
 }
 
-.education-badge-validated {
+.timeline-left .timeline-badge {
+  margin-left: auto;
+}
+
+.timeline-badge-validated {
   color: #1a7a3a;
   background: #d4edda;
+}
+
+@media (max-width: 760px) {
+  .timeline-line {
+    left: 16px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    left: 0;
+    padding: 12px 0 24px 48px;
+    text-align: left;
+  }
+
+  .timeline-left,
+  .timeline-right {
+    text-align: left;
+  }
+
+  .timeline-dot,
+  .timeline-left .timeline-dot,
+  .timeline-right .timeline-dot {
+    left: 6px;
+    right: auto;
+  }
+
+  .timeline-left .timeline-badge,
+  .timeline-right .timeline-badge {
+    margin-left: 0;
+  }
 }
 
 .contact-band {
@@ -1147,17 +1245,6 @@ h2 {
     padding: 0 15px;
   }
 
-  .hero {
-    background:
-      linear-gradient(
-        90deg,
-        rgba(244, 248, 255, 0.98) 0%,
-        rgba(244, 248, 255, 0.92) 52%,
-        rgba(244, 248, 255, 0.42) 100%
-      ),
-      url("said cv.jpg") right center / min(42vw, 430px) auto no-repeat;
-  }
-
   .skills-grid,
   .projects-grid,
   .contact-grid {
@@ -1230,26 +1317,33 @@ h2 {
 
   .hero {
     min-height: auto;
-    padding-top: 410px;
-    background:
-      linear-gradient(
-        180deg,
-        rgba(244, 248, 255, 0.04) 0%,
-        rgba(244, 248, 255, 0.2) 305px,
-        var(--paper) 405px
-      ),
-      url("said cv.jpg") top center / min(82vw, 350px) auto no-repeat;
+    padding-top: 32px;
   }
 
-  .section-head,
-  .profile-wrapper {
+  .section-head {
     grid-template-columns: 1fr;
     gap: 24px;
   }
 
-  .profile-stats,
-  .education-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .hero-layout {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .hero-photo-wrapper {
+    width: min(240px, 50vw);
+    height: min(240px, 50vw);
+    margin: 0 auto;
+  }
+
+  .hero-text {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
   }
 
   .contact-form form {
@@ -1272,30 +1366,14 @@ h2 {
   }
 
   .hero {
-    padding-top: 380px;
+    padding-top: 28px;
   }
 
   .quick-facts,
   .skills-grid,
   .projects-grid,
-  .profile-grid,
-  .profile-stats,
-  .education-grid,
   .contact-grid {
     grid-template-columns: 1fr;
-  }
-
-  .profile-wrapper {
-    gap: 18px;
-  }
-
-  .education-card,
-  .education-card-featured {
-    grid-column: auto;
-  }
-
-  .education-card {
-    grid-template-columns: 52px minmax(0, 1fr);
   }
 
   .experience-top {
@@ -1338,27 +1416,16 @@ h2 {
   }
 
   .hero {
-    padding-top: 350px;
+    padding-top: 24px;
   }
 
-  .profile-main-card,
-  .profile-grid .profile-card,
+  .bento-card,
   .skill-group,
   .project,
   .experience-card,
-  .education-card,
   .contact-card,
   .contact-form {
     padding: 22px;
-  }
-
-  .education-card {
-    grid-template-columns: 1fr;
-  }
-
-  .education-marker {
-    width: 48px;
-    height: 48px;
   }
 
   .footer-inner {
@@ -1399,15 +1466,7 @@ h2 {
   }
 
   .hero {
-    padding-top: 315px;
-    background:
-      linear-gradient(
-        180deg,
-        rgba(244, 248, 255, 0.04) 0%,
-        rgba(244, 248, 255, 0.2) 245px,
-        var(--paper) 315px
-      ),
-      url("said cv.jpg") top center / min(84vw, 285px) auto no-repeat;
+    padding-top: 20px;
   }
 }
 
@@ -1466,8 +1525,7 @@ body.dark-mode .brand:hover {
 
 body.dark-mode .brand-mark,
 body.dark-mode .card-number,
-body.dark-mode .project-num,
-body.dark-mode .education-marker {
+body.dark-mode .project-num {
   color: #081020;
   background: linear-gradient(135deg, var(--cyan), var(--blue));
   box-shadow: 0 0 0 5px rgba(255, 95, 115, 0.12);
@@ -1481,19 +1539,12 @@ body.dark-mode .project:hover .project-num {
 }
 
 body.dark-mode .hero {
-  background:
-    linear-gradient(
-      90deg,
-      rgba(11, 16, 32, 0.98) 0%,
-      rgba(11, 16, 32, 0.9) 45%,
-      rgba(11, 16, 32, 0.38) 100%
-    ),
-    url("said cv.jpg") right center / min(45vw, 540px) auto no-repeat;
+  background: transparent;
 }
 
 body.dark-mode .eyebrow,
 body.dark-mode .section-label,
-body.dark-mode .education-date,
+body.dark-mode .timeline-date,
 body.dark-mode .project-link {
   color: var(--red);
 }
@@ -1501,9 +1552,8 @@ body.dark-mode .project-link {
 body.dark-mode .fact,
 body.dark-mode .skill-group,
 body.dark-mode .project,
-body.dark-mode .profile-main-card,
-body.dark-mode .profile-card,
-body.dark-mode .education-card,
+body.dark-mode .bento-card,
+body.dark-mode .timeline-card,
 body.dark-mode .contact-card,
 body.dark-mode .experience-card,
 body.dark-mode .contact-form,
@@ -1515,8 +1565,8 @@ body.dark-mode .site-footer {
   box-shadow: var(--shadow);
 }
 
-body.dark-mode .profile-main-card,
-body.dark-mode .education-card-featured {
+body.dark-mode .bento-main,
+body.dark-mode .timeline-card-featured {
   background:
     linear-gradient(
       135deg,
@@ -1526,14 +1576,13 @@ body.dark-mode .education-card-featured {
     rgba(20, 28, 49, 0.95);
 }
 
-body.dark-mode .profile-main-card::before,
-body.dark-mode .profile-grid .profile-card::after,
-body.dark-mode .education-card::after,
+body.dark-mode .bento-main::before,
 body.dark-mode .nav-links a::after {
   background: linear-gradient(90deg, var(--cyan), var(--red));
 }
 
-body.dark-mode .profile-grid .profile-card:hover,
+body.dark-mode .bento-card:hover,
+body.dark-mode .timeline-card:hover,
 body.dark-mode .project:hover {
   border-color: rgba(98, 223, 255, 0.42);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
@@ -1571,21 +1620,21 @@ body.dark-mode .quick-facts {
   box-shadow: var(--shadow);
 }
 
-body.dark-mode .stat-box,
 body.dark-mode .tag,
 body.dark-mode .quality-list li,
-body.dark-mode .education-badge {
+body.dark-mode .bento-tag,
+body.dark-mode .timeline-badge {
   background: rgba(109, 160, 255, 0.13);
   border-color: rgba(129, 161, 214, 0.2);
   color: var(--ink);
 }
 
-body.dark-mode .education-badge-validated {
+body.dark-mode .timeline-badge-validated {
   background: rgba(46, 160, 67, 0.22);
   color: #7ee787;
 }
 
-body.dark-mode .quality-card {
+body.dark-mode .bento-qualities {
   background:
     linear-gradient(
       145deg,
@@ -1606,6 +1655,21 @@ body.dark-mode .experience-top span,
 body.dark-mode .contact-form button {
   color: #ffffff;
   background: linear-gradient(135deg, var(--red), #d72638);
+}
+
+body.dark-mode .timeline-line {
+  background: linear-gradient(180deg, var(--cyan), var(--red));
+}
+
+body.dark-mode .timeline-dot {
+  background: #10192d;
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 5px rgba(255, 95, 115, 0.14);
+}
+
+body.dark-mode .hero-photo-wrapper {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 8px rgba(98, 223, 255, 0.14), 0 20px 60px rgba(0, 0, 0, 0.35);
 }
 
 body.dark-mode .contact-band {
@@ -1656,7 +1720,7 @@ body.dark-mode h4,
 body.dark-mode strong,
 body.dark-mode .brand,
 body.dark-mode .project-stack,
-body.dark-mode .education-badge,
+body.dark-mode .timeline-badge,
 body.dark-mode .contact-card strong {
   color: var(--ink);
 }
@@ -1666,7 +1730,7 @@ body.dark-mode span,
 body.dark-mode li,
 body.dark-mode .section-text,
 body.dark-mode .hero-lead,
-body.dark-mode .education-place,
+body.dark-mode .timeline-place,
 body.dark-mode .contact-card p {
   color: var(--muted);
 }
@@ -1729,58 +1793,6 @@ body.dark-mode .site-footer {
   border-top-color: rgba(129, 161, 214, 0.22);
 }
 
-@media (max-width: 1180px) {
-  body.dark-mode .hero {
-    background:
-      linear-gradient(
-        90deg,
-        rgba(11, 16, 32, 0.98) 0%,
-        rgba(11, 16, 32, 0.92) 52%,
-        rgba(11, 16, 32, 0.44) 100%
-      ),
-      url("said cv.jpg") right center / min(42vw, 430px) auto no-repeat;
-  }
-}
-
-@media (max-width: 980px) {
-  body.dark-mode .hero {
-    background:
-      linear-gradient(
-        180deg,
-        rgba(11, 16, 32, 0.04) 0%,
-        rgba(11, 16, 32, 0.28) 310px,
-        var(--paper) 420px
-      ),
-      url("said cv.jpg") top center / min(86vw, 360px) auto no-repeat;
-  }
-}
-
-@media (max-width: 620px) {
-  body.dark-mode .hero {
-    background:
-      linear-gradient(
-        180deg,
-        rgba(11, 16, 32, 0.04) 0%,
-        rgba(11, 16, 32, 0.28) 275px,
-        var(--paper) 365px
-      ),
-      url("said cv.jpg") top center / min(86vw, 330px) auto no-repeat;
-  }
-}
-
-@media (max-width: 420px) {
-  body.dark-mode .hero {
-    background:
-      linear-gradient(
-        180deg,
-        rgba(11, 16, 32, 0.04) 0%,
-        rgba(11, 16, 32, 0.28) 245px,
-        var(--paper) 315px
-      ),
-      url("said cv.jpg") top center / min(84vw, 285px) auto no-repeat;
-  }
-}
-
 /* =========================================
    GRANDS ÉCRANS
 ========================================= */
@@ -1810,21 +1822,20 @@ body.dark-mode .site-footer {
 
   .skills-grid,
   .projects-grid,
-  .education-grid,
   .contact-grid,
-  .profile-grid {
+  .bento-grid {
     gap: 24px;
   }
 
   .skill-group,
   .project,
-  .education-card,
   .contact-card,
-  .profile-grid .profile-card {
+  .bento-card,
+  .timeline-card {
     padding: 30px;
   }
 
-  .profile-main-card,
+  .bento-main,
   .experience-card,
   .contact-form {
     padding: 38px;
@@ -1850,18 +1861,15 @@ body.dark-mode .site-footer {
 
   .hero {
     padding: 96px 0;
-    background:
-      linear-gradient(
-        90deg,
-        rgba(244, 248, 255, 0.98) 0%,
-        rgba(244, 248, 255, 0.9) 48%,
-        rgba(244, 248, 255, 0.18) 100%
-      ),
-      url("said cv.jpg") right center / min(40vw, 610px) auto no-repeat;
   }
 
-  .hero-content {
+  .hero-text {
     max-width: 820px;
+  }
+
+  .hero-photo-wrapper {
+    width: min(380px, 26vw);
+    height: min(380px, 26vw);
   }
 
   h1 {
@@ -1901,7 +1909,7 @@ body.dark-mode .site-footer {
     padding: 116px 0;
   }
 
-  .hero-content {
+  .hero-text {
     max-width: 960px;
   }
 
