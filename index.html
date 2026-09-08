@@ -70,7 +70,7 @@
           <p class="eyebrow">Étudiant en développement full stack</p>
           <h1>Said Mohamed Abdo</h1>
           <p class="hero-lead">
-            Développeur junior Full Stack en MBA1, spécialisé en développement
+            Développeur junior Full Stack en MBA2, spécialisé en développement
             web et digital. Je conçois des applications web modernes,
             performantes et adaptées aux besoins des utilisateurs.
           </p>
@@ -564,8 +564,8 @@
                 Un parcours orienté full stack, informatique et pratique web.
               </h2>
               <p class="section-text">
-                MBA1, licence informatique et baccalauréat scientifique forment
-                la base du parcours.
+                MBA2 en cours, MBA1 validé, licence informatique et
+                baccalauréat scientifique forment la base du parcours.
               </p>
             </div>
           </div>
@@ -574,12 +574,12 @@
             <article class="education-card education-card-featured">
               <div class="education-marker">01</div>
               <div class="education-content">
-                <p class="education-date">2025 - 2027</p>
-                <h3>MBA1 Développement Full Stack</h3>
+                <p class="education-date">2026 - 2027</p>
+                <h3>MBA2 Développement Full Stack</h3>
                 <p class="education-place">My Digital School · Paris 75011</p>
                 <p>
-                  Formation orientée développement web, projets full stack,
-                  pratique frontend/backend et professionnalisation.
+                  Poursuite de la formation en alternance approfondissant les
+                  compétences full stack, architecture et gestion de projet.
                 </p>
                 <span class="education-badge">En cours</span>
               </div>
@@ -587,6 +587,20 @@
 
             <article class="education-card">
               <div class="education-marker">02</div>
+              <div class="education-content">
+                <p class="education-date">2025 - 2026</p>
+                <h3>MBA1 Développement Full Stack</h3>
+                <p class="education-place">My Digital School · Paris 75011</p>
+                <p>
+                  Formation orientée développement web, projets full stack,
+                  pratique frontend/backend et professionnalisation.
+                </p>
+                <span class="education-badge education-badge-validated">Validé</span>
+              </div>
+            </article>
+
+            <article class="education-card">
+              <div class="education-marker">03</div>
               <div class="education-content">
                 <p class="education-date">2022 - 2025</p>
                 <h3>Licence Informatique</h3>
@@ -597,7 +611,7 @@
             </article>
 
             <article class="education-card">
-              <div class="education-marker">03</div>
+              <div class="education-marker">04</div>
               <div class="education-content">
                 <p class="education-date">2021 - 2022</p>
                 <h3>Baccalauréat Scientifique</h3>
@@ -814,6 +828,21 @@
     </footer>
 
     <!--
+      Flèche "remonter en haut" :
+      - .back-to-top reste fixée en bas à droite.
+      - Elle n'apparaît qu'après un scroll (classe .visible ajoutée par le script).
+      - Le clic fait remonter la page vers #accueil.
+    -->
+    <button
+      class="back-to-top"
+      id="back-to-top"
+      type="button"
+      aria-label="Remonter en haut de la page"
+    >
+      ↑
+    </button>
+
+    <!--
       Script du menu mobile :
       - .is-open est ajoutée/retirée sur .nav-links.
       - aria-expanded indique l'état du menu aux lecteurs d'écran.
@@ -970,6 +999,20 @@ ${message}
 
         // Sauvegarde du thème
         localStorage.setItem("theme", isDark ? "dark" : "light");
+      });
+
+      // =========================
+      // FLÈCHE REMONTER EN HAUT
+      // =========================
+
+      const backToTop = document.getElementById("back-to-top");
+
+      window.addEventListener("scroll", () => {
+        backToTop.classList.toggle("visible", window.scrollY > 400);
+      });
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
       });
     </script>
   </body>
