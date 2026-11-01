@@ -31,6 +31,7 @@
           type="button"
           aria-label="Ouvrir le menu"
           aria-expanded="false"
+          aria-controls="menu"
         >
           ☰
         </button>
@@ -785,28 +786,56 @@
           <div class="contact-form">
             <form id="contact-form">
               <div class="form-group">
-                <label>Nom :</label>
-                <input type="text" id="nom_user" required="" />
+                <label for="nom_user">Nom :</label>
+                <input
+                  type="text"
+                  id="nom_user"
+                  name="nom"
+                  autocomplete="family-name"
+                  required=""
+                />
               </div>
 
               <div class="form-group">
-                <label>Prénom :</label>
-                <input type="text" id="prenom_user" required="" />
+                <label for="prenom_user">Prénom :</label>
+                <input
+                  type="text"
+                  id="prenom_user"
+                  name="prenom"
+                  autocomplete="given-name"
+                  required=""
+                />
               </div>
 
               <div class="form-group">
-                <label>Email :</label>
-                <input type="email" id="email_user" required="" />
+                <label for="email_user">Email :</label>
+                <input
+                  type="email"
+                  id="email_user"
+                  name="email"
+                  autocomplete="email"
+                  required=""
+                />
               </div>
 
               <div class="form-group">
-                <label>Motif du mail:</label>
-                <input type="texte" id="motif_user" required="" />
+                <label for="motif_user">Motif du mail :</label>
+                <input
+                  type="text"
+                  id="motif_user"
+                  name="motif"
+                  required=""
+                />
               </div>
 
               <div class="form-group">
-                <label>Message :</label>
-                <textarea id="message_user" rows="5" required=""></textarea>
+                <label for="message_user">Message :</label>
+                <textarea
+                  id="message_user"
+                  name="message"
+                  rows="5"
+                  required=""
+                ></textarea>
               </div>
 
               <button type="submit">Envoyer</button>
@@ -855,6 +884,10 @@
       toggle.addEventListener("click", () => {
         const isOpen = menu.classList.toggle("is-open");
         toggle.setAttribute("aria-expanded", String(isOpen));
+        toggle.setAttribute(
+          "aria-label",
+          isOpen ? "Fermer le menu" : "Ouvrir le menu",
+        );
         toggle.textContent = isOpen ? "×" : "☰";
       });
 
@@ -862,6 +895,7 @@
         link.addEventListener("click", () => {
           menu.classList.remove("is-open");
           toggle.setAttribute("aria-expanded", "false");
+          toggle.setAttribute("aria-label", "Ouvrir le menu");
           toggle.textContent = "☰";
         });
       });
@@ -1011,8 +1045,15 @@ ${message}
         backToTop.classList.toggle("visible", window.scrollY > 400);
       });
 
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      );
+
       backToTop.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({
+          top: 0,
+          behavior: reduceMotion.matches ? "auto" : "smooth",
+        });
       });
     </script>
   </body>
