@@ -435,12 +435,6 @@ section {
   letter-spacing: 0.08em;
 }
 
-h2 {
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
-  line-height: 1.12;
-  letter-spacing: 0;
-}
-
 .section-text {
   color: var(--muted);
   font-size: 1.05rem;
@@ -450,9 +444,9 @@ h2 {
 /* Profil sans photo : carte principale + cartes secondaires. */
 .profile-wrapper {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-  gap: 24px;
-  align-items: stretch;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  align-items: start;
 }
 
 .profile-main-card,
@@ -467,9 +461,10 @@ h2 {
 .profile-main-card {
   position: relative;
   display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(220px, 0.65fr);
   align-content: start;
-  gap: 18px;
-  padding: 34px;
+  gap: clamp(0.9rem, 1.6vw, 1.15rem);
+  padding: clamp(1.375rem, 2.8vw, 2.25rem);
   overflow: hidden;
   background:
     linear-gradient(135deg, rgba(36, 87, 214, 0.08), rgba(215, 38, 56, 0.06)),
@@ -502,20 +497,31 @@ h2 {
 .profile-main-card h3 {
   max-width: 760px;
   color: var(--blue-dark);
-  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
-  line-height: 1.16;
+  font-size: clamp(1.35rem, 2.4vw, 1.95rem);
+  line-height: 1.2;
+  text-wrap: balance;
 }
 
 .profile-main-card p,
 .profile-card p {
+  max-width: 62ch;
   color: var(--muted);
+}
+
+.profile-main-card > .profile-badge,
+.profile-main-card > h3,
+.profile-main-card > p {
+  grid-column: 1;
 }
 
 .profile-stats {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 12px;
+  grid-column: 2;
+  grid-row: 1 / span 4;
+  grid-template-columns: 1fr;
+  align-content: start;
+  gap: clamp(0.625rem, 1vw, 0.875rem);
+  margin-top: 0;
 }
 
 .stat-box {
@@ -523,7 +529,7 @@ h2 {
   align-content: start;
   gap: 6px;
   min-width: 0;
-  padding: 18px;
+  padding: clamp(0.9rem, 1.6vw, 1.15rem);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.76);
@@ -545,15 +551,16 @@ h2 {
 .profile-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  gap: clamp(0.875rem, 1.5vw, 1.125rem);
 }
 
 .profile-grid .profile-card {
   position: relative;
-  display: grid;
-  align-content: start;
-  gap: 12px;
-  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: clamp(0.6rem, 1vw, 0.875rem);
+  padding: clamp(1.125rem, 2.2vw, 1.5rem);
   overflow: hidden;
   transition:
     transform 0.2s ease,
@@ -572,14 +579,16 @@ h2 {
   transition: transform 0.2s ease;
 }
 
-.profile-grid .profile-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(36, 87, 214, 0.32);
-  box-shadow: 0 18px 44px rgba(18, 52, 127, 0.14);
-}
+@media (hover: hover) {
+  .profile-grid .profile-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(36, 87, 214, 0.32);
+    box-shadow: 0 18px 44px rgba(18, 52, 127, 0.14);
+  }
 
-.profile-grid .profile-card:hover::after {
-  transform: scaleX(1);
+  .profile-grid .profile-card:hover::after {
+    transform: scaleX(1);
+  }
 }
 
 .profile-card h3 {
@@ -590,13 +599,14 @@ h2 {
 }
 
 .card-number {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   display: grid;
   place-items: center;
   border-radius: 50%;
   color: var(--white);
   background: var(--blue);
+  font-size: 0.95rem;
   font-weight: 900;
   box-shadow: 0 0 0 5px rgba(215, 38, 56, 0.12);
 }
@@ -625,15 +635,15 @@ h2 {
 
 .quality-list {
   display: grid;
-  gap: 10px;
+  gap: 8px;
   list-style: none;
 }
 
 .quality-list li {
   position: relative;
   display: grid;
-  gap: 3px;
-  padding: 13px 14px 13px 42px;
+  gap: 2px;
+  padding: 11px 12px 11px 40px;
   border: 1px solid rgba(36, 87, 214, 0.14);
   border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.78);
@@ -642,10 +652,10 @@ h2 {
 .quality-list li::before {
   content: "";
   position: absolute;
-  top: 16px;
-  left: 15px;
-  width: 12px;
-  height: 12px;
+  top: 14px;
+  left: 14px;
+  width: 11px;
+  height: 11px;
   border: 3px solid rgba(36, 87, 214, 0.18);
   border-radius: 50%;
   background: var(--red);
@@ -654,14 +664,20 @@ h2 {
 
 .quality-list strong {
   color: var(--blue-dark);
-  font-size: 0.98rem;
+  font-size: 0.95rem;
   line-height: 1.25;
 }
 
 .quality-list span {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   line-height: 1.45;
+}
+
+@media (min-width: 360px) {
+  .quality-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /*
@@ -933,15 +949,22 @@ h2 {
   white-space: nowrap;
 }
 
-/*
-  Formations :
-  les diplômes sont présentés comme des cartes premium.
-  .education-card-featured occupe toute la largeur pour mettre en avant la formation actuelle.
-*/
+/* Formations présentées sur une ligne chronologique verticale. */
 .education-grid {
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 18px;
+}
+
+.education-grid::before {
+  content: "";
+  position: absolute;
+  top: 51px;
+  bottom: 51px;
+  left: 51px;
+  width: 2px;
+  background: var(--line);
 }
 
 .education-card {
@@ -951,6 +974,7 @@ h2 {
   gap: 18px;
   padding: 24px;
   overflow: hidden;
+  z-index: 1;
 }
 
 .education-card::after {
@@ -1321,14 +1345,12 @@ h2 {
       url("said cv.jpg") top center / min(82vw, 350px) auto no-repeat;
   }
 
-  .section-head,
-  .profile-wrapper {
+  .section-head {
     grid-template-columns: 1fr;
     gap: 24px;
   }
 
-  .profile-stats,
-  .education-grid {
+  .profile-stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1346,14 +1368,23 @@ h2 {
   .skills-grid,
   .projects-grid,
   .profile-grid,
-  .profile-stats,
-  .education-grid,
   .contact-grid {
     grid-template-columns: 1fr;
   }
 
   .profile-wrapper {
     gap: 18px;
+  }
+
+  .profile-main-card {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-stats {
+    grid-column: 1;
+    grid-row: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: clamp(0.5rem, 1vw, 1rem);
   }
 
   .education-card,
@@ -1384,6 +1415,12 @@ h2 {
   }
 }
 
+@media (max-width: 599px) {
+  .profile-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 620px) {
   .brand span:last-child {
     max-width: 132px;
@@ -1409,8 +1446,6 @@ h2 {
     padding-top: 350px;
   }
 
-  .profile-main-card,
-  .profile-grid .profile-card,
   .skill-group,
   .project,
   .experience-card,
@@ -1421,7 +1456,13 @@ h2 {
   }
 
   .education-card {
-    grid-template-columns: 1fr;
+    grid-template-columns: 52px minmax(0, 1fr);
+  }
+
+  .education-grid::before {
+    top: 46px;
+    bottom: 46px;
+    left: 46px;
   }
 
   .education-marker {
